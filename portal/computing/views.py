@@ -2,6 +2,7 @@
 
 from computing.models import Image
 from django.shortcuts import render_to_response, get_object_or_404
+import tagging
 import os
 
 def index(request):
@@ -13,4 +14,5 @@ def detail(request, image_id):
 
 def filetree(request):
 	url = os.getcwd()
-	return render_to_response('computing/directory.html', {'url': url})
+	dirList = os.listdir(url)
+	return render_to_response('computing/directory.html', {'dirList': dirList})

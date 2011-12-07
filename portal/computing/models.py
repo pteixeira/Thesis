@@ -1,5 +1,8 @@
 from django.db import models
 import time
+from tagging.fields import TagField
+from tagging.models import Tag
+import tagging.models
 # Create your models here.
 
 
@@ -34,6 +37,13 @@ class Image(models.Model):
 	date_added = models.DateTimeField('date added to system')
 	type_of_image = models.CharField(max_length=10, choices=IMAGE_CHOICES) #can be OpenStack or OpenNebula - Different Details
 	number_of_uses = models.IntegerField(blank=True, null=True)
+	tags = tagging.fields.TagField()
+	
+	def set_tags(self, tags):
+		Tag.objects.update_tags(self, tags)
+	def get_tags(self):
+		return Tag.objects.get_for_object(self)
+		
 	def __unicode__(self):
 		return self.name
 	
@@ -70,5 +80,4 @@ class Details_OpenNebula(models.Model):
 	fstype = models.CharField(max_length=50)
 	def __unicode__(self):
 		return self.image_name
-	
-	
+
