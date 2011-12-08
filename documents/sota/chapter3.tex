@@ -1,0 +1,116 @@
+\chapter{Workplan and Methodologies}\label{chap:chap3}
+
+\section*{}
+
+In this section the workplan and methodologies to be followed during the development of the project over the next semester will be presented and detailed.
+
+\section{Technologies to be used}\label{tech}
+
+Since this project consists on developing a web portal, it is necessary to detail which technologies will be used to build it.
+There are two major programming languages candidates for this development, \textit{Ruby} on the \textit{Rails} platform and \textit{Python} on the \textit{Django} platform.
+
+
+\subsection{Ruby on Rails}\label{tech:ror}
+
+\begin{quote}
+“Ruby on Rails is a breakthrough in lowering the barriers of entry to programming.
+Powerful web applications that formerly might have taken weeks or months
+to develop can be produced in a matter of days.”
+-Tim O'Reilly, Founder of O'Reilly Media \cite{rubyonrails}
+\end{quote}
+
+\textit{Ruby on Rails} is a Web 2.0 framework that attempts to combine PHP's simple immediacy with Java's architecture, purity and quality. It forms an environment and provides all the tools to create business-critical, database-supported web applications. Its basic objectives are simplicity, reusability, expandability, testability, productivity and maintainability.
+
+It implements a MVC (Model-View-Controller) architecture, which clearly separates code according to its purpose.
+
+Ruby code is easy to read and is based on languages such as Python, Perl and Lisp~\cite{ror}.
+
+\textit{Ruby on Rails} official website offers a wide range of APIs, guides and books, which make for an extremely well documented framework~\cite{rubyonrails}.
+
+\subsection{Python - Django}\label{tech:python}
+\textit{Django} is a high-level Python web framework that encourages rapid develop and clean, pragmatic design. It was designed to handle two challenges: intensive deadlines and the requirements of the experienced web developers who wrote it.
+
+Just like \textit{Ruby on Rails}, \textit{Django} focuses itself on the DRY\footnote{Don't Repeat Yourself} principle, which states:
+
+\begin{quote}
+``Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.'' \cite{c2}
+\end{quote}
+
+\textit{Django}'s documentation is extremely extensive, and can be found in its official website~\footnote{https://docs.djangoproject.com/en/1.3/} and in the online version of the \textit{Django Book}, a free book about the \textit{Django Web Framework}~\footnote{http://www.djangobook.com}.
+
+
+\textit{Python} and \textit{Django} are the best candidates to be used, as VMBuilder is a suitable choice for the needs of this project, since it can run inside \textit{Ubuntu} and is \textit{Python} based.
+
+\textit{Python} will also be used in any scripting necessary, unless it cannot be done specifically in \textit{Python}. The back-end scritping is written in \textit{Bash}, something that can be easily integrated into Python modules~\cite{stackoverflow-python-bash}.
+
+\section{Tasks to complete}\label{tasks}
+
+This project will be developed in phases, each of which corresponds to a task that should be completed.
+
+\subsection{Package Repositories}\label{tasks:repo}
+
+This task is composed by two sub-tasks - creating a local repository and accessing and managing this said repository. It was chosen to take this path because as it was mentioned earlier, without a local repository and there is a network failure, the whole system is rendered useless because the system cannot access the software packages to create the ISO image.
+
+A connection to a remote server - \textit{Debian}'s official repository - will also be made, to ensure redundancy.
+
+\subsection{Software Packages}\label{tasks:packages}
+
+This task is also composed of two sub-tasks - downloading the packages and managing them. This should be done right after the previous task was completed. On a first stage the packages should be listed and downloaded and then managed, as in, they should be ready to be packed with the kernel of a Linux distribution for the next phase (\ref{tasks:isos}).
+
+\subsection{Creating custom ISO images}\label{tasks:isos}
+
+This is the core task of the system. The packages collected from the previous task should be packed with a Linux kernel and an ISO image should be created.
+
+\subsection{Reviewing the State of the Art}\label{tasks:sota}
+
+As this is a relatively new subject that is constantly evolving and new developments are being made, is is obligatory to keep up with the new discoveries and projects. As such, some time should be taken periodically in order to do a research for papers and projects that could appear during the development of the project. A suggested periodicity would be on a weekly or fortnight basis.
+
+\subsection{System testing}\label{tasks:test}
+
+As with every technical project, it is necessary to carry out tests on the system, to ensure that everything is being developed in a correct fashion. System tests are critical for identifying bugs on the interface or on the software development process.
+
+\subsection{Writing the documentation}\label{tasks:doc}
+
+The dissertation and all the related documentation should be written on time and with time to spare, in order to avoid delays on the deployment of the project.
+
+\subsection{Developing the web portal}\label{tasks:portal}
+
+This task should be started once the software repositories are created, and it should follow an iterative prototyping model, in the sense that after new functionalities are implemented, they are tested in terms of usability, followed by the correction of whatever problems are detected and only then it will be possible to jump to the next implementation.
+
+These usability tests are to be carried out with researchers that use FEUP's computing system.
+
+\section{Calendarization}
+
+
+Calendarization was made regarding the priority of the tasks to perform. Each phase includes a requirements elicitation phase, an implementation phase, a usability tests phase and a problem detection and correction phase.
+
+The timeline presented in Figure~\ref{fig:timeline} represents the calendar to follow task-wise.
+
+\begin{figure}[H]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\textwidth]{timeline2}
+    \caption{Tasks distribution for the next semester.}
+    \label{fig:timeline}
+  \end{center}
+\end{figure}
+
+Estimated duration of the tasks:
+
+\begin{itemize}
+\item Developing the web portal~\ref{tasks:portal} - 7 weeks;
+\item Software repositories~\ref{tasks:repo} - 4 weeks:
+	\begin{itemize}
+	\item Creating a local repository;
+	\item Accessing and managing the local repository.
+	\end{itemize}
+\item Software Packages~\ref{tasks:packages} - 10 weeks:
+	\begin{itemize}
+	\item Downloading packages;
+	\item Managing Packages.
+	\end{itemize}
+\item Creating custom ISO images~\ref{tasks:isos} - 12 weeks;
+\item Reviewing the State of the Art~\ref{tasks:sota} - Periodical review which should be made every week or every fortnight as mentioned earlier.;
+\item System testing~\ref{tasks:test} - 22 weeks;
+\item Writing the documentation~\ref{tasks:doc} - 17 weeks.
+\end{itemize}
