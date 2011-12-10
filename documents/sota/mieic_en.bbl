@@ -1,0 +1,372 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{VRMCL08}
+
+\bibitem[Ama]{amazon-aws}
+Amazon.
+\newblock Amazon {E}{C}2 {FAQ} - what is a ``{E}{C}2 {C}ompute {U}nit'' and why
+  did you introduce it?
+\newblock
+  \url{http://aws.amazon.com/ec2/faqs/#What_is_an_EC2_Compute_Unit_and_why_did%
+_you_introduce_it}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[B\'08]{grids-and-clouds}
+Marc-Elian B\'{e}gin.
+\newblock {An EGEE comparative study: Grids and clouds - evolution or
+  revolution}.
+\newblock Technical report, CERN - Engeneering and Equipment Data Management
+  Service, June 2008.
+
+\bibitem[BAFB05]{grid-standards}
+M.~Baker, A.~Apon, C.~Ferner, and J.~Brown.
+\newblock Emerging grid standards.
+\newblock {\em Computer}, 38(4):43 -- 50, april 2005.
+
+\bibitem[BK07]{ror}
+M.~Bachle and P.~Kirchberg.
+\newblock Ruby on rails.
+\newblock {\em Software, IEEE}, 24(6):105 --108, nov.-dec. 2007.
+
+\bibitem[BLDGS04]{bote-lorenzo}
+Miguel Bote-Lorenzo, Yannis Dimitriadis, and Eduardo Gómez-Sánchez.
+\newblock Grid characteristics and uses: A grid definition.
+\newblock In Francisco Fernández~Rivera, Marian Bubak, Andrés Gómez~Tato,
+  and Ramón Doallo, editors, {\em Grid Computing}, volume 2970 of {\em Lecture
+  Notes in Computer Science}, pages 291--298. Springer Berlin / Heidelberg,
+  2004.
+
+\bibitem[BV08]{bhatta-utility}
+Jaijit Bhattacharya and Sushant Vashistha.
+\newblock Utility computing-based framework for e-governance.
+\newblock In {\em Proceedings of the 2nd international conference on Theory and
+  practice of electronic governance}, ICEGOV '08, pages 303--309, New York, NY,
+  USA, 2008. ACM.
+
+\bibitem[BYV{\etalchar{+}}09]{Buyya2009599}
+Rajkumar Buyya, Chee~Shin Yeo, Srikumar Venugopal, James Broberg, and Ivona
+  Brandic.
+\newblock Cloud computing and emerging it platforms: Vision, hype, and reality
+  for delivering computing as the 5th utility.
+\newblock {\em Future Generation Computer Systems}, 25(6):599 -- 616, 2009.
+
+\bibitem[Car09]{carr}
+Nicholas Carr.
+\newblock {\em The Big Switch: Rewiring the World, from Edison to Google}.
+\newblock W.W. Norton \& Company, 2009.
+
+\bibitem[Car11]{nuno-cardoso}
+Nuno Cardoso.
+\newblock Virtual clusters sustained by cloud computing infrastructures.
+\newblock Master's thesis, FEUP - Faculdade de Engenharia da Universidade do
+  Porto, 2011.
+
+\bibitem[CCa]{openstack}
+Rackspace {C}loud {C}omputing.
+\newblock Open {S}tack - {O}pen {S}ource {C}loud {C}omputing {S}oftware.
+\newblock
+  \url{http://stackoverflow.com/questions/209470/can-i-use-python-as-a-bash-re%
+placement}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[CCb]{c2}
+{I}nc. Cunningham \&~{C}unningham.
+\newblock Don't {R}epeat {Y}ourself.
+\newblock \url{http://c2.com/cgi/wiki?DontRepeatYourself}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[C{E}{R}]{glite}
+C{E}{R}{N}.
+\newblock g{L}ite - {L}ightweight {M}iddleware for {G}rid {C}omputing.
+\newblock \url{http://glite.cern.ch/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[CGH09]{open-clouds}
+Damien Cerbelaud, Shishir Garg, and Jeremy Huylebroeck.
+\newblock Opening the clouds: qualitative overview of the state-of-the-art open
+  source vm-based cloud management platforms.
+\newblock In {\em Proceedings of the 10th ACM/IFIP/USENIX International
+  Conference on Middleware}, Middleware '09, pages 22:1--22:8, New York, NY,
+  USA, 2009. Springer-Verlag New York, Inc.
+
+\bibitem[{C}on]{linux-config}
+Linux {C}onfig.
+\newblock Easy way to create a debian package and local package repository.
+\newblock
+  \url{http://linuxconfig.org/easy-way-to-create-a-debian-package-and-local-pa%
+ckage-repository}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Deba]{debian-config}
+Debian.
+\newblock Debian - {H}ow to set up a {D}ebian repository.
+\newblock \url{http://wiki.debian.org/HowToSetupADebianRepository}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Debb]{pkg-basics}
+Debian.
+\newblock The {D}ebian {}{G}{N}{U}/{L}inux {F}{A}{Q} - {B}asics of the {D}ebian
+  package management system.
+\newblock
+  \url{http://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Debc]{vmbuilder-debian}
+Debian.
+\newblock {V}{M}{B}uilder - {D}ebian {W}iki.
+\newblock \url{http://wiki.debian.org/VMBuilder}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[FFK{\etalchar{+}}06]{clusters-grid}
+I.~Foster, T.~Freeman, K.~Keahy, D.~Scheftner, B.~Sotomayer, and X.~Zhang.
+\newblock Virtual clusters for grid communities.
+\newblock {\em Cluster Computing and the Grid, IEEE International Symposium
+  on}, pages 513--520, 2006.
+
+\bibitem[Fos02]{Foster_2002}
+Ian Foster.
+\newblock What is the grid? a three point checklist.
+\newblock {\em Grid Today}, 1(6):22–25, 2002.
+
+\bibitem[GKC{\etalchar{+}}]{21experts}
+Jeremy Geelan, Markus Klems, Reuven Cohen, Jeff Kaplan, Douglas Gourlay,
+  Praising Gaw, Damon Edwards, Brian de~Haaff, Ben Kepes, Kirill Sheynkman,
+  Omar Sultan, Kevin Hartig, Jan Pritzker, Trevor Doerksen, Thorsten von
+  Eicken, Paul Wallis, Michael Sheehan, Don Dodge, Aaron Ricadela, Bill Martin,
+  Ben Kepes, and Irving~W. Berger.
+\newblock {Twenty-One Experts Define Cloud Computing}.
+\newblock \url{http://virtualization.sys-con.com/node/612375}.
+\newblock Last accessed in 16 July 2011.
+
+\bibitem[GWQF10]{azure-paper}
+Thilina Gunarathne, Tak-Lon Wu, Judy Qiu, and Geoffrey Fox.
+\newblock Cloud computing paradigms for pleasingly parallel biomedical
+  applications.
+\newblock In {\em Proceedings of the 19th ACM International Symposium on High
+  Performance Distributed Computing}, HPDC '10, pages 460--469, New York, NY,
+  USA, 2010. ACM.
+
+\bibitem[Hay08]{hayes}
+Brian Hayes.
+\newblock Cloud computing.
+\newblock {\em Commun. ACM}, 51:9--11, July 2008.
+
+\bibitem[Haz08]{hazel}
+Scott Hazelhurst.
+\newblock Scientific computing using virtual high-performance computing: a case
+  study using the amazon elastic computing cloud.
+\newblock In {\em Proceedings of the 2008 annual research conference of the
+  South African Institute of Computer Scientists and Information Technologists
+  on IT research in developing countries: riding the wave of technology},
+  SAICSIT '08, pages 94--103, New York, NY, USA, 2008. ACM.
+
+\bibitem[HH]{rubyonrails}
+David {H}einemeier {H}ansson.
+\newblock {R}uby on {R}ails.
+\newblock \url{http://rubyonrails.org/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[HP10]{googleapp}
+Joel Hollingsworth and David~J. Powell.
+\newblock Teaching web programming using the google cloud.
+\newblock In {\em Proceedings of the 48th Annual Southeast Regional
+  Conference}, ACM SE '10, pages 76:1--76:5, New York, NY, USA, 2010. ACM.
+
+\bibitem[IDE{\etalchar{+}}06]{iosup}
+Alexandru Iosup, Catalin Dumitrescu, Dick Epema, Hui Li, and Lex Wolters.
+\newblock How are real grids used? the analysis of four grid traces and its
+  implications.
+\newblock In {\em Proceedings of the 7th IEEE/ACM International Conference on
+  Grid Computing}, GRID '06, pages 262--269, Washington, DC, USA, 2006. IEEE
+  Computer Society.
+
+\bibitem[KF98]{gridbook}
+Carl Kesselman and Ian Foster.
+\newblock {\em {The Grid: Blueprint for a New Computing Infrastructure}}.
+\newblock {Morgan Kaufmann Publishers}, November 1998.
+
+\bibitem[KF08]{contextualization}
+K.~Keahey and T.~Freeman.
+\newblock Contextualization: Providing one-click virtual clusters.
+\newblock In {\em eScience, 2008. eScience '08. IEEE Fourth International
+  Conference on}, pages 301 --308, dec. 2008.
+
+\bibitem[KG09]{knorr}
+Eric Knorr and Galen Gruman.
+\newblock {What cloud computing really means}.
+\newblock
+  \url{http://www.infoworld.com/d/cloud-computing/what-cloud-computing-really-%
+means-031}, 2009.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Lif]{lifehacker-suse}
+Lifehacker.
+\newblock {U}se {S}{U}{S}{E} {S}tudio to {B}uild a {L}inux {O}{S} {F}rom
+  {S}cratch.
+\newblock
+  \url{http://lifehacker.com/5370209/use-suse-studio-to-build-a-linux-os-from-%
+scratch}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[{M}cF]{ieees}
+Paul {M}cFedries.
+\newblock Ieee spectrum - {I}nside {T}echnology.
+\newblock
+  \url{http://spectrum.ieee.org/computing/hardware/the-cloud-is-the-computer}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Mic]{azure}
+Microsoft.
+\newblock Windows {A}zure | {M}icrosoft {P}aas | {C}loud {S}ervices |
+  {A}pplication {H}osting.
+\newblock \url{http://www.microsoft.com/windowsazure/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[NMM07]{nishimura}
+Hideo Nishimura, Naoya Maruyama, and Satoshi Matsuoka.
+\newblock Virtual clusters on the fly - fast, scalable, and flexible
+  installation.
+\newblock {\em Cluster Computing and the Grid, IEEE International Symposium
+  on}, 0:549--556, 2007.
+
+\bibitem[Nov]{suse-help}
+{I}nc. Novell.
+\newblock {S}{U}{S}{E} {S}tudio.
+\newblock \url{http://susestudio.com/help}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[NS07]{virtualpower}
+Ripal Nathuji and Karsten Schwan.
+\newblock Virtualpower: coordinated power management in virtualized enterprise
+  systems.
+\newblock In {\em Proceedings of twenty-first ACM SIGOPS symposium on Operating
+  systems principles}, SOSP '07, pages 265--278, New York, NY, USA, 2007. ACM.
+
+\bibitem[Ope]{opennebula}
+Open{N}ebula.
+\newblock Open{N}ebula.
+\newblock \url{http://opennebula.org/about:faq#what_is_opennebula}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[{P}ar]{aboutdebian}
+Keith {P}arkansky.
+\newblock How to install {L}inux software programs using {D}ebian {L}inux
+  package management tools.
+\newblock \url{http://www.aboutdebian.com/packages.htm}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Pin10]{jorge-ruao}
+Jorge Fernando Maciel Rodrigues~Ruão Pinheiro.
+\newblock Interligação de infra-estruturas de computação de elevado
+  desempenho heterogéneas recorrendo a um super escalonador.
+\newblock Master's thesis, FEUP - Faculdade de Engenharia da Universidade do
+  Porto, 2010.
+
+\bibitem[Rad]{radified}
+Radified.
+\newblock Radified {G}uide to {N}orton {G}host ({S}ymantec) - {A} {T}utorial on
+  {H}ow to {C}reate, {S}ave \& {R}estore {H}ard {D}rive {B}ack-up {G}host
+  {I}mages.
+\newblock \url{http://ghost.radified.com/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Rap04]{ibm-utility}
+M.~A. Rappa.
+\newblock The utility business model and the future of computing services.
+\newblock {\em IBM Syst. J.}, 43:32--42, January 2004.
+
+\bibitem[{R}es]{moab}
+Cluster {R}esources.
+\newblock Cluster {R}esources: {M}oab {C}luster {S}oftware {S}uite.
+\newblock
+  \url{http://www.clusterresources.com/products/moab-cluster-suite.php}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[{R}ev]{manpages-dpkg}
+Linux {R}eviews.
+\newblock Linux {R}eviews - dpkg.
+\newblock \url{http://linuxreviews.org/man/dpkg/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[RW04]{ross}
+J.~W. Ross and G.~Westerman.
+\newblock Preparing for utility computing: The role of it architecture and
+  relationship management.
+\newblock {\em IBM Syst. J.}, 43:5--19, January 2004.
+
+\bibitem[sei]{stackoverflow-python-bash}
+stack~exchange inc.
+\newblock Can {I} use {P}ython as a bash replacement?
+\newblock
+  \url{http://stackoverflow.com/questions/209470/can-i-use-python-as-a-bash-re%
+placement}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Sto07]{stockinger}
+Heinz Stockinger.
+\newblock Defining the grid: a snapshot on the current view.
+\newblock {\em The Journal of Supercomputing}, 42:3--17, 2007.
+
+\bibitem[{S}un]{brighthub}
+Karishma {S}undaram.
+\newblock Bright {H}ub - {T}he {H}ub for {B}right {M}inds.
+\newblock
+  \url{http://www.brighthub.com/environment/green-computing/articles/68785.asp%
+x}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[{S}up]{about-iso}
+About.com~{P}{C} {S}upport.
+\newblock {I}{S}{O} {F}ile {D}efinition - {W}hat is an {I}{S}{O} {F}ile.
+\newblock \url{http://pcsupport.about.com/od/termsi/g/isofile.htm}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Sym]{symantec-ghost-tutorials}
+Symantec.
+\newblock Ghost {T}utorials.
+\newblock
+  \url{http://www.symantec.com/business/support/ghosttutorial/GhostTutorials.h%
+tml}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[{T}ea]{condor}
+Condor {T}eam.
+\newblock Condor {P}roject {H}omepage.
+\newblock \url{http://www.cs.wisc.edu/condor/}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Ubua]{help-ubuntu-vmbuilder}
+Ubuntu.
+\newblock Je{O}{S}{V}{M}{B}uilder - {C}ommunity {U}buntu {D}ocumentation.
+\newblock \url{https://help.ubuntu.com/community/JeOSVMBuilder}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Ubub]{vmbuilder-ubuntu}
+Ubuntu.
+\newblock {U}{E}{C}/{C}reate{Y}our{I}mage - {C}ommunity {U}buntu
+  {D}ocumentation.
+\newblock \url{https://help.ubuntu.com/community/UEC/CreateYourImage}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[VRMCL08]{vaquero}
+Luis~M. Vaquero, Luis Rodero-Merino, Juan Caceres, and Maik Lindner.
+\newblock A break in the clouds: towards a cloud definition.
+\newblock {\em SIGCOMM Comput. Commun. Rev.}, 39:50--55, December 2008.
+
+\bibitem[Web]{webopedia-packs}
+Webopedia.
+\newblock What is software package? - {A} {W}ord {D}efinition from the
+  {W}ebopedia {C}omputer {D}ictionary.
+\newblock \url{http://www.webopedia.com/TERM/S/software_package.html}.
+\newblock Last accessed 16 July 2011.
+
+\bibitem[Wei07]{aaron-clouds}
+Aaron Weiss.
+\newblock Computing in the clouds.
+\newblock {\em netWorker}, 11:16--25, December 2007.
+
+\bibitem[ZKFF05]{Zhang05virtualcluster}
+Xuehai Zhang, Katarzyna Keahey, Ian Foster, and Timothy Freeman.
+\newblock Virtual cluster workspaces for grid applications.
+\newblock Technical report, 2005.
+
+\end{thebibliography}

@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: mieic_en.aux
+A level-1 auxiliary file: abstract_en.aux
+A level-1 auxiliary file: acknows_en.aux
+A level-1 auxiliary file: abbrevs_en.aux
+A level-1 auxiliary file: chapter1.aux
+A level-1 auxiliary file: chapter2.aux
+A level-1 auxiliary file: chapter3.aux
+A level-1 auxiliary file: chapter4.aux
+A level-1 auxiliary file: chapter5.aux
+The style file: alpha.bst
+A level-1 auxiliary file: appendix1.aux
+Database file #1: myrefs.bib
+Warning--I didn't find a database entry for "kn:Lip08"
+Warning--empty institution in Zhang05virtualcluster
+You've used 55 entries,
+            2543 wiz_defined-function locations,
+            849 strings with 13696 characters,
+and the built_in function-call counts, 20411 in all, are:
+= -- 2061
+> -- 883
+< -- 47
++ -- 295
+- -- 287
+* -- 1234
+:= -- 3280
+add.period$ -- 201
+call.type$ -- 55
+change.case$ -- 335
+chr.to.int$ -- 51
+cite$ -- 56
+duplicate$ -- 807
+empty$ -- 1557
+format.name$ -- 370
+if$ -- 4283
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 25
+newline$ -- 307
+num.names$ -- 167
+pop$ -- 520
+preamble$ -- 1
+purify$ -- 390
+quote$ -- 0
+skip$ -- 637
+stack$ -- 0
+substring$ -- 928
+swap$ -- 148
+text.length$ -- 47
+text.prefix$ -- 32
+top$ -- 0
+type$ -- 432
+warning$ -- 1
+while$ -- 173
+width$ -- 57
+write$ -- 739
+(There were 2 warnings)

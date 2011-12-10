@@ -1,0 +1,56 @@
+\BOOKMARK [0][-]{init.0}{Front Page}{}
+\BOOKMARK [0][-]{contents.0}{Table of Contents}{}
+\BOOKMARK [0][-]{figures.0}{List of Figures}{}
+\BOOKMARK [0][-]{tables.0}{List of Tables}{}
+\BOOKMARK [0][-]{abbrevs.0}{Abbreviations}{}
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{1.1 Context}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{1.2 Motivation and Objectives}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{1.3 Dissertation Structure}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{2 State of the Art}{}
+\BOOKMARK [1][-]{section.2.1}{2.1 Virtualization and Virtual Machines}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Hypervisors}{section.2.1}
+\BOOKMARK [1][-]{section.2.2}{2.2 Grid Computing}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{2.3 Cloud Computing}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Utility Computing}{section.2.3}
+\BOOKMARK [1][-]{section.2.4}{2.4 Grids VS. Clouds}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{2.5 Developments, Applications and Services}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{2.5.1 AWS - Amazon Web Services}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.2}{2.5.2 Google Cloud - Google's App Engine}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.3}{2.5.3 Microsoft Azure}{section.2.5}
+\BOOKMARK [1][-]{section.2.6}{2.6 FEUP's Computing System}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.6.1}{2.6.1 OpenNebula}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.2}{2.6.2 OpenStack}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.3}{2.6.3 Clusters}{section.2.6}
+\BOOKMARK [1][-]{section.2.7}{2.7 Software Packages}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.7.1}{2.7.1 Debian Packages}{section.2.7}
+\BOOKMARK [1][-]{section.2.8}{2.8 ISO Images}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.8.1}{2.8.1 Symantec's GHOST}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.2}{2.8.2 Suse Studio}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.3}{2.8.3 Ubuntu's VM Builder}{section.2.8}
+\BOOKMARK [0][-]{chapter.3}{3 Workplan and Methodologies}{}
+\BOOKMARK [1][-]{section.3.1}{3.1 Technologies to be used}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Ruby on Rails}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Python - Django}{section.3.1}
+\BOOKMARK [1][-]{section.3.2}{3.2 Tasks to complete}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Package Repositories}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Software Packages}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Creating custom ISO images}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.4}{3.2.4 Reviewing the State of the Art}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.5}{3.2.5 System testing}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.6}{3.2.6 Writing the documentation}{section.3.2}
+\BOOKMARK [2][-]{subsection.3.2.7}{3.2.7 Developing the web portal}{section.3.2}
+\BOOKMARK [1][-]{section.3.3}{3.3 Calendarization}{chapter.3}
+\BOOKMARK [0][-]{chapter.4}{4 Implementa\347\343o}{}
+\BOOKMARK [1][-]{section.4.1}{4.1 Sec\347\343o Exemplo}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{4.2 Mais uma Sec\347\343o}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{4.3 Resumo ou Conclus\365es}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{5 Conclus\365es e Trabalho Futuro}{}
+\BOOKMARK [1][-]{section.5.1}{5.1 Satisfa\347\343o dos Objectivos}{chapter.5}
+\BOOKMARK [1][-]{section.5.2}{5.2 Trabalho Futuro}{chapter.5}
+\BOOKMARK [0][-]{section*.13}{References}{}
+\BOOKMARK [0][-]{appendix.A}{A Loren Ipsum}{}
+\BOOKMARK [1][-]{section.A.1}{A.1 O que \351 o Loren Ipsum?}{appendix.A}
+\BOOKMARK [1][-]{section.A.2}{A.2 De onde Vem o Loren?}{appendix.A}
+\BOOKMARK [1][-]{section.A.3}{A.3 Porque se usa o Loren?}{appendix.A}
+\BOOKMARK [1][-]{section.A.4}{A.4 Onde se Podem Encontrar Exemplos?}{appendix.A}

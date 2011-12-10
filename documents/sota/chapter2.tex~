@@ -179,14 +179,14 @@ There are many Cloud definitions, but they all focus on certain technological as
 
 The authors try to distinguish the different actors and scenarios that can arise:
 
-\begin{figure}[t]
-  \begin{center}
-    \leavevmode
-    \includegraphics[width=\linewidth]{cloud_actors}
-    \caption{Cloud Actors~\cite{Buyya2009599}.}
-    \label{fig:cloud_actors}
-  \end{center}
-\end{figure}
+%\begin{figure}[t]
+%  \begin{center}
+%    \leavevmode
+%    \includegraphics[width=\linewidth]{cloud_actors}
+%    \caption{Cloud Actors~\cite{Buyya2009599}.}
+%    \label{fig:cloud_actors}
+%  \end{center}
+%\end{figure}
 
 \textbf{The actors:}\\
 Service Providers make services accessible to Service Users through Internet-based Interfaces. The computing infrastructure is offered “as a service” by the Infrastructure Providers, moving computing resources from the SPs to the IPs, in order to give the firsts flexibility and reduced costs.
@@ -331,14 +331,14 @@ The Cloud creation and management tool is also described, as it is a vital part 
 
 \textit{OpenNebula} is an academic project developed by the \textit{Universidad Complutense Madrid}. It was created in order to control several hosts and machines in a unified environment. It has been released as a software package in \textit{Ubuntu} 9.04 and is compatible with both Xen and KVM, two \textit{platform virtual machines} that emulate the whole physical computer machine. It has its own command-line tools and gives the user different configuration scripts which enable a simple and flexible way to design and manage running virtual machines. OpenNebula's architecture is shown in~\ref{fig:nebula}~\cite{jorge-ruao}.
 
-\begin{figure}[H]
-  \begin{center}
-    \leavevmode
-    \includegraphics{nebulaarch}
-    \caption{OpenNebula's Architecture~\cite{open-clouds}.}
-    \label{fig:nebula}
-  \end{center}
-\end{figure}
+%\begin{figure}[H]
+%  \begin{center}
+%    \leavevmode
+%    \includegraphics{nebulaarch}
+%    \caption{OpenNebula's Architecture~\cite{open-clouds}.}
+%    \label{fig:nebula}
+%  \end{center}
+%\end{figure}
 
 \textit{OpenNebula} does not have a built-in utility to create VMs from scratch, but its templates allow the VMs to boot an ISO image, leaving the user with just creating an empty hard disk image.
 

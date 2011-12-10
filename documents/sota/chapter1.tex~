@@ -13,7 +13,7 @@ In this first chapter the context of the project is described, as well as the mo
 	
 \section{Context} \label{sec:context}
 
-	Leonard Kleinrock (part of the team that developed \Arpanet, an early seed for the Internet) said in 1969:
+	Leonard Kleinrock (part of the team that developed Arpanet, an early seed for the Internet) said in 1969:
 
 \begin{quote}
   ``As [...] computer networks [...] grow and become sophisticated, we will probably see the spread of `computer utilities' which, like present electric and telephone utilities, will service individual homes and offices around the country.''~\cite{Buyya2009599} 
@@ -30,26 +30,26 @@ Having this in mind, FEUP is currently developing a private Cloud project at CIC
 The project aims at automatically creating custom made computing environments so that users can run their computing jobs in the desired hardware, by using dynamically created virtual clusters.
 	
 
-\section{Project} \label{sec:proj}
+%\section{Project} \label{sec:proj}
 	
-\begin{figure}[t]
-  \begin{center}
-    \leavevmode
-    \includegraphics[width=\textwidth]{big_picture}
-    \caption{FEUP's Private Cloud Project.}
-    \label{fig:big_picture}
-  \end{center}
-\end{figure}
+%\begin{figure}[t]
+%  \begin{center}
+%    \leavevmode
+%    \includegraphics[width=\textwidth]{big_picture}
+%    \caption{FEUP's Private Cloud Project.}
+%    \label{fig:big_picture}
+%  \end{center}
+%\end{figure}
 	
 	
-\begin{figure}[t]
-  \begin{center}
-    \leavevmode
-    \includegraphics[width=0.5\textwidth]{mockup}
-    \caption{Web Portal Interface Mockup.}
-    \label{fig:mockup}
-  \end{center}
-\end{figure}
+%\begin{figure}[t]
+%  \begin{center}
+%    \leavevmode
+%    \includegraphics[width=0.5\textwidth]{mockup}
+%    \caption{Web Portal Interface Mockup.}
+%    \label{fig:mockup}
+%  \end{center}
+%\end{figure}
 
 
 In order to fully understand what will be developed throughout the next semester, it is needed to comprehend the full scope of the project.

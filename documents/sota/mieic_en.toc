@@ -1,0 +1,58 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Context}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Motivation and Objectives}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Dissertation Structure}{4}{section.1.3}
+\contentsline {chapter}{\numberline {2}State of the Art}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Virtualization and Virtual Machines}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Hypervisors}{8}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Grid Computing}{8}{section.2.2}
+\contentsline {section}{\numberline {2.3}Cloud Computing}{13}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Utility Computing}{16}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}Grids VS. Clouds}{17}{section.2.4}
+\contentsline {section}{\numberline {2.5}Developments, Applications and Services}{19}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}AWS - Amazon Web Services}{19}{subsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.1.1}Amazon's Simple Storage Service}{19}{subsubsection.2.5.1.1}
+\contentsline {subsubsection}{\numberline {2.5.1.2}Amazon's Elastic Computing Cloud}{19}{subsubsection.2.5.1.2}
+\contentsline {subsection}{\numberline {2.5.2}Google Cloud - Google's App Engine}{20}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Microsoft Azure}{21}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}FEUP's Computing System}{21}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}OpenNebula}{22}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}OpenStack}{22}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Clusters}{23}{subsection.2.6.3}
+\contentsline {subsubsection}{\numberline {2.6.3.1}Moab Cluster Suite}{23}{subsubsection.2.6.3.1}
+\contentsline {subsubsection}{\numberline {2.6.3.2}gLite}{24}{subsubsection.2.6.3.2}
+\contentsline {subsubsection}{\numberline {2.6.3.3}Condor}{24}{subsubsection.2.6.3.3}
+\contentsline {section}{\numberline {2.7}Software Packages}{25}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Debian Packages}{25}{subsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.1.1}Repositories}{26}{subsubsection.2.7.1.1}
+\contentsline {section}{\numberline {2.8}ISO Images}{27}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Symantec's GHOST}{27}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Suse Studio}{27}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}Ubuntu's VM Builder}{27}{subsection.2.8.3}
+\contentsline {chapter}{\numberline {3}Workplan and Methodologies}{29}{chapter.3}
+\contentsline {section}{\numberline {3.1}Technologies to be used}{29}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Ruby on Rails}{29}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Python - Django}{30}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Tasks to complete}{30}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Package Repositories}{30}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Software Packages}{30}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Creating custom ISO images}{31}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Reviewing the State of the Art}{31}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}System testing}{31}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Writing the documentation}{31}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}Developing the web portal}{31}{subsection.3.2.7}
+\contentsline {section}{\numberline {3.3}Calendarization}{31}{section.3.3}
+\contentsline {chapter}{\numberline {4}Implementa\IeC {\c c}\IeC {\~a}o}{33}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sec\IeC {\c c}\IeC {\~a}o Exemplo}{33}{section.4.1}
+\contentsline {section}{\numberline {4.2}Mais uma Sec\IeC {\c c}\IeC {\~a}o}{34}{section.4.2}
+\contentsline {section}{\numberline {4.3}Resumo ou Conclus\IeC {\~o}es}{34}{section.4.3}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es e Trabalho Futuro}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}Satisfa\IeC {\c c}\IeC {\~a}o dos Objectivos}{35}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trabalho Futuro}{36}{section.5.2}
+\contentsline {chapter}{References}{37}{section*.13}
+\contentsline {chapter}{\numberline {A}Loren Ipsum}{43}{appendix.A}
+\contentsline {section}{\numberline {A.1}O que \IeC {\'e} o \emph {Loren Ipsum}?}{43}{section.A.1}
+\contentsline {section}{\numberline {A.2}De onde Vem o Loren?}{43}{section.A.2}
+\contentsline {section}{\numberline {A.3}Porque se usa o Loren?}{44}{section.A.3}
+\contentsline {section}{\numberline {A.4}Onde se Podem Encontrar Exemplos?}{44}{section.A.4}
