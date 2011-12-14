@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.http import HttpResponse
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -14,7 +15,10 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^computing/$', 'computing.views.index'),
+#    url(r'^computing/$', 'computing.views.index2'),
     url(r'^computing/(?P<image_id>\d+)/$', 'computing.views.detail'),
-    url(r'^computing/directory', 'computing.views.filetree', name="list"),
+    url(r'^computing/details', 'computing.views.filetree', name="list"),
+    url(r'^computing/search_form/$', 'computing.views.search_form'),
+    url(r'^search/$', 'computing.views.search'),
     url(r'^admin/', include(admin.site.urls)),
 )

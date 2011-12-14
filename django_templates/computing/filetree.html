@@ -1,0 +1,20 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "List" %}{% endblock %}
+
+{% block body %}
+    {% blocktrans %}
+	<center>
+
+{% for f in dirlist reversed %}
+ <h1>{{ f }}</h1>
+{% endfor %}
+
+
+	</center>
+
+
+{% endblock %}
+

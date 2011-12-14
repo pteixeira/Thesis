@@ -2,17 +2,30 @@
 
 from computing.models import Image
 from django.shortcuts import render_to_response, get_object_or_404
+from django.http import HttpResponse
 import tagging
 import os
 
 def index(request):
 	latest_image_list = Image.objects.all().order_by('-date_added') [:5]
-	return render_to_response('computing/index.html', {'latest_image_list': latest_image_list})
+	return render_to_response('computing/index2.html', {'latest_image_list': latest_image_list})
 def detail(request, image_id):
 	i = get_object_or_404(Image, pk=image_id)
-	return render_to_response('computing/detail.html', {'image': i})
+	return render_to_response('computing/image_detail.html', {'image': i})
 
 def filetree(request):
 	url = os.getcwd()
 	dirList = os.listdir(url)
-	return render_to_response('computing/directory.html', {'dirList': dirList})
+	latest_image_list = Image.objects.all().order_by('-date_added') [:5]
+	return render_to_response('computing/detail.html', {'dirList': dirList, 'latest_image_list': latest_image_list})
+
+def search_form(request):
+	return render_to_response('computing/search_form.html')
+	
+def search(request):
+    if 'q' in request.GET and request.GET['q']:
+    	q = request.GET['q']
+    	images = Image.objects.filter(name__icontains=q)
+    	return render_to_response('computing/search_results.html', {'images': images, 'query': q})
+    else:
+    	return HttpResponse('Please submit a search term.')

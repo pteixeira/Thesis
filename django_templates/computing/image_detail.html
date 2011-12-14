@@ -1,0 +1,45 @@
+<h1>{{ image.name }}</h1>
+
+<p>Date added to the system: {{ image.date_added }}.</p>
+<p>Number of times used: {{ image.number_of_uses }}.</p>
+
+
+
+
+{% if image.type_of_image == "nebula" %}
+<ul>
+	<li>Image name: {{ image.details_opennebula_set.get.image_name }}</li>
+	<li>Image description: {{ image.details_opennebula_set.get.description }}</li>
+	<li>Image type: {{ image.details_opennebula_set.get.image_type }}</li>
+	<li>Public: {{ image.details_opennebula_set.get.public }}</li>
+	<li>Persistent: {{ image.details_opennebula_set.get.persistent }}</li>
+	<li>Dev Prefix: {{ image.details_opennebula_set.get.dev_prefix }}</li>
+	<li>BUS type: {{ image.details_opennebula_set.get.bus }}</li>
+	<li>Driver: {{ image.details_opennebula_set.get.driver }}</li>
+	<li>Path: {{ image.details_opennebula_set.get.path }}</li>	
+	<li>Source: {{ image.details_opennebula_set.get.source }}</li>
+	<li>Size: {{ image.details_opennebula_set.get.size }}</li>
+	<li>Fstype: {{ image.details_opennebula_set.get.fstype }}</li>
+</ul>
+{% else %}{% if image.type_of_image == "stack" %}
+
+<ul>
+	<li>Kernel ID: {{ image.details_openstack_set.get.kernel_id }}</li>
+	<li>Size: {{ image.details_openstack_set.get.size }}</li>
+	<li>Public: {{ image.details_openstack_set.get.public }}</li>
+	<li>Date updated: {{ image.details_openstack_set.get.date_added }}</li>
+	<li>Image status: {{ image.details_openstack_set.get.image_status }}</li>
+	<li>Ramdisk ID: {{ image.details_openstack_set.get.ramdisk_id }}</li>
+	<li>Architecture: {{ image.details_openstack_set.get.architecture }}</li>
+	<li>Container format: {{ image.details_openstack_set.get.container_format }}</li>
+	<li>Disk format: {{ image.details_openstack_set.get.disk_format }}</li>
+</ul>
+
+{% else %}
+
+Wrong type of image.
+
+{% endif %}
+
+{% endif %}
+
