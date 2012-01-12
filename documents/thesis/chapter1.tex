@@ -1,39 +1,32 @@
 \chapter{Introdução} \label{chap:intro}
 
 \section*{}
+This chapter describes the motivation behind the choice of this subject, as well as what are the subjects covered throughout the whole document and what new ideas can come from this work.
+It is divided in ##XX## parts, starting with a general view on some of the major areas of interes in this project, such as what is Cloud and Grid computing, what is virtualization and why it is discussed in great extents, what are hypervisors and how they matter and a brief introduction on what will be talked about further on.
 
-O primeiro capítulo da dissertação deve servir para apresentar o
-enquadramento e a moti\-va\-ção do trabalho e para identificar e
-definir os problemas que a dissertação aborda.
-Deve resumir as metodologias utilizadas no trabalho e termina
-apresentando um breve resumo de cada um dos capítulos
-posteriores.
+\section{Context - The birdseye view on a bigger project} \label{sec:context}
 
-Este documento ilustra o formato a usar em dissertações na \Feup, não
-servindo de exemplo sobre os conteúdos a usar.
-São dados exemplos de margens, cabeçalhos, títulos, paginação, estilos
-de índices, etc. 
-São ainda dados exemplos de formatação de citações, figuras e tabelas,
-equações, referências cruzadas, lista de referências e índices.
+Before going into the areas of interest themselves, it is necessary to provide a general idea on what this project lies upon. 
+This project is part of a bigger project, currently under development at CICA - Centro de Informática Correia de Araújo. This project is the second part of a two-part work, where the first part was developed last semester by MIEIC student Nuno Cardoso, as part of his Master Thesis.
+The idea behind this project is to improve on FEUP's Cloud Computing system, through the completion of several goals. 
+In order to better understand the full scope of the issue, Figure 1 shows the full system as it should function, through the means of an hypotetic and yet plausible use case scenario:
 
-Uma recolha de normas existentes sobre este assunto pode ser
-encontrada em~\citet{kn:Mat93}. 
+<<insert figure 1>>
 
-\begin{quote}
-  ``Like the Abstract, the Introduction should be written to engage the
-  interest of the reader. It should also give the reader an idea of
-  how the dissertation is structured, and in doing so, define the
-  thread of the contents.''~\citep[chap.\ Introduction]{kn:Tha01} 
-\end{quote}
+Firstly, a researcher of a specific field of study wants to conduct a more complex operation that involves greater computing efforts than his/her home and work computer. As such, the researcher proceeds to enter the designed system through a web page where he/she can:
 
-Neste primeiro capítulo ilustra-se a utilização de citações e de
-referências biblio\-grá\-fi\-cas.
-Para além de dar um exemplo de utilização de uma citação, a citação
-anterior, introduz uma referência que pode ser consultada, entre
-muitas outras referências bibliográficas
-interessantes~\citep{kn:Tha01,kn:PP05}. 
+\begin{itemize}
+	\item Chose a suitable work environment for her computational needs according to a set of predefined parameters;
+	\item Create his/her own work environment according to the specifications he/she provides the system with.
+\end{itemize}
 
-\section{Contexto/Enquadramento} \label{sec:context}
+The system will then automatically create a virtual environment (image containing all the information needed), which will be passed onto the second part of the project where a virtual cluster will be created according to that virtual environment.
+	
+The fraction of the work covered by this document has as its objectives the automatic creation and management of virtual environments over private high performance computing infrastructures. 
+
+
+
+
 
 Esta secção descreve a área em que o trabalho se insere, podendo
 referir um eventual projecto de que faz parte e apresentar uma breve
