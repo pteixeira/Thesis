@@ -1,0 +1,51 @@
+\chapter{State of the Art}\label{chap:sota}
+
+This chapter presents a bibliographic review on the areas of interest and contribution of this project, being divided in ##FIXME## X parts ##FIXME##:
+
+\begin{itemize}
+	\item Virtualization and Virtual Machines
+	\item Cloud Computing
+	\item Grid Computing
+	\item FEUP's Computing System
+	\item ISO Images
+\end{itemize}
+
+\section{Virtualization and Virtual Machines}\label{sec:virtualization_and_virtual_machines}
+
+As described in the previous chapter, this project relies heavily on virtualization. As such, it is imperative to shed some light on this subject.
+
+Certain problems arise when the requirements of different virtual organizations (VOs) that need to use the same resources are in conflict or are incompatible with site policies. The software available on clusters cannot guarantee isolation of different communities and maintain resource availability while ensuring good utilization of those said resources. This is where Virtual Machines (VMs) come into play. They are emulations of lower layers of computer abstractions on behalf of the higher layers and allow the isolation of the applications from the hardware and neighbour VMs and customizing the platform so it suits the user's needs. \cite{clusters-grid, Zhang05virtualcluster}
+
+Virtualization benefits include an improvement in fault isolation and independence from guest VMs, performance isolation and simplifying the migration of VMs across different physical machines. These benefits enable VMs to share pools of platform and data center resources. \cite{virtualpower}
+
+The ability to serialize and migrate the state of a VM paves the way for better load balancing and improved reliability that cannot be achieved with traditional resources. Deploying virtual clusters - set of VMs configured to behave as a cluster and intended to be scheduled on a physical resource at the same time \cite{Zhang05virtualcluster} -  of diverse topologies requires the ability to deploy many VMs in a coordinated manner so that sharing of infrastructure, such as disks and networking, can be properly configured. This can become more costly than the deployment of single VMs. 
+
+In order to understand more, it is necessary to define virtual workspaces (VWs). These are an aggregation of an execution environment and the resources allocated to that specific environment. It is described by the workspace metadata, containing all the information needed for deployment. An atomic workspace, representing a single execution environment, specifies the data that must be obtained and the deployment information that must be configured on deployment. It is also needed to specify a requested resource allocation, something that describes how much of each resource should be allocated to the workspace.
+
+These atomic workspaces can then be combined to formed what is called a virtual cluster. Foster et al propose an aggregate workspace that contains one or more workspace sets - atomic workspaces with the same configuration. Cluster descriptions can be defined in ways that atomic workspaces can be constructed flexibly into more complex structures, organizing at the same time the infrastructure sharing between the virtual nodes. This deployment enables the user to specify different resource allocations for different members of aggregates defined like this. Foster et al consider that the trade-off they obtained is acceptable, as the slowdown suffered was of about 5\% and considering that virtual machines offer unprecedented flexibility in terms of matching clients to resources. \cite{clusters-grid}
+
+Zhange et al also approached the virtual cluster theme in an article written with both Foster and Freeman, where they combine virtual clusters with Grid technology. The authors only considered two types of node within the cluster: head-nodes and worker nodes. They optimized the loading of the virtual images through image cloning (only transferring one image for all the worker nodes and one image for the head-node, therefore cloning all the worker node images at either staging or deployment time) and they considered that the cost of virtual cluster deployment and management is a good justification for expecting that they may be used for VOs for large groups of short jobs and single long-running jobs. They also found that the cost of running batch jobs in a a virtual cluster was very acceptable.\cite{Zhang05virtualcluster}
+
+Katarzyna Keahey and Tim Freeman introduce the term \textit{contextualization} in order to describe the process of quickly deploying fully configured images and adapt them to their deployment context, for single VMs. The authors understand \textit{contextualization} as the process of adapting an appliance to its deployment context (an appliance defining an environment as an abstraction independent of its deployment). They are deployed dynamically and are potentially associated with a different context. According to the authors, they can also fulfill three different roles:
+\begin{enumerate}
+\item Appliance providers - they configure environments, maintain them and guarantee their consistency;
+\item Resource providers - they provide resources with limited configuration requirements that are designed to support appliances but no longer to provide end-user environments for multiple communities;
+\item Appliance deployers - they coordinate the mapping of appliances  onto available resource platforms and information exchange between groups of appliances to enable them to share information.\cite{contextualization}
+\end{enumerate}
+
+There are different types of approaches, since providers can have the applications running inside VMs or provide access to the VMs as a service (Amazon Elastic Compute Cloud), enabling the users to install their own applications. With virtualization, companies are trying to save power by getting the most of what they consume. Running several operating systems inside one machine, they can run independently and CPU idle time is kept to a minimum.\cite{aaron-clouds}
+
+Virtualized computing clusters offer the advantage of being able to transform themselves to the user's needs. However, as pointed out by Nishimura et al, previous work has shown that the system does not scale when increasing the number of VMs and their detailed configuration is not allowed. To counter this issue, Nishimura et al propose a new way of managing virtual clusters so that a flexible and fully-customizable system integration by creating VMs on-the-fly is achieved. 
+
+The authors also propose the creation of \textit{virtual disk caches} (VD caches), in order to reduce software installation time. This VD cache is created when a user requests it and is automatically destroyed to keep the total cache size within the given space. What the authors did was that when an installation request is made by the user, the system selects physical resources to host a virtual cluster for the request, instantiates a set of VMs and installs the operating system and other requested software to them. The experiments conducted by the authors using a prototype implementation showed that installing a 190-node virtual cluster can be done in 40 seconds, indicating that the installation of a 1000-VM could be done in under two minutes.\cite{nishimura}
+
+Nathuji and Schwan addressed the issue of integrating power management mechanisms and policies with the virtualization techniques deployed in virtual environments. They propose the \textit{VirtualPower} approach which aims to control and synchronize the effects of the power management policies applied by the VMs to the virtualized resources. 
+
+The authors propose this approach having in mind the current limitations in battery capacities and the power delivery and cooling limitations existent in data centers when they try to handle the constant demands of performance and scalability. The authors state that their approach  can exploit the hardware power scaling and the methods that control the power consumption of the underlying platforms. It takes guest VMs' power management policies and coordinates them through the system in order to achieve the objectives. 
+
+The power management actions are encoded as a set of rules, these being based on a set of mechanisms which serve as a base to implement the power management methods. This approach aimed to present guest VMs with a set of power states and then use the state changes requested by the VMs as inputs to virtualization-level management policies, including those to use specific platforms and their power management capabilities, along with policies that take into consideration goals derived from the applications running through the whole system and from global constraints, such as rack-level limitations on maximum power consumption. 
+
+Their findings showed that it is possible to respond to specific power management goals and policies implemented in guest VMs without a need for application specificity to be established at the virtualization level. \cite{virtualpower}
+
+It is extremely important to discuss \textit{OpenNebula}, as this project will interact with it and as such, it is approached in a later section. \ref{opennebula}
+
