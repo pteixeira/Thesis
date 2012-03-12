@@ -2,38 +2,58 @@
 
 \section*{}
 
-O primeiro capítulo da dissertação deve servir para apresentar o
-enquadramento e a moti\-va\-ção do trabalho e para identificar e
-definir os problemas que a dissertação aborda.
-Deve resumir as metodologias utilizadas no trabalho e termina
-apresentando um breve resumo de cada um dos capítulos
-posteriores.
+This document covers the work undergone regarding the study, design and implementation of the project titled:
 
-Este documento ilustra o formato a usar em dissertações na \Feup, não
-servindo de exemplo sobre os conteúdos a usar.
-São dados exemplos de margens, cabeçalhos, títulos, paginação, estilos
-de índices, etc. 
-São ainda dados exemplos de formatação de citações, figuras e tabelas,
-equações, referências cruzadas, lista de referências e índices.
+Web System For Creating And Managing Virtual High Performance Computing Environments
 
-Uma recolha de normas existentes sobre este assunto pode ser
-encontrada em~\citet{kn:Mat93}. 
+throughout the course of two six month semesters.
+
+
+This chapter describes the motivation behind the choice of this subject, as well as what are the subjects covered throughout the whole document and what new ideas can come from this work.
+It is divided in ##XX## parts, starting with a general view on Cloud and Grid computing, since they are two major areas of interest in this project, along with virtualization and other related subjects such as hypervisors. Cloud creation and management toolkits which are available and used throughout the academic community, such as OpenNebula and more recently, OpenStack are also approached.
+A possible integration of the project documented and OpenStack is discussed in a section further ahead.
+
+\section{Context - What it is this all about} \label{sec:context}
+
+Leonard Kleinrock (part of the team that developed Arpanet, an early seed for the Internet) said in 1969:
 
 \begin{quote}
-  ``Like the Abstract, the Introduction should be written to engage the
-  interest of the reader. It should also give the reader an idea of
-  how the dissertation is structured, and in doing so, define the
-  thread of the contents.''~\citep[chap.\ Introduction]{kn:Tha01} 
+  ``As [...] computer networks [...] grow and become sophisticated, we will probably see the spread of `computer utilities' which, like present electric and telephone utilities, will service individual homes and offices around the country.''~\cite{Buyya2009599} 
 \end{quote}
+	
+Confirming Kleinrock's prediction, computing is migrating in a direction where people develop software for an incredible amount of people so it can be used as a service, instead of running said software on their personal computers. Different providers such as Amazon, Google, IBM and Sun Microsystems are now establishing data centers dedicated to hosting Cloud Computing\footnote{Using multiple server computers via a digital network as if they were a single computer.} applications spread around the world in order to ensure redundancy and reliability in case one of the datacenters fails. 
 
-Neste primeiro capítulo ilustra-se a utilização de citações e de
-referências biblio\-grá\-fi\-cas.
-Para além de dar um exemplo de utilização de uma citação, a citação
-anterior, introduz uma referência que pode ser consultada, entre
-muitas outras referências bibliográficas
-interessantes~\citep{kn:Tha01,kn:PP05}. 
+User requirements for Cloud services are complex and varied, so service providers need to know they can be flexible when delivering those services at the same time they keep the users clear from the infrastructure on which those services stand.
 
-\section{Contexto/Enquadramento} \label{sec:context}
+Computing services are available instantly when anyone needs them and the consumers only required to pay the providers when they actually access and use those resources. Consumers no longer have the need to invest in and maintain complex IT infrastructures and software developers are facing new challenges. They must create custom made software that will be used as a service, instead of the traditional practice of installing the software in the users' machines. Some people state this is the era of pervasive computing, where computation and information are available all the time.~\citet{ieees}
+
+Having this in mind, FEUP has started developing a private cloud project at its Informatics center (CICA - Centro de Informática Prof. Correia de Araújo).
+
+\section{Context - A birdseye view on a bigger project} \label{sec:project}
+
+Currently, FEUP's computing infrastructures are only accessed by those who have the technical knowledge to interact with the system. These people are technicians whose area of expertise encompasses outsourcing computing resources to perform computing jobs. If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time for both parties cutting through red tape.
+Having this in mind, CICA has started developing a project that reduces the ammount of knowledge necessary to perform the said computing operations.
+The project aims at simplifying the whole process and to make FEUP's computing infrastructures more accessible to the academic community, without the users having to spend time learning about the technologies and how the system actually works.
+This document focuses only on the front-end of the project, the back-end having already been developed by former MIEIC student Nuno Cardoso as part of his Master Thesis.
+In order to better understand the full scope of the issue, Figure 1 shows the full system as it should function, through the means of an hypotetic and yet plausible use case scenario:
+
+<<insert figure 1>>
+
+Firstly, a researcher of a specific field of study wants to conduct a more complex operation that involves greater computing efforts than his/her home and work computer. As such, the researcher proceeds to enter the designed system through a web page where he/she can:
+
+\begin{itemize}
+	\item Chose a suitable work environment for her computational needs according to a set of predefined parameters;
+	\item Create his/her own work environment according to the specifications he/she provides the system with.
+\end{itemize}
+
+The system will then automatically create a virtual environment (image containing all the information needed), which will be passed onto the second part of the project where a virtual cluster will be created according to that virtual environment.
+Finally a username and password combination should be returned so that the researcher can enter the created environment and perform his/her operations.
+	
+The fraction of the work covered by this document has as its objectives the automatic creation and management of virtual environments over private high performance computing infrastructures. 
+
+
+
+
 
 Esta secção descreve a área em que o trabalho se insere, podendo
 referir um eventual projecto de que faz parte e apresentar uma breve
