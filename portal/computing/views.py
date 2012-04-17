@@ -4,6 +4,7 @@ from computing.models import Image
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse
 import tagging
+import tagging.utils
 import os
 
 def index(request):
@@ -25,7 +26,21 @@ def search_form(request):
 def search(request):
     if 'q' in request.GET and request.GET['q']:
     	q = request.GET['q']
-    	images = Image.objects.filter(name__icontains=q)
-    	return render_to_response('computing/search_results.html', {'images': images, 'query': q})
+    	q = q.upper()
+    	images = Image.objects.all()
+    	l = list()
+    	counter = 0
+    	for image in images:
+    		tags = image.get_tags()
+    		for tag in tags:
+    			if tag.name.upper() == q:
+    				l.append(image.id)
+    				l.append(image.name)
+    			
+
+    	#l.append(tags)
+    	#return HttpResponse(len(l))
+    	#images = Image.objects.filter(name__icontains=q)
+    	return render_to_response('computing/search_results.html', {'images': images, 'query': q, 'list': l})
     else:
     	return HttpResponse('Please submit a search term.')
