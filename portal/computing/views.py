@@ -34,8 +34,8 @@ def search(request):
     		tags = image.get_tags()
     		for tag in tags:
     			if tag.name.upper() == q:
-    				l.append(image.id)
-    				l.append(image.name)
+    				l.append((image.id, image.name))
+#    				l.append(image.name)
     			
 
     	#l.append(tags)
