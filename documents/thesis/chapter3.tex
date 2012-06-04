@@ -1,7 +1,9 @@
-\chapter{Visualização de Sinópticos SVG}\label{chap:chap3}
+\chapter{The problem and the approaches}\label{chap:chap3}
 
-\section*{}
+In this chapter the problem will be discussed and justified, as well as the approach chosen to solve the said problem.
+\section{Problem Description}
 
+The issue and the approach taken to solve it.
 Este capítulo deve começar por fazer uma apresentação detalhada do
 problema a resolver\footnote{Na introdução a apresentação do
   problema foi breve.} podendo mesmo, caso se justifique,
@@ -11,6 +13,29 @@ Deve depois dedicar-se à apresentação da solução sem detalhes de
 implementação. 
 Dependendo do trabalho, pode ser uma descrição mais teórica, mais
 ``arquitectural'', etc.
+
+
+\section{Context - A birdseye view on a bigger project} \label{sec:project}
+
+Currently, FEUP's computing infrastructures are only accessed by those who have the technical knowledge to interact with the system. These people are technicians whose area of expertise encompasses outsourcing computing resources to perform computing jobs. If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time for both parties cutting through red tape.
+Having this in mind, CICA has started developing a project that reduces the ammount of knowledge necessary to perform the said computing operations.
+The project aims at simplifying the whole process and to make FEUP's computing infrastructures more accessible to the academic community, without the users having to spend time learning about the technologies and how the system actually works.
+This document focuses only on the front-end of the project, the back-end having already been developed by former MIEIC student Nuno Cardoso as part of his Master Thesis.
+In order to better understand the full scope of the issue, Figure 1 shows the full system as it should function, through the means of an hypotetic and yet plausible use case scenario:
+
+<<insert figure 1>>
+
+Firstly, a researcher of a specific field of study wants to conduct a more complex operation that involves greater computing efforts than his/her home and work computer. As such, the researcher proceeds to enter the designed system through a web page where he/she can:
+
+\begin{itemize}
+	\item Chose a suitable work environment for her computational needs according to a set of predefined parameters;
+	\item Create his/her own work environment according to the specifications he/she provides the system with.
+\end{itemize}
+
+The system will then automatically create a virtual environment (image containing all the information needed), which will be passed onto the second part of the project where a virtual cluster will be created according to that virtual environment.
+Finally a username and password combination should be returned so that the researcher can enter the created environment and perform his/her operations.
+
+
 
 \section{Secção Exemplo}
 

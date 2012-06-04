@@ -1,19 +1,35 @@
-\chapter{Introdução} \label{chap:intro}
+\chapter{Introduction} \label{chap:intro}
 
-\section*{}
+
+High performance computing describes the ability of using parallel processing in order to perform advanced application programs with a great deal of efficiency, reliability and quickness. \cite{http://searchenterpriselinux.techtarget.com/definition/high-performance-computing}
+In this document is presented the study
+This chapter describes the motivation behind the choice of this subject, as well as what are the subjects covered throughout the whole document and what new ideas can come from this work.
+It is divided in ##XX## parts, starting with a general view on Cloud and Grid computing, since they are two major areas of interest in this project, along with virtualization and other related subjects such as hypervisors. Cloud creation and management toolkits which are available and used throughout the academic community, such as OpenNebula and more recently, OpenStack are also approached.
+A possible integration of the project documented and OpenStack is discussed in a section further ahead.
+
+\section{Context} \label{sec:context}
+
+\section{Context - Project} \label{sec:context_project}
+
+\section{Motivation and Objectives} \label{sec:motivation}
+
+\section{Dissertation Structure} \label{sec:structure}
+
+Current Grid Computing infrastructures are generally not very flexible when it comes to the users' needs. As such, whenever it is required, the user must adapt its code to the infrastructures specifications.
+On the other hand, Cloud Computing is associated with an extreme flexibility allowing the infrastructure to adapt itself to the users' requirements. Another aspect present in Cloud Computing but non-existent in Grid Computing is the Quality of Service factor, where a user can submit a job according to a certain cost or deadline.
+Furthermore, there is also the elasticity component, something that is not available in Grid Computing technologies but is inherent to Cloud Computing, and is one of its flagships that may be able to cross over to grid infrastructures.
+Having this in mind, this project consisted in the development of a web environment for the creation of virtual high performance computing infrastructures and the analysis of the impact these environments have in the usage of the said infrastructures.
 
 This document covers the work undergone regarding the study, design and implementation of the project titled:
 
 Web System For Creating And Managing Virtual High Performance Computing Environments
 
-throughout the course of two six month semesters.
+throughout the course of two six month semesters, the first dedicated to the study of the subject and the second to the implementation of the solution.
 
 
-This chapter describes the motivation behind the choice of this subject, as well as what are the subjects covered throughout the whole document and what new ideas can come from this work.
-It is divided in ##XX## parts, starting with a general view on Cloud and Grid computing, since they are two major areas of interest in this project, along with virtualization and other related subjects such as hypervisors. Cloud creation and management toolkits which are available and used throughout the academic community, such as OpenNebula and more recently, OpenStack are also approached.
-A possible integration of the project documented and OpenStack is discussed in a section further ahead.
 
-\section{Context - What it is this all about} \label{sec:context}
+
+\section{Context - What it is this all about} \label{}
 
 Leonard Kleinrock (part of the team that developed Arpanet, an early seed for the Internet) said in 1969:
 
@@ -28,26 +44,6 @@ User requirements for Cloud services are complex and varied, so service provider
 Computing services are available instantly when anyone needs them and the consumers only required to pay the providers when they actually access and use those resources. Consumers no longer have the need to invest in and maintain complex IT infrastructures and software developers are facing new challenges. They must create custom made software that will be used as a service, instead of the traditional practice of installing the software in the users' machines. Some people state this is the era of pervasive computing, where computation and information are available all the time.~\citet{ieees}
 
 Having this in mind, FEUP has started developing a private cloud project at its Informatics center (CICA - Centro de Informática Prof. Correia de Araújo).
-
-\section{Context - A birdseye view on a bigger project} \label{sec:project}
-
-Currently, FEUP's computing infrastructures are only accessed by those who have the technical knowledge to interact with the system. These people are technicians whose area of expertise encompasses outsourcing computing resources to perform computing jobs. If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time for both parties cutting through red tape.
-Having this in mind, CICA has started developing a project that reduces the ammount of knowledge necessary to perform the said computing operations.
-The project aims at simplifying the whole process and to make FEUP's computing infrastructures more accessible to the academic community, without the users having to spend time learning about the technologies and how the system actually works.
-This document focuses only on the front-end of the project, the back-end having already been developed by former MIEIC student Nuno Cardoso as part of his Master Thesis.
-In order to better understand the full scope of the issue, Figure 1 shows the full system as it should function, through the means of an hypotetic and yet plausible use case scenario:
-
-<<insert figure 1>>
-
-Firstly, a researcher of a specific field of study wants to conduct a more complex operation that involves greater computing efforts than his/her home and work computer. As such, the researcher proceeds to enter the designed system through a web page where he/she can:
-
-\begin{itemize}
-	\item Chose a suitable work environment for her computational needs according to a set of predefined parameters;
-	\item Create his/her own work environment according to the specifications he/she provides the system with.
-\end{itemize}
-
-The system will then automatically create a virtual environment (image containing all the information needed), which will be passed onto the second part of the project where a virtual cluster will be created according to that virtual environment.
-Finally a username and password combination should be returned so that the researcher can enter the created environment and perform his/her operations.
 	
 The fraction of the work covered by this document has as its objectives the automatic creation and management of virtual environments over private high performance computing infrastructures. 
 
@@ -58,27 +54,6 @@ The fraction of the work covered by this document has as its objectives the auto
 Esta secção descreve a área em que o trabalho se insere, podendo
 referir um eventual projecto de que faz parte e apresentar uma breve
 descrição da empresa onde o trabalho decorreu.
-
-Lorem ipsum~\citep{kn:Lip08} dolor sit amet, consectetuer adipiscing
-elit. 
-Sed eget nunc. Phasellus interdum, risus viverra mollis laoreet, felis
-justo iaculis ante, eget ornare purus augue non urna. Nam in magna. In a
-est. Phasellus a tellus vitae enim vehicula imperdiet. Etiam sit amet
-elit. In hac habitasse platea dictumst. Quisque eget turpis vel felis
-elementum tempus. Curabitur sit amet tortor id libero dapibus
-pretium. Integer mattis eros eu lorem. Duis erat tellus, porttitor
-sed, blandit eget, fringilla et, lacus. Phasellus tristique nibh nec
-orci. Mauris sed leo. Suspendisse fringilla tempor dolor. Donec sapien
-enim, congue in, porta et, sollicitudin in, quam. Curabitur semper,
-mauris ut vestibulum eleifend, diam ipsum tincidunt quam, et
-vestibulum velit mauris ut risus. 
-
-Sed eget libero. Nulla facilisi. Proin eget tortor. Morbi
-gravida. Donec arcu risus, blandit a, rutrum at, ornare ut,
-nisl. Etiam consectetuer tortor eu odio. Etiam blandit molestie
-ligula. Nulla facilisi. Nam a augue non justo laoreet hendrerit. Nam
-aliquam, purus eu ultricies dictum, urna purus posuere neque, vel
-tempus tellus enim a arcu. 
 
 \section{Projecto} \label{sec:proj}
 
