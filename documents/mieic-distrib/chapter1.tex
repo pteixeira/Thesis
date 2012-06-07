@@ -1,0 +1,115 @@
+\chapter{Introduction} \label{chap:intro}
+
+
+High performance computing describes the ability of using parallel processing in order to perform advanced application programs with a great deal of efficiency, reliability and quickness. \cite{http://searchenterpriselinux.techtarget.com/definition/high-performance-computing}
+
+In this document is presented the study 
+
+This chapter describes the motivation behind the choice of this subject, as well as what are the subjects covered throughout the whole document and what new ideas can come from this work.
+
+It is divided in XX parts, starting with a general view on Cloud and Grid computing, since they are two major areas of interest in this project, along with virtualization and other related subjects such as hypervisors. Cloud creation and management toolkits which are available and used throughout the academic community, such as OpenNebula and more recently, OpenStack are also approached.
+
+A possible integration of the project documented and OpenStack is discussed in a section further ahead. asd
+\section{Context} \label{sec:context}
+
+\section{Context - Project} \label{sec:context_project}
+
+\section{Motivation and Objectives} \label{sec:motivation}
+
+\section{Dissertation Structure} \label{sec:structure}
+
+Current Grid Computing infrastructures are generally not very flexible when it comes to the users' needs. As such, whenever it is required, the user must adapt its code to the infrastructures specifications.
+On the other hand, Cloud Computing is associated with an extreme flexibility allowing the infrastructure to adapt itself to the users' requirements. Another aspect present in Cloud Computing but non-existent in Grid Computing is the Quality of Service factor, where a user can submit a job according to a certain cost or deadline.
+Furthermore, there is also the elasticity component, something that is not available in Grid Computing technologies but is inherent to Cloud Computing, and is one of its flagships that may be able to cross over to grid infrastructures.
+Having this in mind, this project consisted in the development of a web environment for the creation of virtual high performance computing infrastructures and the analysis of the impact these environments have in the usage of the said infrastructures.
+
+This document covers the work undergone regarding the study, design and implementation of the project titled:
+
+Web System For Creating And Managing Virtual High Performance Computing Environments
+
+throughout the course of two six month semesters, the first dedicated to the study of the subject and the second to the implementation of the solution.
+
+
+
+
+\section{Context - What it is this all about} \label{}
+
+Leonard Kleinrock (part of the team that developed Arpanet, an early seed for the Internet) said in 1969:
+
+\begin{quote}
+  ``As [...] computer networks [...] grow and become sophisticated, we will probably see the spread of `computer utilities' which, like present electric and telephone utilities, will service individual homes and offices around the country.''~\cite{Buyya2009599} 
+\end{quote}
+	
+Confirming Kleinrock's prediction, computing is migrating in a direction where people develop software for an incredible amount of people so it can be used as a service, instead of running said software on their personal computers. Different providers such as Amazon, Google, IBM and Sun Microsystems are now establishing data centers dedicated to hosting Cloud Computing\footnote{Using multiple server computers via a digital network as if they were a single computer.} applications spread around the world in order to ensure redundancy and reliability in case one of the datacenters fails. 
+
+User requirements for Cloud services are complex and varied, so service providers need to know they can be flexible when delivering those services at the same time they keep the users clear from the infrastructure on which those services stand.
+
+Computing services are available instantly when anyone needs them and the consumers only required to pay the providers when they actually access and use those resources. Consumers no longer have the need to invest in and maintain complex IT infrastructures and software developers are facing new challenges. They must create custom made software that will be used as a service, instead of the traditional practice of installing the software in the users' machines. Some people state this is the era of pervasive computing, where computation and information are available all the time.~\citet{ieees}
+
+Having this in mind, FEUP has started developing a private cloud project at its Informatics center (CICA - Centro de Informática Prof. Correia de Araújo).
+	
+The fraction of the work covered by this document has as its objectives the automatic creation and management of virtual environments over private high performance computing infrastructures. 
+
+
+
+
+
+Esta secção descreve a área em que o trabalho se insere, podendo
+referir um eventual projecto de que faz parte e apresentar uma breve
+descrição da empresa onde o trabalho decorreu.
+
+\section{Projecto} \label{sec:proj}
+
+Na continuação da secção anterior, e apenas no caso de ser um Projecto
+e não uma Dissertação, esta secção apresenta resumidamente o projecto.
+
+Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
+ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
+adipiscing vitae, ornare quis, convallis nec, eros. Etiam laoreet
+venenatis ipsum. In tellus odio, eleifend ac, ultrices vel, lobortis
+sed, nibh. Fusce nunc augue, dictum non, pulvinar sed, consectetuer
+eu, ipsum. Vivamus nec pede. Pellentesque pulvinar fringilla dolor. In
+sit amet pede. Proin orci justo, semper vel, vulputate quis, convallis
+ac, nulla. Nulla at justo. Mauris feugiat dolor. Etiam posuere
+fermentum eros. Morbi nisl ipsum, tempus id, ornare quis, mattis id,
+dolor. Aenean molestie metus suscipit dolor. Aliquam id lectus sed
+nisl lobortis rhoncus. Curabitur vitae diam sed sem aliquet
+tempus. Sed scelerisque nisi nec sem. 
+
+\section{Motivação e Objectivos} \label{sec:goals}
+
+Apresenta a motivação e enumera os objectivos do trabalho terminando
+com um resumo das metodologias para a prossecução dos objectivos.
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi sit
+amet nibh. Fusce faucibus, enim vel ultrices ornare, est mauris
+ultricies velit, vitae consequat sem erat vel nunc. Nam libero eros,
+mattis eget, sagittis nec, imperdiet at, sapien. Aliquam lacus. Aenean
+adipiscing nibh in orci. Aliquam vestibulum, elit at fringilla
+dignissim, metus diam lobortis urna, a laoreet nunc odio ac ipsum. Sed
+at urna. Integer vehicula fringilla augue. Nulla lacus eros, rhoncus
+sit amet, posuere ut, vehicula ac, nibh. Ut eleifend, eros eu placerat
+vehicula, justo turpis blandit dolor, eu tincidunt felis risus at
+ante. Aenean suscipit nisl eget eros. Ut laoreet libero eget
+enim. Cras tempus pellentesque felis. Vestibulum vitae erat ac nibh
+posuere eleifend. 
+
+Integer nec quam. Sed fermentum. Nunc vitae leo. Etiam sit amet
+quam. Nunc vestibulum massa in mauris. Duis eget nulla. Fusce
+ultricies arcu eu nibh volutpat feugiat. Maecenas urna pede, commodo
+quis, porta eu, bibendum elementum, pede. Sed eros massa, molestie
+eget, mattis non, rutrum ac, magna. Duis dui. Maecenas eget tortor ut
+dolor semper mattis. Maecenas auctor, tellus et ultricies tempor, elit
+est placerat lacus, in posuere mauris lorem et arcu. 
+
+\section{Estrutura da Dissertação} \label{sec:struct}
+
+Para além da introdução, esta dissertação contém mais x capítulos.
+No capítulo~\ref{chap:sota}, é descrito o estado da arte e são
+apresentados trabalhos relacionados. 
+No capítulo~\ref{chap:chap3}, ipsum dolor sit amet, consectetuer
+adipiscing elit.
+No capítulo~\ref{chap:chap4} praesent sit amet sem. 
+No capítulo~\ref{chap:concl}  posuere, ante non tristique
+consectetuer, dui elit scelerisque augue, eu vehicula nibh nisi ac
+est. 
