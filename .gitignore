@@ -35,5 +35,8 @@
 *.out
 *.toc
 
+# Python Crap #
+*.pyc
+
 # Opened Files #
 *.*~
