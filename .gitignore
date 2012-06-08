@@ -26,20 +26,14 @@
 *.sql
 *.sqlite
 
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
-
 # TEX Crap #
 *.aux
-*.aux~
-*.tex~
 *.bbl
+*.blg
+*.lof
+*.lot
+*.out
+*.toc
+
+# Opened Files #
 *.*~
