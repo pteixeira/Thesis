@@ -357,20 +357,41 @@ Figure~\ref{fig:nebulaprosandcons} sums up the pros and cons of using \textit{Op
 
 \textit{OpenStack} is a global collaboration of developers and cloud computing technologists producing the open source cloud computing platform for public and private clouds. The aim of this project is to deliver solutions for all types of clouds by being simple to implement, massively scalable and filled with features. 
 
-It was founded by \textit{Rackspace Hosting} and NASA\footnote{North American Space Agency} and it has grown to be a global software community of developers collaborating on a standard open source cloud operating system.
+First released in October 2010 and now on its fifth version (codename Essex), OpenStack has undergone major changes and revamps over the past months ~\cite{openstack}.
+
+It was founded by \textit{Rackspace Hosting} and NASA\footnote{North American Space Agency} (deployed as NASA's Nebula cloud\cite{needs cite})and it has grown to be a global software community of developers collaborating on a standard open source cloud operating system.
 
 \textit{OpenStack}'s mission is to enable any organization to create and offer cloud computing services running on standard hardware.
 
 All of its code is available under the \textit{Apache} 2.0 license and as such, anyone can run it, build applications on it or submit changes back to the project.
 
-\textit{OpenStack} has three major components:
+\subsubsection*{OpenStack Architecture} \label{openstack_arch}
+
+The following figure depicts OpenStack's architecture:
+
+%\begin{figure}[t]
+%  \begin{center}
+%    \leavevmode
+%    \includegraphics{openstack_arch}
+%    \caption{OpenStack Architecture~\cite{openstack}.}
+%    \label{fig:openstack_arch}
+%  \end{center}
+%\end{figure}
+
+\textit{OpenStack} has four major components:
+
 \begin{itemize}
-\item \textbf{Compute} - Designed to provision and manage large networks of virtual machines, creating a redundant and scalable Cloud computing platform. It has built-in control panels, APIs required to create and manage a Cloud, including running instances, managing networks and controlling access through users and projects;
-\item \textbf{Swift} - \textit{OpenStack} Object Storage - Designed to create redundant and scalable object storage using clusters or standardized servers to store PetaBytes of accessible data. It is a long-term storage system for a permanent type of static data that can be retrieved, leveraged and then updated if necessary, such as virtual machine images, photo storage, email storage and backup archiving;
-\item \textbf{Glance} - \textit{OpenStack} Image Service - Provides discovery, registration and delivery services for virtual disk images. It relies on a REST\footnote{Representational State Transfer} interface for querying information. It currently allows uploads of private and public images which include those created via KVM, VMWare and VirtualBox.
+\item \textbf{Compute} - Also known as \textit{Nova}, it is designed to provision and manage large networks of virtual machines. Provides an API so that developers who wish to build cloud applications can access the compute resources, as well as web interfaces for administrators and users. Its architecture is designed to be flexible in the cloud design, so that no proprietary hardware or software is required and has the ability to integrate with legacy systems and third party technologies. \textit{Nova} can manage and automate pools of compute resources and works with a great deal of virtualization technologies, enabling the administrators to use multiple hypervisors, such as KVM or XenServer.
+\item \textbf{Networking} - A pluggable, scalable and API-driven system for managing networks and IP addresses. Keeps the network from bottlenecking or being a limitation factor in the cloud deployment. Designed to provide flexible networking models to cater the needs of different applications and user groups. Manages IP addresses, allowing both static IPs or DHCP. Allows the administrator or the user to reroute traffic in case of maintenance or failure. \textif{OpenStack Networking} has an extension framework which allows extra network services, such as intrusion detection systems, firewalls and VPNs to be deployed and managed.
+\item \textbf{Storage} - Also known as \textit{Swift}, it is ideal for cost effective and scale-out storage~\footnote{A storage system that uses a scaling methodology in order to create a dynamic storage environment which will support balanced data growth on an as-needed basis. Its architecture uses a number of storage nods that are configured to create a storage pool or are configured to increase computing power and is designed to scale boyth capacity and performance~\cite{http://www.webopedia.com/TERM/S/scale_out_storage.html}}. It has a fully distributed and API-accessible storage platform which can be integrated directly into applications or used as a backup, achiving and data retention tool. It allows for block devices to be exposed and connected to compute instances for expanded storage, better performance and integration with enterprise storage platforms. \textit{OpenStack Swift}'s object storage is a distributed storage system for static data such as VM images, photo and email storage, backups and archives. It has no central point of control thus providing greater scalability, redunndancy and durability. Storage clusters can scale horizontally by adding new servers. If one of the servers or a hard drive fails, OpenStack replicates its content from other active nodes to a new location in the cluster. Furthermore, \textit{OpenStack} uses algorithms in order to replicate and distribute data accross different devices which allows for the use of inexpensive hard drives and servers.
+\item \textbf{OpenStack Dashboard} - Also known as \textit{Horizon}, it provides administrators and users with a GUI to access, provision and automate cloud-based resources. It is extensible, making it easy to attach third party services, such as billing, monitoring and additional management tools. It is a simpler way to access the resources, which can also be done by building their own tools using either \textit{OpenStack}'s or EC2' compatible API.
 \end{itemize}
 
-It is a project still in its early stages, as it was first released in October 2010 and is only in its third version~\cite{openstack}.
+Alongside the four components described above, \textit{OpenStack} also has a few shared services which make implementing and controlling the cloud an easier job. They are designed in a way that they can integrate with themselves as well as the components above.
+
+\textit{OpenStack} has its own identity service - named \textit{Keystone} - which shows a central directory of users mapped to the \textit{OpenStack} services they can access. \textit{Keystone} acts as a common authentication system accross the operating system that the cloud sits on and can integrate with existing backend services such as LDAP. This identity service allows the administrator to 
+
+
 
 This project is under close surveillance by CICA as it is viewed as a possible substitute for \textit{OpenNebula} (\ref{opennebula}).
 
