@@ -2,13 +2,13 @@
 
 This chapter presents a bibliographic review on the subjects covered by this project. Firstly, the concepts of Virtualization, Grid and Cloud Computing are presented, as well as a comparison between these two areas. There is also an analysis on existing developments, applications and projects on the area of Cloud and Grid Computing, with greater focus on two community driven projects (OpenStack and OpenNebula), since they are currently in use at FEUP. Some of the computing technologies in use at FEUP are also presented and discussed.
 
-\section{Virtualization and Virtual Machines} \label{sec:virtualization}
-
+\section{Virtualization and Virtual Machines} \label{sec:virtualization} 
+ 
 Throughout this project, Virtual Machines (VMs) are mentioned in great amount and as such, they deserve a special section.
 
 Certain problems arise when the requirements of different virtual organizations (VOs) that need to use the same resources are in conflict or are incompatible with site policies. The software available on clusters cannot guarantee isolation of different communities and maintain resource availability while ensuring good utilization of those said resources. This is where Virtual Machines (VMs) come into play. They are emulations of lower layers of computer abstractions on behalf of the higher layers and allow the isolation of the applications from the hardware and neighbour VMs and customizing the platform so it suits the user's needs. \cite{clusters-grid, Zhang05virtualcluster} 
 
-Virtualization benefits include an improvement in fault isolation and independence from guest VMs, performance isolation and simplifying the migration of VMs across different physical machines. These benefits enable VMs to share pools of platform and data center resources. \cite{virtualpower}
+Virtualization benefits include an improvement in fault isolation and independence from guest VMs, performance isolation and simplifying the migration of VMs across different physical machines. These benefits enable VMs to share pools of platform and data center resources. \cite{virtualpower} 
 
 The ability to serialize and migrate the state of a VM paves the way for better load balancing and improved reliability that cannot be achieved with traditional resources. Deploying virtual clusters - set of VMs configured to behave as a cluster and intended to be scheduled on a physical resource at the same time \cite{Zhang05virtualcluster} -  of diverse topologies requires the ability to deploy many VMs in a coordinated manner so that sharing of infrastructure, such as disks and networking, can be properly configured. This can become more costly than the deployment of single VMs.  
 
@@ -156,6 +156,9 @@ which serves as a conclusion for this section.
 
 
 \section{Cloud Computing} \label{sec:cloud}
+
+Two business drivers -short deadlines require fast access to resources
+			- tight budgets mean more is needed from less hardware
 
 Similarly to the Grid, many definitions arise when one talks about the Cloud. Presently, it is considered normal to obtain access to content spread over the Internet without a reference to the hosting infrastructure that lies underneath it. This infrastructure is made of data centers that are being monitored by service providers. 
 
@@ -359,14 +362,14 @@ Figure~\ref{fig:nebulaprosandcons} sums up the pros and cons of using \textit{Op
 
 First released in October 2010 and now on its fifth version (codename Essex), OpenStack has undergone major changes and revamps over the past months ~\cite{openstack}.
 
-It was founded by \textit{Rackspace Hosting} and NASA\footnote{North American Space Agency} (deployed as NASA's Nebula cloud\cite{needs cite})and it has grown to be a global software community of developers collaborating on a standard open source cloud operating system.
+It was founded by \textit{Rackspace Hosting} and NASA\footnote{North American Space Agency} (deployed as NASA's Nebula cloud\cite{needs cite})and it has grown to be a global software community of developers collaborating on a standard open source cloud operating system. Current \textit{OpenStack} ``controllers'' include \textit{OpenStack Foundation}, \textit{Canonical}, \textit{Cisco}, \textit{Dell}, \textit{Red Hat}, \textit{SUSE} and \textit{Yahoo!}. \cite{https://github.com/dellcloudedge/crowbar/wiki/OpenStack-Essex-Deploy-Day}
 
 \textit{OpenStack}'s mission is to enable any organization to create and offer cloud computing services running on standard hardware.
 
-All of its code is available under the \textit{Apache} 2.0 license and as such, anyone can run it, build applications on it or submit changes back to the project.
+All of its code is available under the \textit{Apache} 2.0 license and as such, anyone can run it, build applications on it or submit changes back to the project. It is commoditizing the IaaS market, enabling the users to get from \textit{Amazon} today into their own private data centers and cloud environments by using open source. \cite{https://github.com/dellcloudedge/crowbar/wiki/OpenStack-Essex-Deploy-Day}
 
 \subsubsection*{OpenStack Architecture} \label{openstack_arch}
-
+  
 The following figure depicts OpenStack's architecture:
 
 %\begin{figure}[t]
@@ -382,14 +385,14 @@ The following figure depicts OpenStack's architecture:
 
 \begin{itemize}
 \item \textbf{Compute} - Also known as \textit{Nova}, it is designed to provision and manage large networks of virtual machines. Provides an API so that developers who wish to build cloud applications can access the compute resources, as well as web interfaces for administrators and users. Its architecture is designed to be flexible in the cloud design, so that no proprietary hardware or software is required and has the ability to integrate with legacy systems and third party technologies. \textit{Nova} can manage and automate pools of compute resources and works with a great deal of virtualization technologies, enabling the administrators to use multiple hypervisors, such as KVM or XenServer.
-\item \textbf{Networking} - A pluggable, scalable and API-driven system for managing networks and IP addresses. Keeps the network from bottlenecking or being a limitation factor in the cloud deployment. Designed to provide flexible networking models to cater the needs of different applications and user groups. Manages IP addresses, allowing both static IPs or DHCP. Allows the administrator or the user to reroute traffic in case of maintenance or failure. \textif{OpenStack Networking} has an extension framework which allows extra network services, such as intrusion detection systems, firewalls and VPNs to be deployed and managed.
+\item \textbf{Networking} - A pluggable, scalable and API-driven system for managing networks and IP addresses. Keeps the network from bottlenecking or being a limitation factor in the cloud deployment. Designed to provide flexible networking models to cater the needs of different applications and user groups. Manages IP addresses, allowing both static IPs or DHCP. Allows the administrator or the user to reroute traffic in case of maintenance or failure. \textit{OpenStack Networking} has an extension framework which allows extra network services, such as intrusion detection systems, firewalls and VPNs to be deployed and managed.
 \item \textbf{Storage} - Also known as \textit{Swift}, it is ideal for cost effective and scale-out storage~\footnote{A storage system that uses a scaling methodology in order to create a dynamic storage environment which will support balanced data growth on an as-needed basis. Its architecture uses a number of storage nods that are configured to create a storage pool or are configured to increase computing power and is designed to scale boyth capacity and performance~\cite{http://www.webopedia.com/TERM/S/scale_out_storage.html}}. It has a fully distributed and API-accessible storage platform which can be integrated directly into applications or used as a backup, achiving and data retention tool. It allows for block devices to be exposed and connected to compute instances for expanded storage, better performance and integration with enterprise storage platforms. \textit{OpenStack Swift}'s object storage is a distributed storage system for static data such as VM images, photo and email storage, backups and archives. It has no central point of control thus providing greater scalability, redunndancy and durability. Storage clusters can scale horizontally by adding new servers. If one of the servers or a hard drive fails, OpenStack replicates its content from other active nodes to a new location in the cluster. Furthermore, \textit{OpenStack} uses algorithms in order to replicate and distribute data accross different devices which allows for the use of inexpensive hard drives and servers.
 \item \textbf{OpenStack Dashboard} - Also known as \textit{Horizon}, it provides administrators and users with a GUI to access, provision and automate cloud-based resources. It is extensible, making it easy to attach third party services, such as billing, monitoring and additional management tools. It is a simpler way to access the resources, which can also be done by building their own tools using either \textit{OpenStack}'s or EC2' compatible API.
 \end{itemize}
 
 Alongside the four components described above, \textit{OpenStack} also has a few shared services which make implementing and controlling the cloud an easier job. They are designed in a way that they can integrate with themselves as well as the components above.
 
-\textit{OpenStack} has its own identity service - named \textit{Keystone} - which shows a central directory of users mapped to the \textit{OpenStack} services they can access. \textit{Keystone} acts as a common authentication system accross the operating system that the cloud sits on and can integrate with existing backend services such as LDAP. This identity service allows the administrator to configure centralized policies accross the users and systems as well as defining permissions for the four major components depicted above, whereas the users can get a list of services they can access, make API requests or log into the web dashboard - \texit{Horizon} - to create resources linked to their account.
+\textit{OpenStack} has its own identity service - named \textit{Keystone} - which shows a central directory of users mapped to the \textit{OpenStack} services they can access. \textit{Keystone} acts as a common authentication system accross the operating system that the cloud sits on and can integrate with existing backend services such as LDAP. This identity service allows the administrator to configure centralized policies accross the users and systems as well as defining permissions for the four major components depicted above, whereas the users can get a list of services they can access, make API requests or log into the web dashboard - \textit{Horizon} - to create resources linked to their account.
 
 Another important serviced provided by \textit{OpenStack} is its image service \textit{Glance}. It provides discovery, registration and delivery services for disk and server images. It has the ability to snapshot a server image and store it, which can then be used as a template to get new servers up and running very quickly - and consitently in the case of setting up multiple servers - rather than installing a server OS and individually configuring the additional services required. \textit{Glance} can store both disk and server images in a great variety of backends, including \textit{OpenStack}'s own object storage. A standard REST interface is provided for querying information on disk images and that lets clients stream the images to new servers. The image registry supports a wide range of formats, which include images generated by KVM, Qemu, VMWARE and RAW images.
 
