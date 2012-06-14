@@ -181,14 +181,14 @@ There are many Cloud definitions, but they all focus on certain technological as
 
 The authors try to distinguish the different actors and scenarios that can arise:
 
-%\begin{figure}[t]
-%  \begin{center}
-%    \leavevmode
-%    \includegraphics[width=\linewidth]{cloud_actors}
-%    \caption{Cloud Actors~\cite{Buyya2009599}.}
-%    \label{fig:cloud_actors}
-%  \end{center}
-%\end{figure}
+\begin{figure}[t]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\linewidth]{cloud_actors}
+    \caption{Cloud Actors~\cite{Buyya2009599}.}
+    \label{fig:cloud_actors}
+  \end{center}
+\end{figure}
 
 \textbf{The actors:}\\
 Service Providers make services accessible to Service Users through Internet-based Interfaces. The computing infrastructure is offered “as a service” by the Infrastructure Providers, moving computing resources from the SPs to the IPs, in order to give the firsts flexibility and reduced costs.
@@ -311,7 +311,7 @@ The \textit{App Engine} has the following features:
 \item Eclipse plug-in available for Apple, Linux and Windows, which allows standard debugging using Eclipse debug tools. It provides menu based functionality to automatically upload the application to the Google App Engine;
 \item Requires no system administration;
 \item Simple web based, user friendly console.\cite{googleapp}
-\end{itemize}
+\end{itemize} 
 
 \subsection{Microsoft Azure}\label{azure}
 
@@ -321,41 +321,57 @@ It has been speculated that the clock speed of a single CPU core in \textit{Azur
 Windows Azure enables developers to build, host and scale applications in Microsoft datacenters, not requiring upfront expenses, long term commitment and users only pay for the resources they use. 
 Windows Azure relieves the user from the effort of configuring load balancing and failover, is designed to let developers build applications that are continuously available, even if they need software updates and hardware failures occur.\cite{azure}
 
-
+\clearpage
 \section{FEUP's Computing System}\label{feup}
 
-In this section FEUP's computing system is analysed in detail. The cluster system and the technologies it uses in its management are described and detailed. FEUP's cluster system currently uses three different technologies, \textit{Moab}, \textit{gLite} and \textit{Condor}.
+In this section FEUP's computing system is analyzed in detail. The cluster system and the technologies it uses in its management are described and detailed. FEUP's cluster system currently uses three different technologies, \textit{Moab}, \textit{gLite} and \textit{Condor}.
 The Cloud creation and management tool is also described, as it is a vital part in FEUP's computing system and is the connecting link between the front-end and the back-end.
 
-\subsection{OpenNebula}\label{opennebula}
+\subsection{OpenNebula}\label{subsec:opennebula}
 
 
-\textit{OpenNebula} is an academic project developed by the \textit{Universidad Complutense Madrid}. It was created in order to control several hosts and machines in a unified environment. It has been released as a software package in \textit{Ubuntu} 9.04 and is compatible with both Xen and KVM, two \textit{platform virtual machines} that emulate the whole physical computer machine. It has its own command-line tools and gives the user different configuration scripts which enable a simple and flexible way to design and manage running virtual machines. OpenNebula's architecture is shown in~\ref{fig:nebula}~\cite{jorge-ruao}.
+\textit{OpenNebula} was initially created as a research project in 2005 by Ignacio M. Llorente and Rubén S. Montero from \textit{Universidad Complutense Madrid}, being publicly released in 2008. It now works as an open source project after having evolved through several releases (now on version 3.4). It is the result of many years of research and development in efficient and scalable management of virtual machines on large-scale distributed infrastructures in close collaboration with \textit{OpenNebula}'s user community and leading experts in cloud computing. 
 
-%\begin{figure}[H]
-%  \begin{center}
-%    \leavevmode
-%    \includegraphics{nebulaarch}
-%    \caption{OpenNebula's Architecture~\cite{open-clouds}.}
-%    \label{fig:nebula}
-%  \end{center}
-%\end{figure}
+Most of \textit{OpenNebula}'s features have been developed as a response to the use cases from many of the companies involved in the project (these include RESERVOIR~\footnote{\textit{Framework} developed to aid both techonology and information specialists in enterprises in creating a cloud with all the coding and architecture specifications needed.~\cite{http://www.reservoir-fp7.eu/}}, \textit{StratusLab}~\footnote{A project aiming to develop a complete and open-source cloud distribution that allows both grid and non-grid resource centers to offer and exploit an IaaS cloud. It is particularly focused on enhancing distributed computing infrastructures such as the European Grid Infrastructure (EGI)~\cite{startuslab.eu}} and \textit{4CaaSt}~\footnote{Project created for the development of an advanced PaaS cloud platform which supports the optimized and elastic hosting of Internet-scale multitier applications, embedding all the necessary features, so that the programming of rich applications is simplified.~\cite{http://4caast.morfeo-project.org/}}) and its technology has evolved mostly thanks to the effort the community has.~\cite{opennebula_site}
 
+It was first released as a software package in \textit{Ubuntu} 9.04, has its own command-line tools and gives the user different configuration scripts which enable a simple and flexible way to design and manage running virtual machines. Since the release of version 3.0, \textit{OpenNebula} has introduced a GUI called \textit{Sunstone} (only runs on \textit{Firefox} and \textit{Chrome} browsers), which allow the users and administrators to manage all \textit{OpenNebula}'s resources (as long as they have access to them, something that can be regulated via ACLs or external modules)~\cite{jorge-ruao}.
+
+\textit{OpenNebula}'s architecture is presented in Figure~\ref{fig:nebula_arch} and its main components are presented in Figure~\ref{fig:nebula_components}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{nebula_arch}
+    \caption{OpenNebula's Architecture~\cite{http://opennebula.org/about:technology}.}
+    \label{fig:nebula_arch}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{nebula_components}
+    \caption{OpenNebula's components~\cite{http://www.opennebula.org/documentation:rel3.4}.}
+    \label{fig:nebula_components}
+  \end{center} 
+\end{figure}
+
+
+\begin{itemize}
+\item \textbf{Interfaces and APIs} --- \textit{OpenNebula} offers two main ways to manage its instances: CLI or GUI (\textit{Sunstone}). Several cloud interfaces such as \textit{OCCI}~\footnote{Open Cloud Computing Interface. Web service that enables the user to launch and manage virtual machines in the \textit{OpenNebula} installation.} and EC2 Query~\footnote{Web service that enables the use of virtual machines through Amazon's EC2 Query Interface (\ref{amazon-ec})};
+\item \textbf{Users and Groups} --- \textit{OpenNebula} supports user accounts and groups, as well as several authentication and authorization mechanisms. These can be used to create isolated compartments inside the same cloud (multi-tenancy). An ACL mechanist also exists to allow different role management;
+\item \textbf{Hosts} --- Various hypervisors are supported by the virtualization manager, which has the ability to control and monitor the lifecycle of VMs, something that can be extended to the physical hosts. It is compatible with Xen, KVM and VMware, three \textit{platform virtual machines} that emulate the whole physical computer machine;
+\item \textbf{Networking} --- A network subsystem that allows \textit{OpenNebula} to easily integrate with specific network requirements of existing datacenters;
+\item \textbf{Storage} --- \textit{OpenNebula} supports multiple data stores in its storage subsystem which provides extreme flexibility in planning the storage backend. Disk images can be stored in both file and block device, also having support for the VMware datastore;
+\item \textbf{Clusters} --- Clusters are pools of hosts that share datastores and virtual networks. They are used for load balancing, high availability and high performance computing.
+\end{itemize}
 \textit{OpenNebula} does not have a built-in utility to create VMs from scratch, but its templates allow the VMs to boot an ISO image, leaving the user with just creating an empty hard disk image.
 
 It provides monitoring capabilities which become rather useful when there is a need to troubleshoot, scale or control resource allocation scenarios. \textit{OpenNebula} exports drivers that communicate directly with the hypervisor (KVM - \ref{hyper}) and return useful data, such as the amount of CPU used, reserved and used memory and network traffic.\cite{open-clouds}
 
-Figure~\ref{fig:nebulaprosandcons} sums up the pros and cons of using \textit{OpenNebula}.
+In March 2010, \textit{OpenNebula}'s main authors founded \textit{C12G Labs}~\footnote{Company that provides enterprise-grade solutions built around \textit{OpenNebula}}, which has led to it being referred to as "...proprietary tech with an element of openness...", which could limit its growth.~\cite{http://www.linkedin.com/groups/OpenStack-vs-Eucalyptus-vs-OpenNebula-2685473.S.54382975}
 
-%\begin{figure}[H]
-%  \begin{center}
-%    \leavevmode
-%    \includegraphics[width=\textwidth]{nebulaproscons}
-%    \caption{Pros and Cons of using \textit{OpenNebula}~\cite{open-clouds}.}
-%    \label{fig:nebulaprosandcons}
-%  \end{center}
-%\end{figure}
-
+%\clearpage
 \subsection{OpenStack}\label{subsec:openstack}
 
 \textit{OpenStack} is a global collaboration of developers and cloud computing technologists producing the open source cloud computing platform for public and private clouds. The aim of this project is to deliver solutions for all types of clouds by being simple to implement, massively scalable and filled with features. 
@@ -368,7 +384,7 @@ It was founded by \textit{Rackspace Hosting} and NASA\footnote{North American Sp
 
 All of its code is available under the \textit{Apache} 2.0 license and as such, anyone can run it, build applications on it or submit changes back to the project. It is commoditizing the IaaS market, enabling the users to get from \textit{Amazon} today into their own private data centers and cloud environments by using open source. \cite{https://github.com/dellcloudedge/crowbar/wiki/OpenStack-Essex-Deploy-Day}
 
-\subsubsection*{OpenStack Architecture}\label{subsubsec:openstack_arch}
+\subsubsection{OpenStack Architecture}\label{subsubsec:openstack_arch}
   
 The following figure depicts OpenStack's software diagram:
 

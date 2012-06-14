@@ -42,9 +42,29 @@ Finally a username and password combination should be returned so that the resea
 
 One of the main objectives of this dissertation is the integration of an \textit{OpenStack} --- presented in Chapter~\ref{chap:sota} --- deployment environment as it should simplify the cloud creation and management.
 
-One thing that was missing in the cloud computing scene, was a cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{https://github.com/dellcloudedge/crowbar/wiki/OpenStack-Essex-Deploy-Day}
+One thing that was missing in the cloud computing scene, was a cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{https://github.com/dellcloudedge/crowbar/wiki/OpenStack-Essex-Deploy-Day}
 
 There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available, but \textit{OpenStack} is a more recent project and \textit{OpenNebula} is already up and running at FEUP. 
+
+\textit{OpenStack} is backed up by some renowned names in the industry, such as \textit{Dell}, \textit{AMD}, \textit{Intel}, \textit{Canonical}, \textit{Cisco}, \textit{StackOps}, \textit{HP}, \textit{NEC}, \textit{AT \& T}, \textit{Yahoo!} and \textit{Red Hat}. Some of these companies also support \textit{OpenNebula}.
+
+According to \textit{OpenStack}'s mailing list, there has been considerable HPC testing at NASA. Piyush Mehrotra from the NASA division at AMES was contacted, by up until the writing of this report, no answer has been obtained on whether approach would be more suitable (\textit{OpenStack} or \textit{OpenNebula}).
+
+When taking into account the activity in websites like OHLOH~\footnote{Software directory which combines community-driven content with a source code crawler that monitors up-to-date development activity.~\cite{http://www.ohloh.net/}}, the differences can be easily observed. 
+
+
+
+
+####incluir estatistica$#######"
+
+
+
+
+
+
+Furthermore and it was mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers a paid version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains. 
+
+
 
 Furthermore, \textit{OpenStack} is written in \textit{Python} whereas \textit{OpenNebula} is written in \textit{Ruby on Rails}. There was already a previous experience with \textit{Rube on Rails} (a not so favourable one) and since there was a desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
 
@@ -62,7 +82,7 @@ As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack}, \textit
 
 Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
 
-\begin{figure}[H]
+\begin{figure}[t!]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{nova-concept-int-essex}
@@ -89,7 +109,7 @@ Deve depois dedicar-se à apresentação da solução sem detalhes de
 implementação. 
 Dependendo do trabalho, pode ser uma descrição mais teórica, mais
 ``arquitectural'', etc.
-
+\clearpage
 \section{Resumo e Conclusões}
 
 Resumir e apresentar as conclusões que se podem tirar no fim deste
