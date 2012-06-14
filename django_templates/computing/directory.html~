@@ -1,6 +1,0 @@
-Herp Derp
-</p>
-{% for f in dirList %}
-{{ f }} </p>
-{% endfor %}
-

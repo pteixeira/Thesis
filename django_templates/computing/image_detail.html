@@ -1,7 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
 <h1>{{ image.name }}</h1>
 
 <p>Date added to the system: {{ image.date_added }}.</p>
 <p>Number of times used: {{ image.number_of_uses }}.</p>
+<p>Tags: {% for tag in image.get_tags %}
+			{{ tag }}
+		      {% endfor %}</p>
 
 
 
@@ -43,3 +54,7 @@ Wrong type of image.
 
 {% endif %}
 
+<form><input type="button" value="Back" onClick="history.go(-1); return true;"></form>
+<p><a href="/computing/">HOME</a></p>
+</body>
+</html>
