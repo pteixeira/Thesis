@@ -72,11 +72,24 @@ The coding activity on both projects was also taken into account when chosing wh
   \end{center}
 \end{figure}
 
-Furthermore and it was mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers a paid version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains. 
+In addition to this and as it was refered in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers a paid version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains. 
 
+Furthermore, \textit{OpenStack} is mainly written in \textit{Python} whereas \textit{OpenNebula} is mainly coded in \textit{C++} and \textit{Ruby}, as it can be observed in Figure~\ref{fig:code-stack-nebula}. 
 
+There is an extensive and obligatory contact with \textit{C++} in MIEIC, something that does not happen with \textit{Ruby}; \textit{Python} not being presented at all. Previous experience with both \textit{C++} and \textit{Ruby} proved to be not so pleasant (\textit{C++} due to its not-so-high-level nature and \textit{Ruby} because it was used in the context of \textit{Ruby on Rails}, which due to some installation quirks was deemed impossible to start and use). 
 
-Furthermore, \textit{OpenStack} is written in \textit{Python} whereas \textit{OpenNebula} is written in \textit{Ruby on Rails}. There was already a previous experience with \textit{Rube on Rails} (a not so favourable one) and since there was a desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
+\textit{Python} on the other hand, was a different programming language, something that was going to be a challenge. Coupled with \textit{Django}, it promised the same advantages as \textit{Ruby on Rails}, but with less trouble getting it up and running. Since \textit{Horizon} is built on \textit{Django}, the choice seemed obvious. The cherry on top of the cake would be contributing to FEUP's knowledge on the new technologies to be researched (\textit{Django}, \textit{Python} and of course, \textit{OpenStack}).
+
+There was already a previous experience with \textit{Ruby} and since there was a desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \fbox{\includegraphics[scale=0.5]{code-stack-nebula}}
+    \caption{Comparison between the programming languages in \textit{OpenStack} and \textit{OpenNebula}~\cite{ohloh}.}
+    \label{fig:code-stack-nebula}
+  \end{center}
+\end{figure}
 
 Rodrigo Benzaquen, director of site operations and infrastructure at MercadoLibre, a Latin America e-commerce market leader which chose to use \textit{OpenStack} as their cloud solution, stated the following:
 
@@ -102,7 +115,7 @@ Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relations
   \end{center}
 \end{figure}
 
-The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture} (miising).
+The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture} (missing).
 
 
 
