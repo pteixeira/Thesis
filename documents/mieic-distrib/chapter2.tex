@@ -153,8 +153,6 @@ Iosup et al end their article with the following quote:
 
 which serves as a conclusion for this section.
 
-
-
 \section{Cloud Computing} \label{sec:cloud}
 
 Two business drivers -short deadlines require fast access to resources
@@ -218,8 +216,6 @@ Nicholas Carr writes in his book that a shift is happening, where the Cloud is b
 
 Aaron Weiss writes in his article that the Cloud is robust, even self-healing, as it has many sources from where to get the power to recover from whatever accident occurs. Weiss states that the Cloud is also very power consuming, as roughly 50 percent of the energy it consumes comes from the cooling process alone. Giants such as IBM and Microsoft are also scouting locations where the hydroelectric power is cheaper and greener, so they can establish their cluster centers.\cite{aaron-clouds}
 
-
-
 \subsection{Utility Computing} \label{utility}
 
 Computing is going in such a direction that the services that are made available to the user are being done in such a way that computing is becoming equal to traditional utilities such as water, gas, electricity and telephone services.\cite{Buyya2009599}
@@ -271,8 +267,10 @@ When comparing both EGEE Grid and the \textit{Amazon Web Service}, the authors o
 \end{itemize}
 
 
-\section{Developments, Applications and Services}
-With the shift of the computing industry towards a provision of Platform as Service and Software as a Service, consumers can access resources on-demand without having to preoccupy themselves with time and location, Buyya et al believe that there will be an increasing number of Cloud platforms being developed~\cite{Buyya2009599}. Two of those platforms are \textit{OpenNebula} and \textit{OpenStack}, open-source toolkits for Cloud management. In this report they will both be analyzed, as well as \textit{Amazon}'s computing service (\ref{aws}), \textit{Google's App Engine} (\ref{googleapps}) and \textit{Microsoft Azure} (\ref{azure}).
+\section{Developments, Applications and Services}\label{sec:developments-apps-services}
+With the shift of the computing industry towards a provision of Platform as Service and Software as a Service, consumers can access resources on-demand without having to preoccupy themselves with time and location, Buyya et al believe that there will be an increasing number of Cloud platforms being developed~\cite{Buyya2009599}. Two of those platforms are \textit{OpenNebula} and \textit{OpenStack}, open-source toolkits for Cloud management. In this report they will both be analyzed, but as they play a major role in this project, they were given their own section in this chapter (\ref{sec:stack-nebula}).
+
+\textit{Amazon}'s computing service (\ref{aws}), \textit{Google's App Engine} (\ref{googleapps}) and \textit{Microsoft Azure} (\ref{azure}) are described in this section.
 
 \subsection{AWS - Amazon Web Services}\label{aws}
 
@@ -320,57 +318,73 @@ It has been speculated that the clock speed of a single CPU core in \textit{Azur
 Windows Azure enables developers to build, host and scale applications in Microsoft datacenters, not requiring upfront expenses, long term commitment and users only pay for the resources they use. 
 Windows Azure relieves the user from the effort of configuring load balancing and failover, is designed to let developers build applications that are continuously available, even if they need software updates and hardware failures occur.\cite{azure}
 
-\clearpage
 \section{FEUP's Computing System}\label{feup}
 
 In this section FEUP's computing system is analyzed in detail. The cluster system and the technologies it uses in its management are described and detailed. FEUP's cluster system currently uses three different technologies, \textit{Moab}, \textit{gLite} and \textit{Condor}.
-The Cloud creation and management tool is also described, as it is a vital part in FEUP's computing system and is the connecting link between the front-end and the back-end.
-
-\subsection{OpenNebula}\label{subsec:opennebula}
+Currently FEUP currently has both \textit{OpenNebula} and \textit{OpenStack} running (the last one for research purposes only), both technologies having been already discussed in the previous section(~\ref{sec:stack-nebula})
 
 
-\textit{OpenNebula} was initially created as a research project in 2005 by Ignacio M. Llorente and Rubén S. Montero from \textit{Universidad Complutense Madrid}, being publicly released in 2008. It now works as an open source project after having evolved through several releases (now on version 3.4). It is the result of many years of research and development in efficient and scalable management of virtual machines on large-scale distributed infrastructures in close collaboration with \textit{OpenNebula}'s user community and leading experts in cloud computing. 
+\subsection{Clusters}\label{clusters}
 
-Most of \textit{OpenNebula}'s features have been developed as a response to the use cases from many of the companies involved in the project (these include RESERVOIR~\footnote{\textit{Framework} developed to aid both techonology and information specialists in enterprises in creating a cloud with all the coding and architecture specifications needed.~\cite{reservoir}}, \textit{StratusLab}~\footnote{A project aiming to develop a complete and open-source cloud distribution that allows both grid and non-grid resource centers to offer and exploit an IaaS cloud. It is particularly focused on enhancing distributed computing infrastructures such as the European Grid Infrastructure (EGI)~\cite{stratuslab}} and \textit{4CaaSt}~\footnote{Project created for the development of an advanced PaaS cloud platform which supports the optimized and elastic hosting of Internet-scale multitier applications, embedding all the necessary features, so that the programming of rich applications is simplified.~\cite{4caast}}) and its technology has evolved mostly thanks to the effort the community has put into it.~\cite{opennebula}
+Three different technologies are currently in use by FEUP's Cluster system: \textit{Moab}(\ref{moab}), \textit{gLite}(\ref{glite}) and \textit{Condor}(\ref{condor}).
 
-It was first released as a software package in \textit{Ubuntu} 9.04, has its own command-line tools and gives the user different configuration scripts which enable a simple and flexible way to design and manage running virtual machines. Since the release of version 3.0, \textit{OpenNebula} has introduced a GUI called \textit{Sunstone} (only runs on \textit{Firefox} and \textit{Chrome} browsers), which allow the users and administrators to manage all \textit{OpenNebula}'s resources (as long as they have access to them, something that can be regulated via ACLs or external modules)~\cite{jorge-ruao}.
+\subsubsection{Moab Cluster Suite}\label{moab}
 
-\textit{OpenNebula}'s architecture is presented in Figure~\ref{fig:nebula_arch} and its main components are presented in Figure~\ref{fig:nebula_components}.
-
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{nebula_arch}
-    \caption{OpenNebula's Architecture~\cite{nebulatech}.}
-    \label{fig:nebula_arch}
-  \end{center}
-\end{figure}
-
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{nebula_components}
-    \caption{OpenNebula's components~\cite{nebulacomponents}.}
-    \label{fig:nebula_components}
-  \end{center} 
-\end{figure}
-
-
+\textit{Moab Cluster Suite} is a proprietary tool for high performance computing systems, developed by the company \textit{Cluster Resources}. It has built-in modules for work management, Cluster administration and monitoring, report creation. It is composed by three essential components:
 \begin{itemize}
-\item \textbf{Interfaces and APIs} --- \textit{OpenNebula} offers two main ways to manage its instances: CLI or GUI (\textit{Sunstone}). Several cloud interfaces such as \textit{OCCI}~\footnote{Open Cloud Computing Interface. Web service that enables the user to launch and manage virtual machines in the \textit{OpenNebula} installation.~\cite{occi}} and EC2 Query~\footnote{Web service that enables the use of virtual machines through Amazon's EC2 Query Interface (\ref{amazon-ec})};
-\item \textbf{Users and Groups} --- \textit{OpenNebula} supports user accounts and groups, as well as several authentication and authorization mechanisms. These can be used to create isolated compartments inside the same cloud (multi-tenancy). An ACL mechanist also exists to allow different role management;
-\item \textbf{Hosts} --- Various hypervisors are supported by the virtualization manager, which has the ability to control and monitor the lifecycle of VMs, something that can be extended to the physical hosts. It is compatible with Xen, KVM and VMware, three \textit{platform virtual machines} that emulate the whole physical computer machine;
-\item \textbf{Networking} --- A network subsystem that allows \textit{OpenNebula} to easily integrate with specific network requirements of existing datacenters;
-\item \textbf{Storage} --- \textit{OpenNebula} supports multiple data stores in its storage subsystem which provides extreme flexibility in planning the storage backend. Disk images can be stored in both file and block device, also having support for the VMware datastore;
-\item \textbf{Clusters} --- Clusters are pools of hosts that share datastores and virtual networks. They are used for load balancing, high availability and high performance computing.
+\item \textbf{Moab Workload Manager} - scheduling and workload management engine;
+\item \textbf{Moab Cluster Manager} - graphical interface for Cluster administration, monitoring and report analysis;
+\item \textbf{Moab Access Portal} - web based portal for job management and submission, directly focused on the end-user.
 \end{itemize}
-\textit{OpenNebula} does not have a built-in utility to create VMs from scratch, but its templates allow the VMs to boot an ISO image, leaving the user with just creating an empty hard disk image.
 
-It provides monitoring capabilities which become rather useful when there is a need to troubleshoot, scale or control resource allocation scenarios. \textit{OpenNebula} exports drivers that communicate directly with the hypervisor (KVM - \ref{hyper}) and return useful data, such as the amount of CPU used, reserved and used memory and network traffic.\cite{open-clouds}
+A resource manager supplies the system with basic functionalities for initiating, stopping, canceling or monitoring jobs. \textit{Moab Workload Manager} uses a resource manager's services to get information about the state of the resources and the node workload. It is also used to manage jobs and to send information on how they should be run and it can be configured to manage more than one resource manager simultaneously.
+Its composing nodes can be split into three groups:
+\begin{enumerate}
+\item \textbf{Master node} - Manages the resources;
+\item \textbf{Submissive/Interactive nodes} - Allow users to manage and submit jobs into the system;
+\item \textbf{Computing nodes} - Execute the submitted jobs.
+\end{enumerate}
 
-In March 2010, \textit{OpenNebula}'s main authors founded \textit{C12G Labs}~\footnote{Company that provides enterprise-grade solutions built around \textit{OpenNebula}}, which has led to it being referred to as "...proprietary tech with an element of openness...", which could limit its growth.~\cite{linkedin-opennebula}
+Is is also possible to split the nodes into two groups - source and destination nodes. The first ones are the nodes where there users, portals or other systems can submit their jobs and the latter ones are where the jobs are executed. Jobs originate in a source node and are transferred to the destination nodes. Decisions are made in the source nodes, so it is possible to choose which nodes will execute the submitted jobs.
+Moab also allows for the establishment of connections between several Grid systems, which permit access to additional resources.\cite{jorge-ruao, moab}
 
-%\clearpage
+\subsubsection{gLite}\label{glite}
+
+\textit{gLite} consists in a set of components designed with the objective of building a Grid computing infrastructure for resource sharing developed by the project EGEE (Enabling Grids for E-sciencE), also mentioned in an earlier section.
+\textit{gLite} is based on four core concepts:
+\begin{itemize}
+\item \textbf{Computing Element (CE)} - Set of local computational resources, namely a Cluster. It is composed by three components:
+	\begin{itemize}
+	\item \textbf{Grid Gate} - generic interface for the Cluster who receives jobs and submits it to the Local Resource Management System (LRMS);
+	\item \textbf{Local Resource Management System (LRMS)} - Sends the jobs to the worker nodes for execution;
+	\item \textbf{Worker Nodes} - Cluster nodes where jobs are executed.
+	\end{itemize}
+\item \textbf{Storage Element (SE)} - Supplies access to data storage resources;
+\item \textbf{Information Service (IS)} - Resource research is made through this component, which is also responsible for supplying information regarding resources and their state;
+\item \textbf{Workload Management System (WMS)} - Receives jobs from users, appropriately allocates a CE, saves jobs states and gets the final results.\cite{jorge-ruao,glite}
+\end{itemize}
+
+\subsubsection{Condor}\label{condor}
+
+\textit{Condor} is a free and open-source workload management system, developed by the \textit{Condor Research Project}.
+It has built-in job queueing mechanisms, scheduling and priority policies, resource monitoring and management. Users submit jobs to \textit{Condor}, which puts them in a queue, chooses when and where to execute them based on defined policies, carefully monitors their progress and informs the user when the jobs are finished.
+\textit{Condor} can manage dedicated nodes or harness the CPU energy wasted in workstations that are turned on but unused. If the system detects the machine became suddenly unavailable, \textit{Condor} can migrate the state of the job into a different machine and resume work. 
+It offers an extremely flexible structure to assign resources to jobs, allowing these to have specific requisites and resource preferences, as well as enabling the resources to specify preferences over jobs to execute.
+Each machine from \textit{Condor} can play several roles:
+\begin{itemize}
+\item Central Manager - Machine that collects information and makes the negotiation between resources and resource requests. All resource requests go through the \textit{Central Manager}. There can only be one \textit{Central Manager} in a \textit{Condor} infrastructure;
+\item Execute - Machine which executes jobs, therefore allowing the network to take advantage of its resources. Any machine can be configured to take this role;
+\item Submit - Machine responsible for the job reception and submission to the \textit{Central Manager}. Any machine can be configured to take this role;
+\item Checkpoint Server - Machine which stores checkpoint files for all submitted jobs.\cite{jorge-ruao,condor}
+\end{itemize}
+
+
+\section{Cloud Creation and Management Software}\label{sec:stack-nebula}
+
+As mentioned in the previous section (\ref{sec:developments-apps-services}), \textit{OpenStack} and \textit{OpenNebula} are two projects that deserve their own section when talking about the developments, applications and services that exist in their field. 
+
+Since the objectives of the project involved the implementation of a virtual environment creator and manager, both these platforms were deemed worthy of a more detailed inspection. Both projects are open source (\textit{OpenNebula} offers an ``Enterprise Edition'', which can put its open source status in question~\ref{subsec:opennebula}) and one of them will run alongside the web page that will be developed and will interact with.
+
 \subsection{OpenStack}\label{subsec:openstack}
 
 \textit{OpenStack} is a global collaboration of developers and cloud computing technologists producing the open source cloud computing platform for public and private clouds. The aim of this project is to deliver solutions for all types of clouds by being simple to implement, massively scalable and filled with features. 
@@ -429,65 +443,168 @@ Its goals include the following:
 
 Created by \textit{Rackspace Cloud Builders}~\footnote{Business launched by \textit{Rackspace} that helps other businesses deploy \textit{OpenStack}~\cite{cloudbuilders}}, \textit{DevStack} will be used as it simplifies the deployment process (and is used by FEUP's \textit{OpenStack} researcher). \textit{DevStack} will be further expanded in Chapter~\ref{chap:chap3}, when its deployment is discussed.
 
-\subsection{Clusters}\label{clusters}
+\subsection{OpenNebula}\label{subsec:opennebula}
 
-Three different technologies are currently in use by FEUP's Cluster system: \textit{Moab}(\ref{moab}), \textit{gLite}(\ref{glite}) and \textit{Condor}(\ref{condor}).
 
-\subsubsection{Moab Cluster Suite}\label{moab}
+\textit{OpenNebula} was initially created as a research project in 2005 by Ignacio M. Llorente and Rubén S. Montero from \textit{Universidad Complutense Madrid}, being publicly released in 2008. It now works as an open source project after having evolved through several releases (now on version 3.4). It is the result of many years of research and development in efficient and scalable management of virtual machines on large-scale distributed infrastructures in close collaboration with \textit{OpenNebula}'s user community and leading experts in cloud computing. 
 
-\textit{Moab Cluster Suite} is a proprietary tool for high performance computing systems, developed by the company \textit{Cluster Resources}. It has built-in modules for work management, Cluster administration and monitoring, report creation. It is composed by three essential components:
+Most of \textit{OpenNebula}'s features have been developed as a response to the use cases from many of the companies involved in the project (these include RESERVOIR~\footnote{\textit{Framework} developed to aid both techonology and information specialists in enterprises in creating a cloud with all the coding and architecture specifications needed.~\cite{reservoir}}, \textit{StratusLab}~\footnote{A project aiming to develop a complete and open-source cloud distribution that allows both grid and non-grid resource centers to offer and exploit an IaaS cloud. It is particularly focused on enhancing distributed computing infrastructures such as the European Grid Infrastructure (EGI)~\cite{stratuslab}} and \textit{4CaaSt}~\footnote{Project created for the development of an advanced PaaS cloud platform which supports the optimized and elastic hosting of Internet-scale multitier applications, embedding all the necessary features, so that the programming of rich applications is simplified.~\cite{4caast}}) and its technology has evolved mostly thanks to the effort the community has put into it.~\cite{opennebula}
+
+It was first released as a software package in \textit{Ubuntu} 9.04, has its own command-line tools and gives the user different configuration scripts which enable a simple and flexible way to design and manage running virtual machines. Since the release of version 3.0, \textit{OpenNebula} has introduced a GUI called \textit{Sunstone} (only runs on \textit{Firefox} and \textit{Chrome} browsers), which allow the users and administrators to manage all \textit{OpenNebula}'s resources (as long as they have access to them, something that can be regulated via ACLs or external modules)~\cite{jorge-ruao}.
+
+\textit{OpenNebula}'s architecture is presented in Figure~\ref{fig:nebula_arch} and its main components are presented in Figure~\ref{fig:nebula_components}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{nebula_arch}
+    \caption{OpenNebula's Architecture~\cite{nebulatech}.}
+    \label{fig:nebula_arch}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{nebula_components}
+    \caption{OpenNebula's components~\cite{nebulacomponents}.}
+    \label{fig:nebula_components}
+  \end{center} 
+\end{figure}
+
+
 \begin{itemize}
-\item \textbf{Moab Workload Manager} - scheduling and workload management engine;
-\item \textbf{Moab Cluster Manager} - graphical interface for Cluster administration, monitoring and report analysis;
-\item \textbf{Moab Access Portal} - web based portal for job management and submission, directly focused on the end-user.
+\item \textbf{Interfaces and APIs} --- \textit{OpenNebula} offers two main ways to manage its instances: CLI or GUI (\textit{Sunstone}). Several cloud interfaces such as \textit{OCCI}~\footnote{Open Cloud Computing Interface. Web service that enables the user to launch and manage virtual machines in the \textit{OpenNebula} installation.~\cite{occi}} and EC2 Query~\footnote{Web service that enables the use of virtual machines through Amazon's EC2 Query Interface (\ref{amazon-ec})};
+\item \textbf{Users and Groups} --- \textit{OpenNebula} supports user accounts and groups, as well as several authentication and authorization mechanisms. These can be used to create isolated compartments inside the same cloud (multi-tenancy). An ACL mechanist also exists to allow different role management;
+\item \textbf{Hosts} --- Various hypervisors are supported by the virtualization manager, which has the ability to control and monitor the lifecycle of VMs, something that can be extended to the physical hosts. It is compatible with Xen, KVM and VMware, three \textit{platform virtual machines} that emulate the whole physical computer machine;
+\item \textbf{Networking} --- A network subsystem that allows \textit{OpenNebula} to easily integrate with specific network requirements of existing datacenters;
+\item \textbf{Storage} --- \textit{OpenNebula} supports multiple data stores in its storage subsystem which provides extreme flexibility in planning the storage backend. Disk images can be stored in both file and block device, also having support for the VMware datastore;
+\item \textbf{Clusters} --- Clusters are pools of hosts that share datastores and virtual networks. They are used for load balancing, high availability and high performance computing.
+\end{itemize}
+\textit{OpenNebula} does not have a built-in utility to create VMs from scratch, but its templates allow the VMs to boot an ISO image, leaving the user with just creating an empty hard disk image.
+
+It provides monitoring capabilities which become rather useful when there is a need to troubleshoot, scale or control resource allocation scenarios. \textit{OpenNebula} exports drivers that communicate directly with the hypervisor (KVM - \ref{hyper}) and return useful data, such as the amount of CPU used, reserved and used memory and network traffic.\cite{open-clouds}
+
+In March 2010, \textit{OpenNebula}'s main authors founded \textit{C12G Labs}~\footnote{Company that provides enterprise-grade solutions built around \textit{OpenNebula}}, which has led to it being referred to as "...proprietary tech with an element of openness...", which could limit its growth.~\cite{linkedin-opennebula}
+
+\subsection{Contextualization}
+
+At the end of instantiating a VM, its data can be set or overrun by user request, thus creating the possibility of setting up an infinite number of environments using only one VM image.
+
+\textit{OpenStack} and \textit{OpenNebula} have different ways of handling this process, which are described in this section of the document.
+
+\subsubsection{\textit{OpenStack}}
+
+\textit{OpenStack}'s \textit{Image Service} provides discovery, registration and delivery services for disk and server images, taking advantage of \textit{OpenStack}'s ability to copy or snapshot a server image and store it immediately~\ref{subsubsec:openstack_arch}.
+
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{tiny-flavour}
+    \caption{Launching an instance in \textit{Horizon}.}
+    \label{fig:tiny-flavour}
+  \end{center} 
+\end{figure}
+
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{customization-script}
+    \caption{Script to be ran once the instance is launched.}
+    \label{fig:customization-script}
+  \end{center} 
+\end{figure}
+
+%[03:07] <Sardines> the way on how different instances from the same image are configured (ip, authentication, etc etc etc)
+%[03:07] <Sardines> images*
+%[03:08] <zaitcev> So, it's like what Audrey does?
+%[03:08] <Sardines> audrey?
+%[03:09] <zaitcev> Actually, I think the fashionable tool these days is cloud-init. Audrey was originally put together by Aeolus people.
+%[03:09] == dtroyer_zzz has changed nick to dtroyer
+%[03:11] <Sardines> cloud-init only works on ubuntu based images, right?
+%[03:11] <smoser> :)
+%[03:12] <smoser> coming soon to an RPM based distro near you.
+%[03:12] <smoser> (thanks to harlowja and others)
+%[03:12] <Sardines> :D
+%[03:12] <harlowja> :)
+%[03:12] <harlowja> ya, it will be nicer to work with other distros and debugging and such soon
+%[03:12] <harlowja> that is the hope, :-p
+%[03:12] <smoser> Sardines, it does exist in fedora at the moment, but in a limited fashion
+%[03:12] == pixelbeat [~padraig@109.78.86.189] has joined #openstack-dev
+%[03:13] <smoser> Sardines, and there is cloud-init in debian sid right now, although there is work to be don there also.
+%[03:13] <harlowja> ya, don't expect it to do to much, i am working on something that abstracts away as much of the distro stuff as possible to helper classes, some stuff won't work  in fedora/rh... ie, aptupgrades and such but those can be removed
+%[03:14] <Sardines> ill use the ubuntu one for now :) working on my master thesis, need to cover this part of the process :p got any links that i can follow so i can get some more richness on the document? :D
+%[03:15] <harlowja> code level, or just regular docs, or capability docs?
+%[03:15] <harlowja> https://help.ubuntu.com/community/CloudInit
+%[03:15] <harlowja> depends on how deep down the rabbit hole u want to go
+%[03:15] <harlowja> ha
+%[03:16] <Sardines> think im sticking to the surface for now, time is running short xD
+%[03:17] <Sardines> actually, can you link me to the capability docs?
+%[03:18] <harlowja> hmmm, ok, so hmmm, the capabilities, are sort of in that main one, http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/ + code unless there is another better place
+%[03:18] <harlowja> i would almost say look at http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/CloudConfig/ also
+%[03:18] <harlowja> docs for this kind of stuff could be better i think
+%[03:19] <harlowja> datasource* modules there are how data gets loaded
+%[03:19] <harlowja> http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/
+%[03:19] <Sardines> thanks a million :) you have been of great help :D
+%[03:20] <harlowja> if that isn't so easy, i can try to explain it all, haha, smoser or i should be able to do that :-p
+%[03:20] <harlowja> http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files might be easier to follow, basically starting in stages.py/init and then to the stages.py/transforms but don't expect that branch to work yet, lol
+%[03:20] <harlowja> but for refereence it might be better, idk
+%[03:21] <harlowja> sorry, http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files/head:/cloudinit/, not the main dir
+%[03:22] <Sardines> once again, thanks a million :)
+%[03:22] <smoser> almost all of cloudconfig function is documented in the doc/ link or source that harlow pointed at above.
+%[03:22] <smoser> and the wiki doc shows what all to feed CloudInit (one of the things you can feed it is cloudconfig).
+%[03:24] == Facefox [~facefox@pool-74-111-197-200.lsanca.fios.verizon.net] has quit []
+%[03:25] <Sardines> thank you very much once again :)
+%[03:26] <Sardines> i want to cite both of you in the thesis, do you guys have any preference on how to do it? :D
+%[03:26] <Sardines> preferences*
+%[03:27] <harlowja> ha, no idear :-p
+%[03:27] <harlowja> just say 'those awesome dudes on irc'
+%[03:28] == dachary [~loic@freenode/sponsor/dachary] has quit [Quit: Leaving.]
+%[03:29] == dachary [~loic@freenode/sponsor/dachary] has joined #openstack-dev
+%[03:31] <Sardines> ahah ok :D
+%[03:31] <Sardines> again, thanks a million for the help :)
+
+
+
+
+\subsubsection{\textit{OpenNebula}}
+
+As mentioned in section~\ref{subsec:opennebula}, \textit{OpenNebula}'s \textit{Storage System} allows administrators and users to set up images (OS or data) to be be used in VMs. 
+
+\textit{OpenNebula} supports three types of images:
+
+\begin{itemize}
+\item \textbf{OS} --- Contains a working operative system;
+\item \textbf{CDROM} --- Readonly data;
+\item \textbf{DATABLOCK} --- Storage for data, which can be accessed and modificed from different VMs. They can be created from previous existing data, or as an empty drive.
 \end{itemize}
 
-A resource manager supplies the system with basic functionalities for initiating, stopping, canceling or monitoring jobs. \textit{Moab Workload Manager} uses a resource manager's services to get information about the state of the resources and the node workload. It is also used to manage jobs and to send information on how they should be run and it can be configured to manage more than one resource manager simultaneously.
-Its composing nodes can be split into three groups:
-\begin{enumerate}
-\item \textbf{Master node} - Manages the resources;
-\item \textbf{Submissive/Interactive nodes} - Allow users to manage and submit jobs into the system;
-\item \textbf{Computing nodes} - Execute the submitted jobs.
-\end{enumerate}
+The type of an existing image can be changed when performed a specific command and the images can be managed either by using \textit{Sunstone} or \textit{OpenNebula}'s CLI.
 
-Is is also possible to split the nodes into two groups - source and destination nodes. The first ones are the nodes where there users, portals or other systems can submit their jobs and the latter ones are where the jobs are executed. Jobs originate in a source node and are transferred to the destination nodes. Decisions are made in the source nodes, so it is possible to choose which nodes will execute the submitted jobs.
-Moab also allows for the establishment of connections between several Grid systems, which permit access to additional resources.\cite{jorge-ruao, moab}
+In order to create an \textbf{OS Image}, a contextualized VM needs to be created and its disk extracted.
+\textit{OpenNebula}- has two contextualization mechanisms available:
 
-
-\subsubsection{gLite}\label{glite}
-
-\textit{gLite} consists in a set of components designed with the objective of building a Grid computing infrastructure for resource sharing developed by the project EGEE (Enabling Grids for E-sciencE), also mentioned in an earlier section.
-\textit{gLite} is based on four core concepts:
 \begin{itemize}
-\item \textbf{Computing Element (CE)} - Set of local computational resources, namely a Cluster. It is composed by three components:
-	\begin{itemize}
-	\item \textbf{Grid Gate} - generic interface for the Cluster who receives jobs and submits it to the Local Resource Management System (LRMS);
-	\item \textbf{Local Resource Management System (LRMS)} - Sends the jobs to the worker nodes for execution;
-	\item \textbf{Worker Nodes} - Cluster nodes where jobs are executed.
-	\end{itemize}
-\item \textbf{Storage Element (SE)} - Supplies access to data storage resources;
-\item \textbf{Information Service (IS)} - Resource research is made through this component, which is also responsible for supplying information regarding resources and their state;
-\item \textbf{Workload Management System (WMS)} - Receives jobs from users, appropriately allocates a CE, saves jobs states and gets the final results.\cite{jorge-ruao,glite}
+\item \textbf{Automatic IP assignment} --- Several pre-created scripts are provided by \textit{OpenNebula} for \textit{Debian}, \textit{Ubuntu}, \textit{CentOS} and \textit{openSUSE} based systems, all of which can be adapted for other distributions.
+\item \textbf{Generic Contextualization} --- Configuration parameters are given to a newly started VM by using an ISO image. The VM description file contains the contents of the ISO file (files and directories), instructs the device that the ISO image will become accessible and specifies the configuration parameters that will be written to a file for later use inside the VM.
 \end{itemize}
 
-\subsubsection{Condor}\label{condor}
+When using the generic contextualization mechanism, the VM description file can be used to create a contextualization image, which will contain the context values. These include the \textit{hostname}, \textit{root} password and the Domain Name Server (DNS). These values will be held inside the CONTEXT parameter residing inside the contextualization image, whose variables can be specified in three different ways:
 
-\textit{Condor} is a free and open-source workload management system, developed by the \textit{Condor Research Project}.
-It has built-in job queueing mechanisms, scheduling and priority policies, resource monitoring and management. Users submit jobs to \textit{Condor}, which puts them in a queue, chooses when and where to execute them based on defined policies, carefully monitors their progress and informs the user when the jobs are finished.
-\textit{Condor} can manage dedicated nodes or harness the CPU energy wasted in workstations that are turned on but unused. If the system detects the machine became suddenly unavailable, \textit{Condor} can migrate the state of the job into a different machine and resume work. 
-It offers an extremely flexible structure to assign resources to jobs, allowing these to have specific requisites and resource preferences, as well as enabling the resources to specify preferences over jobs to execute.
-Each machine from \textit{Condor} can play several roles:
 \begin{itemize}
-\item Central Manager - Machine that collects information and makes the negotiation between resources and resource requests. All resource requests go through the \textit{Central Manager}. There can only be one \textit{Central Manager} in a \textit{Condor} infrastructure;
-\item Execute - Machine which executes jobs, therefore allowing the network to take advantage of its resources. Any machine can be configured to take this role;
-\item Submit - Machine responsible for the job reception and submission to the \textit{Central Manager}. Any machine can be configured to take this role;
-\item Checkpoint Server - Machine which stores checkpoint files for all submitted jobs.\cite{jorge-ruao,condor}
+\item Hardcoded;
+\item Using template variables;
+\item Pre-defined variables.~\cite{nebula-contextualization}
 \end{itemize}
 
-
+\clearpage
 \section{ISO Images} \label{iso}
 
 unsure.....
+VMBuilder
+Vagrant
 
 Ubuntu's VM Builder? talvez ver mais.
 
