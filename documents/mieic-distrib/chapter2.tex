@@ -155,9 +155,6 @@ which serves as a conclusion for this section.
 
 \section{Cloud Computing} \label{sec:cloud}
 
-Two business drivers -short deadlines require fast access to resources
-			- tight budgets mean more is needed from less hardware
-
 Similarly to the Grid, many definitions arise when one talks about the Cloud. Presently, it is considered normal to obtain access to content spread over the Internet without a reference to the hosting infrastructure that lies underneath it. This infrastructure is made of data centers that are being monitored by service providers. 
 
 Buyaa et al state that Cloud computing extends this paradigm in where the capabilities of the applications are viewed as complex services that can be accessed over a network. The authors also believe that the Cloud is an infrastructure from where businesses and users can access applications from anywhere in the world anytime they want. Cloud computing's services need to be reliable, scalable and sufficiently autonomic to support omnipresent access, dynamic discovery and they need to support composability, as they must permit to be reassembled and selected in any order to comply to the user's requirements.
@@ -267,7 +264,8 @@ When comparing both EGEE Grid and the \textit{Amazon Web Service}, the authors o
 \end{itemize}
 
 
-\section{Developments, Applications and Services}\label{sec:developments-apps-services}
+\section{Technology Review}\label{sec:developments-apps-services}
+
 With the shift of the computing industry towards a provision of Platform as Service and Software as a Service, consumers can access resources on-demand without having to preoccupy themselves with time and location, Buyya et al believe that there will be an increasing number of Cloud platforms being developed~\cite{Buyya2009599}. Two of those platforms are \textit{OpenNebula} and \textit{OpenStack}, open-source toolkits for Cloud management. In this report they will both be analyzed, but as they play a major role in this project, they were given their own section in this chapter (\ref{sec:stack-nebula}).
 
 \textit{Amazon}'s computing service (\ref{aws}), \textit{Google's App Engine} (\ref{googleapps}) and \textit{Microsoft Azure} (\ref{azure}) are described in this section.
@@ -385,6 +383,10 @@ As mentioned in the previous section (\ref{sec:developments-apps-services}), \te
 
 Since the objectives of the project involved the implementation of a virtual environment creator and manager, both these platforms were deemed worthy of a more detailed inspection. Both projects are open source (\textit{OpenNebula} offers an ``Enterprise Edition'', which can put its open source status in question~\ref{subsec:opennebula}) and one of them will run alongside the web page that will be developed and will interact with.
 
+Image contextualization will be approached, since it is directly linked to one of the objectives of this project --- creating different virtual environments according to the users' needs.
+
+Project \textit{Aeolus} will also be discussed in this section, as it contains one of the tools that will be discussed in the next section (~\nameref{sec:iso}) and is related to the objective refered earlier, \nameref{subsec:oz}.
+
 \subsection{OpenStack}\label{subsec:openstack}
 
 \textit{OpenStack} is a global collaboration of developers and cloud computing technologists producing the open source cloud computing platform for public and private clouds. The aim of this project is to deliver solutions for all types of clouds by being simple to implement, massively scalable and filled with features. 
@@ -487,6 +489,17 @@ It provides monitoring capabilities which become rather useful when there is a n
 
 In March 2010, \textit{OpenNebula}'s main authors founded \textit{C12G Labs}~\footnote{Company that provides enterprise-grade solutions built around \textit{OpenNebula}}, which has led to it being referred to as "...proprietary tech with an element of openness...", which could limit its growth.~\cite{linkedin-opennebula}
 
+\subsection{Project Aeolus}\label{subsec:aeolus}
+
+\textit{Aeolus} consists of a set of tools to build and manage groups of VMs across clouds (both public and private). It has four components:
+
+\begin{itemize}
+\item \textbf{Conductor} --- Provides cloud resources to users, manages their access to and use of those resources, controls user's instances in clouds, launches a VM on a cloud, keeps track of it during its lifecycle and cleans up after the VM is no longer needed. It alerts the user when something happens, such as the VM crashing or the user is about to exhaust the hours of monthly usage, for example. It instructs the user on which cloud to chose depending on certain parameters, including cost, quality of service (QOS) data and other metrics. If the user wishes to, the Conductor can perform that choice;
+\item \textbf{Composer} --- Builds cloud-specific images from generic templates, in order to allow users to choose clouds freely by using compatible images. The user can specify arguments to pass into the build process so that the software installation can be configured. Images can be rebuilt from the original template in order to update packages or for feature enhancements, bug fixes or security issues.
+\item \textbf{Orchestrator} --- Manages groups of instances. Users can automatically bring up a set of different instances on a single cloud or group of clouds, configure them and make them aware of each other;
+\item \textbf{HA Manager} --- Makes instances or groups of instances manageable. Provides isolation, recovery and notification of failed applications or instances. Lets the user create policies for maintaining or relaunching services within a specific infrastructure.
+\end{itemize}
+
 \subsection{Contextualization}
 
 At the end of instantiating a VM, its data can be set or overrun by user request, thus creating the possibility of setting up an infinite number of environments using only one VM image.
@@ -497,8 +510,17 @@ At the end of instantiating a VM, its data can be set or overrun by user request
 
 \textit{OpenStack}'s \textit{Image Service} provides discovery, registration and delivery services for disk and server images, taking advantage of \textit{OpenStack}'s ability to copy or snapshot a server image and store it immediately~\ref{subsubsec:openstack_arch}.
 
+Currently only \textit{Ubuntu} and \textit{Amazon} AMI images can be contextualized using \textit{OpenStack}. This happens because \textit{cloud-init}~\footnote{\textit{Ubuntu} package that handles early initialization of a cloud instance. It is installed in the \textit{Ubuntu Enterprise Cloud} (UEC) images and also in the official Ubuntu images available on \textit{Amazon}'s EC2.} is used~\ref{essex-cloudinit}.
 
-\begin{figure}[h!]
+\textit{cloud-init} handles importing ssh keys for password-less login and setting host name, amongst other things. The instance acquires the instance specific configuration from Nova-compute by connecting to a meta data interface~\ref{essex-cloudinit}.
+
+If an image from a distribution that does not have \textit{cloud-init} is being used, this setup needs to be performed via the use of a set of scripts which should be included in a specific file (rc.local) so they can be executed at boot time.
+
+In Figure~\ref{fig:tiny-flavour} and Figure~\ref{fig:customization-script} the \textit{Horizon} dashboard is shown when launching a new instance. Figure~\ref{fig:customization-script} shows the area where the \textit{cloud-init} configuration file is placed so it can be ran at boot time.
+
+This technology will be used in the solution proposed as it matches perfectly with one of the objectives --- being able to create virtual environments according to the users specifications. \textit{Ubuntu} AMI images will be used as concept proof and to simplify the whole process.
+
+\begin{figure}[h]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{tiny-flavour}
@@ -508,7 +530,7 @@ At the end of instantiating a VM, its data can be set or overrun by user request
 \end{figure}
 
 
-\begin{figure}[h!]
+\begin{figure}[h]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{customization-script}
@@ -517,57 +539,12 @@ At the end of instantiating a VM, its data can be set or overrun by user request
   \end{center} 
 \end{figure}
 
-%[03:07] <Sardines> the way on how different instances from the same image are configured (ip, authentication, etc etc etc)
-%[03:07] <Sardines> images*
-%[03:08] <zaitcev> So, it's like what Audrey does?
-%[03:08] <Sardines> audrey?
-%[03:09] <zaitcev> Actually, I think the fashionable tool these days is cloud-init. Audrey was originally put together by Aeolus people.
-%[03:09] == dtroyer_zzz has changed nick to dtroyer
-%[03:11] <Sardines> cloud-init only works on ubuntu based images, right?
-%[03:11] <smoser> :)
-%[03:12] <smoser> coming soon to an RPM based distro near you.
-%[03:12] <smoser> (thanks to harlowja and others)
-%[03:12] <Sardines> :D
-%[03:12] <harlowja> :)
-%[03:12] <harlowja> ya, it will be nicer to work with other distros and debugging and such soon
-%[03:12] <harlowja> that is the hope, :-p
-%[03:12] <smoser> Sardines, it does exist in fedora at the moment, but in a limited fashion
-%[03:12] == pixelbeat [~padraig@109.78.86.189] has joined #openstack-dev
-%[03:13] <smoser> Sardines, and there is cloud-init in debian sid right now, although there is work to be don there also.
-%[03:13] <harlowja> ya, don't expect it to do to much, i am working on something that abstracts away as much of the distro stuff as possible to helper classes, some stuff won't work  in fedora/rh... ie, aptupgrades and such but those can be removed
-%[03:14] <Sardines> ill use the ubuntu one for now :) working on my master thesis, need to cover this part of the process :p got any links that i can follow so i can get some more richness on the document? :D
-%[03:15] <harlowja> code level, or just regular docs, or capability docs?
-%[03:15] <harlowja> https://help.ubuntu.com/community/CloudInit
-%[03:15] <harlowja> depends on how deep down the rabbit hole u want to go
-%[03:15] <harlowja> ha
-%[03:16] <Sardines> think im sticking to the surface for now, time is running short xD
-%[03:17] <Sardines> actually, can you link me to the capability docs?
-%[03:18] <harlowja> hmmm, ok, so hmmm, the capabilities, are sort of in that main one, http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/ + code unless there is another better place
-%[03:18] <harlowja> i would almost say look at http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/CloudConfig/ also
-%[03:18] <harlowja> docs for this kind of stuff could be better i think
-%[03:19] <harlowja> datasource* modules there are how data gets loaded
-%[03:19] <harlowja> http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/
-%[03:19] <Sardines> thanks a million :) you have been of great help :D
-%[03:20] <harlowja> if that isn't so easy, i can try to explain it all, haha, smoser or i should be able to do that :-p
-%[03:20] <harlowja> http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files might be easier to follow, basically starting in stages.py/init and then to the stages.py/transforms but don't expect that branch to work yet, lol
-%[03:20] <harlowja> but for refereence it might be better, idk
-%[03:21] <harlowja> sorry, http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files/head:/cloudinit/, not the main dir
-%[03:22] <Sardines> once again, thanks a million :)
-%[03:22] <smoser> almost all of cloudconfig function is documented in the doc/ link or source that harlow pointed at above.
-%[03:22] <smoser> and the wiki doc shows what all to feed CloudInit (one of the things you can feed it is cloudconfig).
-%[03:24] == Facefox [~facefox@pool-74-111-197-200.lsanca.fios.verizon.net] has quit []
-%[03:25] <Sardines> thank you very much once again :)
-%[03:26] <Sardines> i want to cite both of you in the thesis, do you guys have any preference on how to do it? :D
-%[03:26] <Sardines> preferences*
-%[03:27] <harlowja> ha, no idear :-p
-%[03:27] <harlowja> just say 'those awesome dudes on irc'
-%[03:28] == dachary [~loic@freenode/sponsor/dachary] has quit [Quit: Leaving.]
-%[03:29] == dachary [~loic@freenode/sponsor/dachary] has joined #openstack-dev
-%[03:31] <Sardines> ahah ok :D
-%[03:31] <Sardines> again, thanks a million for the help :)
 
+It is important to mention that information on \textit{cloud-init} was obtained after going on \textit{OpenStack}'s \textit{Internet Relay Chat} (IRC) channel~\footnote{\#openstack on irc.freenode.net} and talking directly to the main contributers of the \textit{cloud-init} module, Joshua Harlow and Scott Moser.
 
+According to both of them, \textit{cloud-init} is in the process of being available to a wider selection of distributions, which include \textit{openSUSE}, \textit{Fedora} and \textit{Red Hat}. 
 
+The conversation is attached in Appendix~\ref{chap:ap3}.
 
 \subsubsection{\textit{OpenNebula}}
 
@@ -600,7 +577,36 @@ When using the generic contextualization mechanism, the VM description file can 
 \end{itemize}
 
 \clearpage
-\section{ISO Images} \label{iso}
+\section{ISO Image creation} \label{sec:iso}
+
+One of the big objectives in this project is the automatic creation of virtual environments. As such, it is necessary to present some of the tools used for this process, having in mind the restrictions enforced by the choices made regarding the rest of the technologies which will be used in the rest of the project, namely \textit{OpenStack} and its restriction regarding the use of \textit{cloud-init} to contextualize the virtual images.
+
+Considering these restrictions, it was chosen to follow the software recommendations made by \textit{OpenStack}'s documentation when building virtual images:
+
+\begin{itemize}
+\item \textbf{Oz} --- Part of the \textit{Aeolus} project mentioned in section~\ref{sec:stack-nebula}, it is a command line tool used by \textit{Rackspace Cloudbuilders} to images for Linux distributions;
+\item \textbf{VMBuilder} --- \textit{Python} based software package for creating VM images of free software GNU/Linux-based OS. It supports \textit{Xen}, \textit{VirtualBox}, \textit{VMware}, \textit{KVM} and \textit{Amazon EC2}~\cite{vmbuilder};
+\item \textbf{VeeWee - Vagrant} --- \textit{VeeWee} being the tool used to easily build \textit{Vagrant}-based boxes or \textit{KVM, Virtual Box} and \textit{Fusion} images~\cite{essex-doc-vms,veewee}.
+\end{itemize}
+
+These technologies will be reviewed for further use in the project.
+
+\subsection{Oz}~\label{subsec:oz}
+
+As mentioned earlier, \textit{Oz} is part of a bigger project called \textit{Aeolus}~\footnote{\url{http://aeolusproject.org/index.html}}.
+
+It was created in order to simplify the automaticinstallation of guest OS, akways using the native OS tools to do the installs. This is done so that when when the installation finishes, the disk image left by \textit{Oz} is exactly the same as if was used an installation CD. 
+
+There are three funcionalities available in \textit{Oz}:
+
+\begin{itemize}
+\item Install the OS --- \textit{Oz} was built with enough knowledge to install minimal operating systems with little input. It just needs to be told which OS to install and where the installation media is, doing the rest automatically;
+\item Customize the OS --- This is the relevant part for the project. \textit{Oz} has the ability to install additional packages and files into the OS;
+\item Generate metadata on that OS --- This includes package manifest. This metadata is represented in an XML file denominated ICICLE.
+\end{itemize}
+
+In the OS customization process (which is always done as a separate step from the OS install in order to reduce the chances of failure), \textit{Oz} is able to run the native tools, such as \textit{Yum} and \textit{apt-get}; modify the OS disk image in order to allow remote access, start up the OS in a controlled \textit{KVM} guest; run remote commands (for example: \textit{ssh}) to install packages and files and shut down the OS. It then undoes the changes to the disk and generates the metadata on that OS~\ref{oz}.
+
 
 unsure.....
 VMBuilder
@@ -623,6 +629,7 @@ escolhas.
 
 
 \section{Resumo ou Conclusões}
+
 
 No final do capítulo deverá ser apresentado um resumo com as 
 principais conclusões que se podem tirar. 

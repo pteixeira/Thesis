@@ -1,0 +1,51 @@
+\chapter{IRC conversation about \textit{Cloud-init}} \label{chap:ap3}
+
+Below is presented the IRC conversation on \textit{cloud-init}. Some parts have been left out so that what is important can be understood.
+
+Joshua Harlow uses the alias ``harlowja'', Scott Moser uses the alias ``smoser'' and the author of this report uses the alias ``pteixeira''.
+
+\begin{verse}
+{[}03:07{]} {<}pteixeira{>} the way on how different instances from the same images are configured (ip, authentication, etc etc etc)\\
+{[}03:08{]} {<}zaitcev{>} So, it's like what Audrey does?\\
+{[}03:08{]} {<}pteixeira{>} audrey?\\
+{[}03:09{]} {<}zaitcev{>} Actually, I think the fashionable tool these days is cloud-init. Audrey was originally put together by Aeolus people.\\
+{[}...{]}\\
+{[}03:11{]} {<}pteixeira{>} cloud-init only works on ubuntu based images, right?\\
+{[}...{]}\\
+{[}03:12{]} {<}smoser{>} coming soon to an RPM based distro near you.\\
+{[}03:12{]} {<}smoser{>} (thanks to harlowja and others)\\
+{[}...{]}\\
+{[}03:12{]} {<}harlowja{>} ya, it will be nicer to work with other distros and debugging and such soon\\
+{[}03:12{]} {<}harlowja{>} that is the hope\\
+{[}03:12{]} {<}smoser{>} pteixeira, it does exist in fedora at the moment, but in a limited fashion\\
+{[}...{]}\\
+{[}03:13{]} {<}smoser{>} pteixeira, and there is cloud-init in debian sid right now, although there is work to be don there also.\\
+{[}03:13{]} {<}harlowja{>} ya, don't expect it to do to much, i am working on something that abstracts away as much of the distro stuff as possible to helper classes, some stuff won't work  in fedora/rh... ie, aptupgrades and such but those can be removed\\
+{[}03:14{]} {<}pteixeira{>} ill use the ubuntu one for now... are there any links that i can follow so i can get some more richness on the document?\\
+{[}03:15{]} {<}harlowja{>} code level, or just regular docs, or capability docs?\\
+{[}03:15{]} {<}harlowja{>} https://help.ubuntu.com/community/CloudInit\\
+{[}03:15{]} {<}harlowja{>} depends on how deep down the rabbit hole u want to go\\
+{[}...{]}\\
+{[}03:17{]} {<}pteixeira{>} actually, can you link me to the capability docs?\\
+{[}03:18{]} {<}harlowja{>} the capabilities, are in that main one, http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/ + code unless there is another better place\\
+{[}03:18{]} {<}harlowja{>} i would almost say look at http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/CloudConfig/ also\\
+{[}03:18{]} {<}harlowja{>} docs for this kind of stuff could be better i think\\
+{[}03:19{]} {<}harlowja{>} datasource* modules there are how data gets loaded\\
+{[}03:19{]} {<}harlowja{>} http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/\\
+{[}...{]}\\
+{[}03:20{]} {<}harlowja{>} http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files might be easier to follow, basically starting in stages.py/init and then to the stages.py/transforms but don't expect that branch to work yet\\
+{[}03:20{]} {<}harlowja{>} but for refereence it might be better\\
+{[}03:21{]} {<}harlowja{>} sorry, http://bazaar.launchpad.net/~harlowja/cloud-init/rework/files/head:/cloudinit/, not the main dir\\
+{[}...{]}\\
+{[}03:22{]} {<}smoser{>} almost all of cloudconfig function is documented in the doc/ link or source that harlow pointed at above.\\
+{[}03:22{]} {<}smoser{>} and the wiki doc shows what all to feed CloudInit (one of the things you can feed it is cloudconfig).\\
+{[}...{]}\\
+%{[}03:26{]} {<}pteixeira{>} i want to cite both of you in the thesis, do you guys have any preference on how to do it? :D
+%{[}03:26{]} {<}pteixeira{>} preferences*
+%{[}03:27{]} {<}harlowja{>} ha, no idear :-p
+%{[}03:27{]} {<}harlowja{>} just say 'those awesome dudes on irc'
+%{[}03:28{]} {=}{=} dachary {[}~loic@freenode/sponsor/dachary{]} has quit {[}Quit: Leaving.{]}
+%{[}03:29{]} {=}{=} dachary {[}~loic@freenode/sponsor/dachary{]} has joined #openstack-dev
+%{[}03:31{]} {<}pteixeira{>} ahah ok :D
+%{[}03:31{]} {<}pteixeira{>} again, thanks a million for the help :)
+\end{verse}
