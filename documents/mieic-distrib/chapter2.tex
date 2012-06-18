@@ -607,36 +607,47 @@ There are three funcionalities available in \textit{Oz}:
 
 In the OS customization process (which is always done as a separate step from the OS install in order to reduce the chances of failure), \textit{Oz} is able to run the native tools, such as \textit{Yum} and \textit{apt-get}; modify the OS disk image in order to allow remote access, start up the OS in a controlled \textit{KVM} guest; run remote commands (for example: \textit{ssh}) to install packages and files and shut down the OS. It then undoes the changes to the disk and generates the metadata on that OS~\ref{oz}.
 
+\subsection{JeOS and vmbuilder}\label{subsec:vmbuilder}
 
-unsure.....
-VMBuilder
-Vagrant
+\textit{Ubuntu JeOS} (pronounced ``juice'') is a variant of the \textit{Ubuntu} Server OS, which is configured specifically for virtual appliances. It is no longer available as a CD-ROM ISO for download, but can be built using \textit{Ubuntu}'s \texttt{vmbuilder}. 
 
-Ubuntu's VM Builder? talvez ver mais.
+\textit{JeOS} is a specialized installation of \textit{Ubuntu Server Editio} with a tuned kernel that only contains the base elements needed to run in a virtualized environment and as such, suitable for the project covered by this document. The tuning is done in order to take advantage of key performance technologies in the virtualization products from \textit{VMware}, creating a combination of reduced size and optimized performance which ensures that \textit{JeOS} delivers a highly efficient use of server resources in a large virtual environment.
 
+With only the minimal required packages and without unnecessary drivers, software companies can configure their OS according to their needs. They have the safety of knowing that the updates required will be limited and the users will be able to deploy virtual appliances on top of \textit{JeOS} which will need less maintenance than what would have been needed were they installed on top of a full server.
 
-\section*{}
+\textit{vmbuilder} takes away the need of downloading a \textit{JeOS} ISO. It will fetch the various package and build a VM specifically designed for what the users desire. It is a script that automates the process of creating a ready to use \textit{Linux} based VM, currently supporting the \textit{KVM} and \textit{Xen} hypervisors.
 
-Neste capítulo é descrito o estado da arte e são
-apresentados trabalhos relacionados para mostrar o que existe no
-mesmo domínio e quais os problemas em aberto.
-Deve deixar claro que existe uma oportunidade de desenvolvimento que
-cobre alguma falha concreta .
+Command line options can be used to perform actions such as adding or removing packages, choosing which \textit{Ubuntu} version and mirror and more.
 
-O capítulo deve também efectuar uma revisão tecnológica às principais
-ferramentas utilizáveis no âmbito do projecto, justificando futuras
-escolhas.
+\textit{vmbuilder} was first introduced as a shell script in \textit{Ubuntu} 8.04 LTS, as a hack to help developers test their code in a VM without needing to restart the server from scratch every time they needed. A few of \textit{Ubuntu} administrators noticed the script, improved and adapted it to so many use cases that the author of this script (Soren Hansen) rewrote it as a \textit{Python} script with revamped goals:
 
+\begin{itemize}
+\item Ability to be reused by other distributions other than \textit{Ubuntu};
+\item Use plugin mechanisms for all virtualization interactions so that others can easily add logic for other virtualization environments;
+\item Provide an easy to maintain web interface as an alternative to the CLI~\ref{jeos}.
+\end{itemize}
 
-\section{Resumo ou Conclusões}
+This technology becomes extremely relevant to the project as it covers the creation of customizable environments.
+\subsection{VeeWee and Vagrant}~\label{subsec:veewee}
 
+\textit{Vagrant} is a free and open-source \textit{Ruby} based project, started by Mitchell Hashimoto and John Bender on January 21st, 2010. With its first release on March 7, 2010, \textit{Vagrant}'s goal is to create a tool to manage all the complex parts of development within a virtual environment without affecting the developer's workflow. Its developers are currently working on getting \textit{Vagrant} working on every major OS platform (Linux, OS X and Windows).
 
-No final do capítulo deverá ser apresentado um resumo com as 
-principais conclusões que se podem tirar. 
+\textit{Vagrant}'s development is not supported by any company, as its developers work on the project on their free time. The only external help they get is via contributions, which can be done via completing \textit{Vagrant}'s documentation, its code (open-source project) or submitting financial donations (the developers prefer other types of contributions)~\cite{vagrant-contribution}.
 
-Vivamus non nunc nec risus tempor varius. Quisque bibendum mi at
-dolor. Aliquam consectetuer condimentum risus. Aliquam luctus pulvinar
-sem. Duis aliquam, urna et vulputate tristique, dui elit aliquet nibh,
-vel dignissim magna turpis id sapien. Duis commodo sem id
-quam. Phasellus dolor. Class aptent taciti sociosqu ad litora torquent
-per conubia nostra, per inceptos himenaeos. 
+\textit{VeeWee} is a toll built by Patrick Debois as a way to customize the boxes \textit{Vagrant} creates. This process is simple, as \textit{Vagrant} creates three files, one of which is \texttt{definition.rb}, a \textit{Ruby} file which contains the main definition of the template created by \textit{VeeWee}. In this file the user can define settings like the memory and disk size. Another file \textit{VeeWee} creates is \texttt{preseed.cfg} which can be modified to configure the actual install process, controlling details including, but not limited to, the partitions and their size and timezone setup~\ref{vagrant-ducea}.
+
+Besides \textit{Vagrant} boxes, \textit{VeeWee} can be used for:
+
+\begin{itemize}
+\item Creating \textit{VMware} and \textit{KVM} VMs;
+\item Interacting (creating, destroying, halting and remote accessing them via the \texttt{ssh} command) with those VMs;
+\item Exporting those VMs.
+\end{itemize}
+
+The customization process relevant to the project by modifying the templates used for creating the images.
+
+\section{Conlusions}\label{sota:concl}
+
+In this chapter the main technologies to consider for the project implementation were presented, as well as some of the key concepts needed for contextualization.
+It was decided to use an instance of \textit{Ubuntu JeOS} for the image creation process (with \textit{vmbuilder}) and compare it to the use of \textit{cloud-init} to contextualize an already built (but not contextualized) image.
+

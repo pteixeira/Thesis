@@ -42,7 +42,7 @@ Finally a username and password combination should be returned so that the resea
 
 One of the main objectives of this dissertation is the integration of an \textit{OpenStack} --- presented in Chapter~\ref{chap:sota} --- deployment environment as it should simplify the cloud creation and management.
 
-One thing that was missing in the cloud computing scene, was a cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{stackgithub}
+One thing was missing in the cloud computing scene... A cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{stackgithub}
 
 There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available, but \textit{OpenStack} is a more recent project and \textit{OpenNebula} is already up and running at FEUP. 
 
@@ -115,25 +115,45 @@ Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relations
   \end{center}
 \end{figure}
 
-The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture} (missing).
+The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture}.
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{architecture}
+    \caption{Proposed architecture implementation.}
+    \label{fig:architecture}
+  \end{center}
+\end{figure}
+
+As it can be observed, the web application will use \textit{vmbuilder} and \textit{cloudinit} whenever needed and then passing that information to the \textit{OpenStack Horizon} dashboard, which will communicate with the rest of \textit{OpenStack} services.
+
+Since \textit{vmbuilder} and \textit{cloudinit} work for different 
 
 
+Using the title of this dissertation --- Web System For Creating And Managing Virtual High Performance Computing Environments --- the objectives for this project can be divided as following:
+
+\begin{enumerate}
+\item Implementing the creation of virtual images;
+\item Making the creation according to what the users specify --- image contextualization;
+\item Passing the images created to \textit{OpenStack};
+\item Certifying that \textit{OpenStack} is able to manage the image created;
+\item Creating a web system that makes the objectives above transparent for the user.
+\end{enumerate}
+
+An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard.
 
 
+%Este capítulo deve começar por fazer uma apresentação detalhada do
+%problema a resolver\footnote{Na introdução a apresentação do
+%  problema foi breve.} podendo mesmo, caso se justifique,
+%constituir-se um capítulo com essa finalidade.
 
-
-
-The issue and the approach taken to solve it.
-Este capítulo deve começar por fazer uma apresentação detalhada do
-problema a resolver\footnote{Na introdução a apresentação do
-  problema foi breve.} podendo mesmo, caso se justifique,
-constituir-se um capítulo com essa finalidade.
-
-Deve depois dedicar-se à apresentação da solução sem detalhes de
-implementação. 
-Dependendo do trabalho, pode ser uma descrição mais teórica, mais
-``arquitectural'', etc.
-\clearpage
+%Deve depois dedicar-se à apresentação da solução sem detalhes de
+%implementação. 
+%Dependendo do trabalho, pode ser uma descrição mais teórica, mais
+%``arquitectural'', etc.
+%\clearpage
 \section{Resumo e Conclusões}
 
 Resumir e apresentar as conclusões que se podem tirar no fim deste
