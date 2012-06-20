@@ -268,7 +268,42 @@ When comparing both EGEE Grid and the \textit{Amazon Web Service}, the authors o
 
 With the shift of the computing industry towards a provision of Platform as Service and Software as a Service, consumers can access resources on-demand without having to preoccupy themselves with time and location, Buyya et al believe that there will be an increasing number of Cloud platforms being developed~\cite{Buyya2009599}. Two of those platforms are \textit{OpenNebula} and \textit{OpenStack}, open-source toolkits for Cloud management. In this report they will both be analyzed, but as they play a major role in this project, they were given their own section in this chapter (\ref{sec:stack-nebula}).
 
+The technologies considered to build the web application will be presented in this section, as well as which one will be used.
+
 \textit{Amazon}'s computing service (\ref{aws}), \textit{Google's App Engine} (\ref{googleapps}) and \textit{Microsoft Azure} (\ref{azure}) are described in this section.
+
+\subsection{Web technologies}\label{subsec:web-tech}
+
+As one of the objectives is the creation of a ``Web System'', it is necessary to approach the candidate technologies for the application.
+
+Since two cloud platforms will be revised, they are both built in two different programming languages and both of those technologies can be used in a web context (with the appropriate platforms supporting them), \textit{Python} on the \textit{Django} platform and \textit{Ruby} on the \textit{Rails} platform will be discussed in this section of the document.
+
+\subsubsection{Ruby on Rails}\label{ruby}
+
+\begin{quote}
+``Ruby on Rails is a breakthrough in lowering the barriers of entry to programming. Powerful web applications that formerly might have taken weeks or months to develop can be produced in a matter of days.'' -Tim O’Reilly, Founder of O’Reilly Media~\cite{rubyonrails}
+\end{quote}
+
+\textit{Ruby on Rails} is a Web 2.0 framework that attempts to combine PHP’s simple immediacy with Java’s architecture, purity and quality. It forms an environment and provides all the tools to create business-critical, database-supported web applications. Its basic objectives are simplicity, reusability, expandability, testability, productivity and maintainability.
+
+It implements an MVC (Model-View-Controller) architecture, which clearly separates code according to its purpose.Ruby code is easy to read and is based on languages such as \textit{Python}, \textit{Perl} and \textit{Lisp}~\cite{ror}.
+
+\textit{Ruby on Rails} official website offers a wide range of APIs, guides and books, which make for an extremely well documented framework~\cite{rubyonrails}.
+
+\subsubsection{Python and Django}\label{python}
+
+\textit{Django} is a high-level \textit{Python} web framework that encourages rapid develop and clean, pragmatic design. It was designed to handle two challenges: intensive deadlines and the requirements of the experienced web developers who wrote it.
+
+Just like \textit{Ruby on Rails}, \textit{Django} focuses itself on the DRY~\footnote{Don't Repeat Yourself.} principle, which states:
+\begin{quote}
+``Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.''~\cite{c2}
+\end{quote}
+\textit{Django}’s documentation is extremely extensive, and can be found in its official website~\footnote{\url{https://docs.djangoproject.com/en/1.4/}} and in the online version of ``The Django Book'', a free book about the \textit{Django} Web Framework~\footnote{\url{http://www.djangobook.com}}.
+
+\textit{Python} and \textit{Django} are the best candidates to be used, as \textit{vmbuilder} is a suitable choice for the needs of this project, since it can run inside Ubuntu and is Python based. Python will also be used in any scripting necessary, unless it cannot be done specifically in
+Python. The back-end scritping is written in Bash, something that can be easily integrated into Python modules~\cite{stackoverflow-python-bash}.
+
+In addition and as it will be mentioned later in this document, \textit{OpenStack} is coded in \textit{Python} which makes integration easier than what would happen if different languages were used.
 
 \subsection{AWS - Amazon Web Services}\label{aws}
 
@@ -381,11 +416,11 @@ Each machine from \textit{Condor} can play several roles:
 
 As mentioned in the previous section (\ref{sec:developments-apps-services}), \textit{OpenStack} and \textit{OpenNebula} are two projects that deserve their own section when talking about the developments, applications and services that exist in their field. 
 
-Since the objectives of the project involved the implementation of a virtual environment creator and manager, both these platforms were deemed worthy of a more detailed inspection. Both projects are open source (\textit{OpenNebula} offers an ``Enterprise Edition'', which can put its open source status in question~\ref{subsec:opennebula}) and one of them will run alongside the web page that will be developed and will interact with.
+Since the objectives of the project involved the implementation of a virtual environment creator and manager, both these platforms were deemed worthy of a more detailed inspection. Both projects are open source (\textit{OpenNebula} offers an ``Enterprise Edition'', which can put its open source status in question (~\ref{subsec:opennebula})) and one of them will run alongside the web page that will be developed and will interact with.
 
 Image contextualization will be approached, since it is directly linked to one of the objectives of this project --- creating different virtual environments according to the users' needs.
 
-Project \textit{Aeolus} will also be discussed in this section, as it contains one of the tools that will be discussed in the next section (~\nameref{sec:iso}) and is related to the objective refered earlier, \nameref{subsec:oz}.
+Project \textit{Aeolus} will also be discussed in this section, as it contains one of the tools that will be discussed in the next section (\nameref{sec:iso}) and is related to the objective refered earlier, \nameref{subsec:oz}.
 
 \subsection{OpenStack}\label{subsec:openstack}
 
@@ -508,11 +543,11 @@ At the end of instantiating a VM, its data can be set or overrun by user request
 
 \subsubsection{\textit{OpenStack}}
 
-\textit{OpenStack}'s \textit{Image Service} provides discovery, registration and delivery services for disk and server images, taking advantage of \textit{OpenStack}'s ability to copy or snapshot a server image and store it immediately~\ref{subsubsec:openstack_arch}.
+\textit{OpenStack}'s \textit{Image Service} provides discovery, registration and delivery services for disk and server images, taking advantage of \textit{OpenStack}'s ability to copy or snapshot a server image and store it immediately (\ref{subsubsec:openstack_arch}).
 
-Currently only \textit{Ubuntu} and \textit{Amazon} AMI images can be contextualized using \textit{OpenStack}. This happens because \textit{cloud-init}~\footnote{\textit{Ubuntu} package that handles early initialization of a cloud instance. It is installed in the \textit{Ubuntu Enterprise Cloud} (UEC) images and also in the official Ubuntu images available on \textit{Amazon}'s EC2.} is used~\ref{essex-cloudinit}.
+Currently only \textit{Ubuntu} and \textit{Amazon} AMI images can be contextualized using \textit{OpenStack}. This happens because \textit{cloud-init}~\footnote{\textit{Ubuntu} package that handles early initialization of a cloud instance. It is installed in the \textit{Ubuntu Enterprise Cloud} (UEC) images and also in the official Ubuntu images available on \textit{Amazon}'s EC2.} is used~\cite{essex-cloudinit}.
 
-\textit{cloud-init} handles importing ssh keys for password-less login and setting host name, amongst other things. The instance acquires the instance specific configuration from Nova-compute by connecting to a meta data interface~\ref{essex-cloudinit}.
+\textit{Cloud-init} handles importing ssh keys for password-less login and setting host name, amongst other things. The instance acquires the instance specific configuration from Nova-compute by connecting to a meta data interface~\cite{essex-cloudinit}.
 
 If an image from a distribution that does not have \textit{cloud-init} is being used, this setup needs to be performed via the use of a set of scripts which should be included in a specific file (rc.local) so they can be executed at boot time.
 
@@ -520,7 +555,7 @@ In Figure~\ref{fig:tiny-flavour} and Figure~\ref{fig:customization-script} the \
 
 This technology will be used in the solution proposed as it matches perfectly with one of the objectives --- being able to create virtual environments according to the users specifications. \textit{Ubuntu} AMI images will be used as concept proof and to simplify the whole process.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{tiny-flavour}
@@ -530,7 +565,7 @@ This technology will be used in the solution proposed as it matches perfectly wi
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{customization-script}
@@ -545,7 +580,7 @@ It is important to mention that information on \textit{cloud-init} was obtained 
 According to both of them, \textit{cloud-init} is in the process of being available to a wider selection of distributions, which include \textit{openSUSE}, \textit{Fedora} and \textit{Red Hat}. 
 
 The conversation is attached in Appendix~\ref{chap:ap3}.
-
+\clearpage
 \subsubsection{\textit{OpenNebula}}
 
 As mentioned in section~\ref{subsec:opennebula}, \textit{OpenNebula}'s \textit{Storage System} allows administrators and users to set up images (OS or data) to be be used in VMs. 
@@ -577,7 +612,7 @@ When using the generic contextualization mechanism, the VM description file can 
 \end{itemize}
 
 \clearpage
-\section{ISO Image creation} \label{sec:iso}
+\section{Image creation} \label{sec:iso}
 
 One of the big objectives in this project is the automatic creation of virtual environments. As such, it is necessary to present some of the tools used for this process, having in mind the restrictions enforced by the choices made regarding the rest of the technologies which will be used in the rest of the project, namely \textit{OpenStack} and its restriction regarding the use of \textit{cloud-init} to contextualize the virtual images.
 
@@ -648,6 +683,8 @@ The customization process relevant to the project by modifying the templates use
 
 \section{Conlusions}\label{sota:concl}
 
-In this chapter the main technologies to consider for the project implementation were presented, as well as some of the key concepts needed for contextualization.
-It was decided to use an instance of \textit{Ubuntu JeOS} for the image creation process (with \textit{vmbuilder}) and compare it to the use of \textit{cloud-init} to contextualize an already built (but not contextualized) image.
+In this chapter the main technologies to consider for the project implementation were presented, as well as some of the key concepts needed for contextualization. Some of the technologies related to the development of the web application were also discussed (\textit{Python, Django, Ruby and Rails}).
 
+\textit{Python} and \textit{Django} were chosen as the tools to build the web application, since they integrate well with \textit{OpenStack}, which is coded almost fully in \textit{Python} and the \textit{Horizon} dashboard is built in \textit{Django}.
+
+As for the image creation process, it was decided to use \textit{vmbuilder} to build instances of \textit{Ubuntu JeOS} and compare it to the use of \textit{cloud-init} in the contextualization process (\textit{cloud-init} is used on already built images).

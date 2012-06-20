@@ -1,8 +1,12 @@
 # Create your views here.
 
 from computing.models import Image
+from computing.models import ImageForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse
+from django.forms.models import modelformset_factory
+from django.core.context_processors import csrf
+from django.template import RequestContext
 import tagging
 import tagging.utils
 import os
@@ -22,6 +26,15 @@ def filetree(request):
 
 def search_form(request):
 	return render_to_response('computing/search_form.html')
+	
+def create_image(request):
+	form = ImageForm()
+	return render_to_response('computing/create_image.html', {"formset": form,}, context_instance=RequestContext(request))
+
+def create_results(request):
+
+
+	return render_to_response('computing/create_results.html')
 	
 def search(request):
     if 'q' in request.GET and request.GET['q']:

@@ -1,79 +1,19 @@
-\chapter{Conclusões e Trabalho Futuro} \label{chap:concl}
+\chapter{Conclusion} \label{chap:concl}
 
-\section*{}
+The problem described in Chapter~\ref{chap:chap3} has been solved as described in Chapter~\ref{chap:chap4}
 
-Deve ser apresentado um resumo do trabalho realizado e apreciada a
-satisfação dos objectivos do trabalho, uma lista de contribuições
-principais do trabalho e as direcções para trabalho futuro.
+\section{Conclusions}\label{sec:conclusions}
 
-A escrita deste capítulo deve ser orientada para a total compreeensãoo
-do trabalho, tendo em atenção que, depois de ler o Resumo e a
-Introdução, a maioria dos leitores passará à leitura deste capítulo de
-conclusões e recomendações para trabalho futuro.
+During the realization of this project a few conclusions were drawn.
 
-\section{Satisfação dos Objectivos}
+First of all, \textit{OpenStack} is a major competitor in the cloud computing scene. If it continues with the same pace it had (and maintained) since its first release, it will overthrow its competitors. It is extremely powerful and has the community and industry backup.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam non
-felis sed odio rutrum ultrices. Donec tempor dolor. Vivamus justo
-neque, tempus id, ullamcorper in, pharetra non, tellus. Praesent eu
-orci eu dolor congue gravida. Sed eu est. Donec pulvinar, lectus et
-eleifend volutpat, diam sapien sollicitudin arcu, a sagittis libero
-neque et dolor. Nam ligula. Cras tincidunt lectus quis nunc. Cras
-tincidunt congue turpis. Nulla pede velit, sagittis a, faucibus vitae,
-porttitor nec, ante. Nulla ut arcu. Cras eu augue at ipsum feugiat
-hendrerit. Proin sed justo eu sapien eleifend elementum. Pellentesque
-habitant morbi tristique senectus et netus et malesuada fames ac
-turpis egestas. Vivamus quam lacus, pharetra vel, aliquam vel,
-volutpat sed, nisl. 
+Secondly, the generation of VM images on-the-fly is only worth it when there are few to no usable VMs present in the system. As time passes, almost every scenario will be covered and the need for VM image creation will decrease. It may be profitable to setup a VM image repository so that others can benefit from the VM images created by this project, but further research is needed in this subject.
 
-Nullam erat est, vehicula id, tempor non, scelerisque at,
-tellus. Pellentesque tincidunt, ante vehicula bibendum adipiscing,
-lorem augue tempor felis, in dictum massa justo sed metus. Suspendisse
-placerat, mi eget molestie sodales, tortor ante interdum dui, ac
-sagittis est pede et lacus. Duis sapien. Nam ornare turpis et
-magna. Etiam adipiscing adipiscing ipsum. Fusce sodales nisl a
-arcu. Cras massa leo, vehicula facilisis, commodo a, molestie
-faucibus, metus. Suspendisse potenti. Duis sagittis. Donec porta. Sed
-urna. Maecenas eros. Vivamus erat ligula, pharetra sit amet, bibendum
-et, fermentum sed, dolor. Nullam eleifend condimentum nibh. Integer
-leo nibh, consequat eget, mollis et, sagittis ac, felis. Duis viverra
-pede in pede. Phasellus molestie placerat leo. Praesent at tellus a
-augue congue molestie. Proin sed justo eu sapien eleifend
-elementum. Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. 
+In addition, the \textit{Django} framework came to be a powerful tool in this project. Its MVC architecture simplified the development process and \textit{Python} is an easy to pickup programming language with a very powerful community behind it.
 
-\section{Trabalho Futuro}
+\section{Future Work}\label{sec:future-work}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
-tempor tristique risus. Suspendisse potenti. Fusce id eros. In eu
-enim. Praesent commodo leo. Nullam augue. Pellentesque tellus. Integer
-pulvinar purus a dui convallis consectetuer. In adipiscing, orci vitae
-lacinia semper, sapien elit posuere sem, ac euismod ipsum elit tempus
-urna. Aliquam erat volutpat. Nullam suscipit augue sed
-felis. Phasellus faucibus accumsan est. 
+One of the main improvements that can be done is the full integration with \textit{OpenStack}'s dashboard, instead of relying on a middleman (the web application).
 
-Aliquam felis justo, facilisis sit amet, bibendum ut, tempus ac,
-dolor. Sed malesuada. Nunc non massa. In erat. Nulla
-facilisi. Phasellus blandit, est in accumsan cursus, libero augue
-elementum leo, vitae auctor mauris nisl ac tortor. Cras porttitor
-ornare elit. Fusce at lorem. Sed lectus tortor, vestibulum id, varius
-a, condimentum nec, lectus. Maecenas in nisi et magna pretium
-aliquam. Pellentesque justo elit, feugiat nec, tincidunt a, dignissim
-vel, ipsum. Sed nunc. Vestibulum ante ipsum primis in faucibus orci
-luctus et ultrices posuere cubilia Curae; Aliquam tempus rhoncus
-leo. Donec neque quam, cursus sit amet, ultricies varius, semper non,
-pede. Donec porttitor. Sed aliquet feugiat elit.  
-
-\vspace*{12mm}
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-tellus pede, auctor ut, tincidunt a, consectetuer in, felis. Mauris
-quis dolor et neque accumsan pellentesque. Donec dui magna,
-scelerisque mattis, sagittis nec, porta quis, nulla. Vivamus quis
-nisl. Etiam vitae nisl in diam vehicula viverra. Sed sollicitudin
-scelerisque est. Nunc dapibus. Sed urna. Nulla gravida. Praesent
-faucibus, risus ac lobortis dignissim, est tortor laoreet mauris,
-dictum pellentesque nunc orci tincidunt tellus. Nullam pulvinar, leo
-sed vestibulum euismod, ante ligula elementum pede, sit amet dapibus
-lacus tortor ac nisl. Morbi libero. Integer sed dolor ac lectus
-commodo iaculis. Donec ut odio.  
+Another improvement would be the possibility of adding new packages to the VM images configuration by user input, instead of choosing them on a fixed list, since this limits what the user can choose from. Removing this limitation can potentially allow the project to scale outside of FEUP's range and open the possibility of deployment on other facilities.

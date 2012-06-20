@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^computing/details', 'computing.views.filetree', name="list"),
     url(r'^computing/search_form/$', 'computing.views.search_form'),
     url(r'^computing/search/$', 'computing.views.search'),
+    url(r'^computing/create_image/$', 'computing.views.create_image'),
+    url(r'^computing/create_results/$', 'computing.views.create_results'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^mymedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root':     settings.MEDIA_ROOT}),
 )

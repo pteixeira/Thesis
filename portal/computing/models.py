@@ -3,6 +3,7 @@ import time
 from tagging.fields import TagField
 from tagging.models import Tag
 import tagging.models
+from django.forms import ModelForm
 # Create your models here.
 
 
@@ -49,6 +50,10 @@ class Image(models.Model):
 	
 	def when_added(self):
 		return self.date_added.date()
+
+class ImageForm(ModelForm):
+	class Meta:
+		model = Image
 		
 class Details_OpenStack(models.Model):
 	image = models.ForeignKey(Image)

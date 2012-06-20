@@ -19,7 +19,7 @@ The project aims at simplifying the whole process and to make FEUP's computing i
 
 In order to better understand the full scope of the issue, Figure~\ref{fig:big_picture} shows the full system as it should function, through the means of an hypotetic and yet plausible use case scenario:
 
-\begin{figure}[t]
+\begin{figure}[h!]
   \begin{center}
     \leavevmode
     \fbox{\includegraphics[width=\linewidth]{big_picture.png}}
@@ -31,28 +31,40 @@ In order to better understand the full scope of the issue, Figure~\ref{fig:big_p
 Firstly, a researcher of a specific field of study wants to conduct a more complex operation that involves greater computing efforts than his/her home and work computer. As such, the researcher proceeds to enter the designed system through a web page where he/she can:
 
 \begin{itemize}
-	\item Chose a suitable work environment for her computational needs according to a set of predefined parameters;
+	\item Chose a suitable work environment for his/her computational needs according to a set of predefined parameters;
 	\item Create his/her own work environment according to the specifications he/she provides the system with.
 \end{itemize}
 
 The system will then automatically create a virtual environment (image containing all the information needed), which will be passed onto the back-end of the project where a virtual cluster will be created according to that virtual environment.
 Finally a username and password combination should be returned so that the researcher can enter the created environment and perform his/her operations. 
 
+The objectives for this project can be divided as following:
+
+\begin{enumerate}
+\item Implementing the creation of virtual images;
+\item Making the creation according to what the users specify --- image contextualization;
+\item Passing the images created to \textit{OpenStack}. This includes connecting with both \textit{Horizon}(dashboard) and \textit{Glance} (image service).
+\item Creating a web system that makes the objectives above transparent for the user.
+\end{enumerate}
+
+
 \section{The solution}\label{sec:solution}
 
-One of the main objectives of this dissertation is the integration of an \textit{OpenStack} --- presented in Chapter~\ref{chap:sota} --- deployment environment as it should simplify the cloud creation and management.
+As mentioned in the above section, one of the main objectives of this dissertation is the integration of an \textit{OpenStack} --- presented in Chapter~\ref{chap:sota} --- deployment environment as it should simplify the cloud creation and management. 
+
+In this section of this chapter the technological choices are presented and justified.
+
+\subsection{The chosen technologies}\label{subsec:tech}
 
 One thing was missing in the cloud computing scene... A cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{stackgithub}
 
-There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available, but \textit{OpenStack} is a more recent project and \textit{OpenNebula} is already up and running at FEUP. 
+There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available and is already up and running at FEUP. So why choose \textit{OpenStack}?
 
-\textit{OpenStack} is backed up by some renowned names in the industry, such as \textit{Dell}, \textit{AMD}, \textit{Intel}, \textit{Canonical}, \textit{Cisco}, \textit{StackOps}, \textit{HP}, \textit{NEC}, \textit{AT \& T}, \textit{Yahoo!} and \textit{Red Hat}. Some of these companies also support \textit{OpenNebula}.
- 
-According to \textit{OpenStack}'s mailing list, there has been considerable HPC testing at NASA. Piyush Mehrotra from the NASA division at AMES was contacted, by up until the writing of this report, no answer has been obtained on whether approach would be more suitable (\textit{OpenStack} or \textit{OpenNebula}).
+First of all, \textit{OpenStack} is a more recent project and \textit{OpenNebula}. It is backed up by some renowned names in the industry, such as \textit{Dell}, \textit{AMD}, \textit{Intel}, \textit{Canonical}, \textit{Cisco}, \textit{StackOps}, \textit{HP}, \textit{NEC}, \textit{AT \& T}, \textit{Yahoo!} and \textit{Red Hat}. Some of these companies also support \textit{OpenNebula}.
 
 The coding activity on both projects was also taken into account when chosing which to deploy. With the help of OHLOH~\footnote{An open source directory that anyone can edit. It features comprehensive metrics and analysis on thousands of open source projects.~\cite{ohloh}}, the differences can be easily observed as it is shown in Figure~\ref{fig:ohloh_compare}, which is included in Appendix~~\ref{chap:ap2}.
 
-\textit{OpenStack} has more favourable statistics, such as the number of committers and number of commits (shown in Figures~\ref{fig:committers} and~\ref{fig:commits}).  
+\textit{OpenStack} has more favourable statistics, such as the number of committers and number of commits (shown in Figures~\ref{fig:committers} and~\ref{fig:commits}) over time. If this is viewed with the knowledge that \textit{OpenNebula} was created first, and \textit{OpenStack} managed to outdo it, great things can be expected.
 
 \begin{figure}[h]
   \begin{center} 
@@ -72,15 +84,15 @@ The coding activity on both projects was also taken into account when chosing wh
   \end{center}
 \end{figure}
 
-In addition to this and as it was refered in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers a paid version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains. 
+In addition to this and as it was refered in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers an enterpreise version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains.
 
-Furthermore, \textit{OpenStack} is mainly written in \textit{Python} whereas \textit{OpenNebula} is mainly coded in \textit{C++} and \textit{Ruby}, as it can be observed in Figure~\ref{fig:code-stack-nebula}. 
+On a more technical aspect, \textit{OpenStack} is mainly written in \textit{Python} whereas \textit{OpenNebula} is mainly coded in \textit{C++} and \textit{Ruby}, as it can be observed in Figure~\ref{fig:code-stack-nebula}. 
 
-There is an extensive and obligatory contact with \textit{C++} in MIEIC, something that does not happen with \textit{Ruby}; \textit{Python} not being presented at all. Previous experience with both \textit{C++} and \textit{Ruby} proved to be not so pleasant (\textit{C++} due to its not-so-high-level nature and \textit{Ruby} because it was used in the context of \textit{Ruby on Rails}, which due to some installation quirks was deemed impossible to start and use). 
+In order to understand the relevance of this detail, it must be said that there is an extensive and obligatory contact with \textit{C++} in MIEIC, something that does not happen with \textit{Ruby}, and \textit{Python} is not presented at all. Previous experience with both \textit{C++} and \textit{Ruby} proved to be unfulfilling (\textit{C++} due to its not-so-high-level nature and \textit{Ruby} because it was used in the context of \textit{Ruby on Rails}, which due to some installation quirks was deemed impossible to start and use). 
 
 \textit{Python} on the other hand, was a different programming language, something that was going to be a challenge. Coupled with \textit{Django}, it promised the same advantages as \textit{Ruby on Rails}, but with less trouble getting it up and running. Since \textit{Horizon} is built on \textit{Django}, the choice seemed obvious. The cherry on top of the cake would be contributing to FEUP's knowledge on the new technologies to be researched (\textit{Django}, \textit{Python} and of course, \textit{OpenStack}).
 
-There was already a previous experience with \textit{Ruby} and since there was a desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
+The previous experience with \textit{Ruby} paired with the desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
 
 \begin{figure}[h!]
   \begin{center}
@@ -117,7 +129,7 @@ Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relations
 
 The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture}.
 
-\begin{figure}[h]
+\begin{figure}[t]
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{architecture}
@@ -128,21 +140,12 @@ The solution proposed for this project links the \textit{OpenStack} Dashboard --
 
 As it can be observed, the web application will use \textit{vmbuilder} and \textit{cloudinit} whenever needed and then passing that information to the \textit{OpenStack Horizon} dashboard, which will communicate with the rest of \textit{OpenStack} services.
 
-Since \textit{vmbuilder} and \textit{cloudinit} work for different 
+Since \textit{vmbuilder} and \textit{cloudinit} work for different purposes (\textit{vmbuilder} creates contextualized VM images and \textit{cloudinit} contextualizes clean VM images), different tools will be used for different purposes.
 
 
-Using the title of this dissertation --- Web System For Creating And Managing Virtual High Performance Computing Environments --- the objectives for this project can be divided as following:
 
-\begin{enumerate}
-\item Implementing the creation of virtual images;
-\item Making the creation according to what the users specify --- image contextualization;
-\item Passing the images created to \textit{OpenStack};
-\item Certifying that \textit{OpenStack} is able to manage the image created;
-\item Creating a web system that makes the objectives above transparent for the user.
-\end{enumerate}
-
-An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard.
-
+An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard itself.
+ 
 
 %Este capítulo deve começar por fazer uma apresentação detalhada do
 %problema a resolver\footnote{Na introdução a apresentação do
@@ -154,7 +157,6 @@ An interesting feature to complete in future work could be eliminating the web s
 %Dependendo do trabalho, pode ser uma descrição mais teórica, mais
 %``arquitectural'', etc.
 %\clearpage
-\section{Resumo e Conclusões}
+\section{Conclusions}
 
-Resumir e apresentar as conclusões que se podem tirar no fim deste
-capítulo.
+In this chapter was presented the architecture to be followed in Chapter~\ref{chap:chap4} in the implementation phase of the project. The objectives were also outlined, as well as which technologies to use.
