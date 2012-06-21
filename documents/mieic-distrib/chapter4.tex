@@ -7,9 +7,17 @@ This chapter presents the main work which derived from the study performed in Ch
 
 As this project depicts the creation of a web application that users need to interact with, it is necessary to describe the possible scenarios that can arise, via use case diagrams.
 
-The use cases are briefly described and the diagram itself is attached in Appendix~\ref{chap:ap4} --- \nameref{chap:ap4}.
-
 \subsection{Search the existing VM images}\label{subsec:uc1}
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode 
+    \includegraphics[scale=0.5]{uc1-search}
+    \caption{Use Case 1: Search the existing VM images.}
+    \label{fig:uc1-search}
+  \end{center}
+\end{figure}
+
 
 \textbf{Actors}:
 
@@ -26,7 +34,14 @@ This use case is shown in Figure~\ref{fig:uc1-search}.
 
 
 \subsection{View all the available VM images}\label{subsec:uc2}
-
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode 
+    \includegraphics[scale=0.5]{uc2}
+    \caption{Use Case 2: View all the available VM images.}
+    \label{fig:uc2}
+  \end{center}
+\end{figure}
 \textbf{Actors}:
 
 \begin{itemize}
@@ -37,7 +52,14 @@ This use case is shown in Figure~\ref{fig:uc1-search}.
 This use case is shown in Figure~\ref{fig:uc2}.
 
 \subsection{Create a VM image from scratch}\label{subsec:uc3}
-
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode 
+    \includegraphics[scale=0.5]{uc3}
+    \caption{Use Case 3: Create a VM from scratch.}
+    \label{fig:uc3}
+  \end{center}
+\end{figure}
 \textbf{Actors}:
 
 \begin{itemize}
@@ -51,6 +73,14 @@ A feature for including the packages outside the available list is discussed in 
 
 
 \subsection{Launching an already existing VM image}\label{subsec:uc4}
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode 
+    \includegraphics[scale=0.5]{uc3}
+    \caption{Use Case 4: Launch an already existing VM image.}
+    \label{fig:uc4}
+  \end{center}
+\end{figure}
 
 \textbf{Actors}:
 
@@ -90,17 +120,26 @@ Firstly, a clean installation of Ubuntu 12.04 LTS (as recommended by \textit{Dev
   \end{center}
 \end{figure}
 
-All the desired services were up and running, as shown in Figure~\ref{fig:stack-services}. Even though the image service (\textit{Glance}) was what was needed the most, it showed that the \textit{DevStack} deployment is a viable \textit{OpenStack} development tool.
+All the desired services were up and running, as shown in Figure~\ref{fig:services}. Even though the image service (\textit{Glance}) was what was needed the most, it showed that the \textit{DevStack} deployment is a viable \textit{OpenStack} development tool.
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\linewidth]{services}
+    \caption{\textit{OpenStack} services.}
+    \label{fig:services}
+  \end{center}
+\end{figure}
 
 \subsection{Creation and management of VM images}\label{subsec:vm-create-manage}
 
 As it was concluded in Chapter~\ref{chap:chap3} (~\nameref{chap:chap3}), the VM creation was implemented by using \textit{Ubuntu}'s \texttt{vmbuilder}. 
 
-A \texttt{bash}~\footnote{Unix command shell.} script was created in order to automate the process. Since it is nothing more than a text file, it is easily modified by the \textit{Python} classes which are called by the web application. The user needs ``write'' permissions to run that file.
+A \texttt{bash}~\footnote{Unix command shell.} script was created in order to automate the process. Since it is nothing more than a text file, it is easily modified by the \textit{Python} classes which are called by the web application. The user needs ``write'' permissions to run that file. An example of the script is attached in Appendix~\ref{chap:ap4} -~\nameref{chap:ap4}.
 
 This script is run when the user finishes the VM image creating process in the web application.
 
-\subsection{Web Application}\label{subsec:webapp}
+\subsection{Web Applicationand VM image creation and contextualization}\label{subsec:webapp}
 
 Since one of the goals of this project was to make submitting computing jobs an easier task, the web application was designed as simple as possible. The actions anyone is able to perform are limited to a bare minimum, while keeping the project's objectives in mind.
 
@@ -120,7 +159,19 @@ The web application is fully developed in \textit{Python} and \textit{Django}. T
 
 The creation of VM images is made by using \texttt{vmbuilder}, which is called by using a \texttt{bash} script. This script is modified in real time by using the inputs from the user. The user chooses which packages to include in the VM image creation by selecting the appropriate boxes in the web application.
 
-This script needs to be ran in \texttt{sudo} mode due to some restrictions enforced by the use of \texttt{vmbuilder}. In order to not compromise the server that runs the web application, the user will \textbf{only} be allowed to run this and only this script with \texttt{sudo} permitions.
+The script needs to be ran in \texttt{sudo} mode due to some restrictions enforced by the use of \texttt{vmbuilder}. In order to not compromise the server that runs the web application, the user will \textbf{only} be allowed to run this and only this script with \texttt{sudo} permitions.
+To do this the \texttt{sudoers} file had to be altered in order to provide passwordless \texttt{sudo} access to the files in the scripts folder. 
+
+One thing to have in mind is that the VM image creation process is very time consuming. Several tests were ran and the average time passed the twenty minute timeframe, on a small deployment (only \texttt{vim} and \texttt{openssh-server} were downloaded and installed). One of the script executions can be seen in Figure~\ref{fig:script-timer}.
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\linewidth]{script-timer}
+    \caption{One of the VM image creation test runs.}
+    \label{fig:script-timer}
+  \end{center}
+\end{figure}
 
 Connection with \textit{Glance} is made through a RESTful API. Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
 
@@ -130,4 +181,4 @@ The modules \texttt{python-tagging} and \texttt{South} are needed for the web ap
 \section{Conclusions}
 
 This chapter presented how the architecture described in the previous chapter (\nameref{chap:chap3}) was implemented, as well as what were the use cases, the challenges encountered and if and how they were overcome. 
-As for the goal completetion, \textit{OpenStack} was fully deployed, as well as the web application. VM image creation was successful, as well as the contextualization process.
+As for the goal completion, \textit{OpenStack} was fully deployed, as well as the web application. VM image creation was successful, as well as the contextualization process.

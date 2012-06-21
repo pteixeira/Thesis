@@ -1,125 +1,28 @@
 \chapter*{Abstract}
 
-Here goes the abstract written in English.
+Current Grid computing infrastructures are generally not very flexible when it comes to the users' needs. As such, whenever it is required, the user must adapt its code to the infrastructures specifications.
 
-%Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed vehicula
-%lorem commodo dui. Fusce mollis feugiat elit. Cum sociis natoque
-%penatibus et magnis dis parturient montes, nascetur ridiculus
-%mus. Donec eu quam. Aenean consectetuer odio quis nisi. Fusce molestie
-%metus sed neque. Praesent nulla. Donec quis urna. Pellentesque
-%hendrerit vulputate nunc. Donec id eros et leo ullamcorper
-%placerat. Curabitur aliquam tellus et diam. 
+On the other hand, Cloud Computing is associated with an extreme flexibility allowing the infrastructure to adapt itself to the users' requirements. Another aspect present in Cloud Computing but non-existent in Grid Computing is the Quality of Service factor, where a user can submit a job according to a certain cost or deadline.
 
-%Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-%scelerisque libero faucibus sem. Nullam molestie leo quis
-%tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
-%laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
-%aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
-%ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
-%ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
+FEUP --- Faculty of Engineering of Port University --- has started developing a private cloud project at its Informatics center (CICA --- Informatics Center Prof. Correia de Araújo) --- in which a user can create custom Virtual Machine images on-the-fly and have the system automatically provision the required resources to run the submitted job.
 
-%Fusce sed ipsum vel velit imperdiet dictum. Sed nisi purus, dapibus
-%ut, iaculis ac, placerat id, purus. Integer aliquet elementum
-%libero. Phasellus facilisis leo eget elit. Nullam nisi magna, ornare
-%at, aliquet et, porta id, odio. Sed volutpat tellus consectetuer
-%ligula. Phasellus turpis augue, malesuada et, placerat fringilla,
-%ornare nec, eros. Class aptent taciti sociosqu ad litora torquent per
-%conubia nostra, per inceptos himenaeos. Vivamus ornare quam nec sem
-%mattis vulputate. Nullam porta, diam nec porta mollis, orci leo
-%condimentum sapien, quis venenatis mi dolor a metus. Nullam
-%mollis. Aenean metus massa, pellentesque sit amet, sagittis eget,
-%tincidunt in, arcu. Vestibulum porta laoreet tortor. Nullam mollis
-%elit nec justo. In nulla ligula, pellentesque sit amet, consequat sed,
-%faucibus id, velit. Fusce purus. Quisque sagittis urna at quam. Ut eu
-%lacus. Maecenas tortor nibh, ultricies nec, vestibulum varius, egestas
-%id, sapien. 
+\textit{OpenStack} and \textit{OpenNebula} are competing cloud management platforms, both with their own methods of dealing with Virtual Machine images. 
 
-%Phasellus ullamcorper justo id risus. Nunc in leo. Mauris auctor
-%lectus vitae est lacinia egestas. Nulla faucibus erat sit amet lectus
-%varius semper. Praesent ultrices vehicula orci. Nam at metus. Aenean
-%eget lorem nec purus feugiat molestie. Phasellus fringilla nulla ac
-%risus. Aliquam elementum aliquam velit. Aenean nunc odio, lobortis id,
-%dictum et, rutrum ac, ipsum. 
+In this report both cloud management platforms are reviewed in great detail and a choice is made as to which one to use in FEUP's private cloud project. The technologies that support these platforms are also discussed so that the reader can be properly contextualized.
 
-%Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-%scelerisque libero faucibus sem. Nullam molestie leo quis
-%tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
-%laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
-%aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
-%ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
-%ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
+The work and research involved in creating a web system based on \textit{Python} and \textit{Django} that is capable of creating Virtual Machine images according to the users requisites, as well as capable of registering those VM images with a cloud management platform, namely \textit{OpenStack}, is also documented.
 
-%Phasellus ullamcorper justo id risus. Nunc in leo. Mauris auctor
-%lectus vitae est lacinia egestas. Nulla faucibus erat sit amet lectus
-%varius semper. Praesent ultrices vehicula orci. Nam at metus. Aenean
-%eget lorem nec purus feugiat molestie. Phasellus fringilla nulla ac
-%risus. Aliquam elementum aliquam velit. Aenean nunc odio, lobortis id,
-%dictum et, rutrum ac, ipsum. 
-
-%Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-%scelerisque libero faucibus sem. Nullam molestie leo quis
-%tellus. Donec ipsum. 
 
 \chapter*{Resumo}
 
-O Resumo fornece ao leitor um sumário do conteúdo da dissertação.
-%Deverá ser breve mas conter detalhe suficiente e, uma vez que é a porta
-%de entrada para a dissertação, deverá dar ao leitor uma boa impressão
-%inicial.
+As infraestruturas actuais de computação em Grelha geralmente não são muito flexíveis no que diz respeito às necessidades dos utilizadores. Assim sendo e sempre que é necessário, é o utilizador que tem de adaptar o código às especificações das infraestruturas.
 
-%Este texto inicial da dissertação é escrito no fim e resume numa
-%página, sem referências externas, o tema e o contexto do trabalho, a
-%motivação e os objectivos, as metodologias e técnicas empregues, os
-%principais resultados alcançados e as conclusões.
+Por outro lado, a computação em Nuvem é associada a uma flexibilidade extrema, permitindo assim que seja a estrutura a adaptar-se aos requisitos do utilizador. Outro aspecto presente neste tipo de computação, mas que é totalmente ausente na computação em Grelha, é o factor Qualidade de Serviço, em que um utilizador pode submeter um trabalho de acordo com um determinado custo ou um determinado prazo.
 
-%Este documento ilustra o formato a usar em dissertações na \Feup.
-%São dados exemplos de margens, cabeçalhos, títulos, paginação, estilos
-%de índices, etc. 
-%São ainda dados exemplos de formatação de citações, figuras e tabelas,
-%equações, referências cruzadas, lista de referências e índices.
-%%Este documento não pretende exemplificar conteúdos a usar. 
-%É usado texto descartável, \emph{Loren Ipsum}, para preencher a
-%dissertação por forma a ilustrar os formatos.
+A FEUP --- Faculdade de Engenharia da Universidade do Porto --- começou a desenvolver o seu próprio projecto de nuvem privada no seu centro de informática (CICA --- Centro de Informática Prof. Correia de Araújo) em que um utilizador pode criar as suas imagens de máquinas virtuais \textit{on-the-fly} e ser o sistema a provisionar os recursos necessários para correr o trabalho de computação desejado.
 
-%Seguem-se umas notas breves mas muito importantes sobre a versão 
-%provisória e a versão final do documento. 
-%A versão provisória, depois de verificada pelo orientador e de 
-%corrigida em contexto pelo autor, deve ser publicada na página 
-%pessoal de cada estudante/dissertação, juntamente com os dois 
-%resumos, em português e em inglês; deve manter a marca da água, 
-%assim como a numeração de linhas conforme aqui se demonstra.
+\textit{OpenStack} e \textit{OpenNebula} são duas plataformas de gestão de nuvens, competidoras no mercado, sendo que ambas possuem os seus próprios meios de lidar com imagens de máquinas virtuais.
 
-%A versão definitiva, a produzir somente após a defesa, em versão 
-%impressa (dois exemplares com capas próprias FEUP) e em versão 
-%eletrónica (6 CDs com "rodela" própria FEUP), deve ser limpa da marca de 
-%água e da numeração de linhas e deve conter a identificação, na primeira 
-%página, dos elementos do júri respetivo. 
-%Deve ainda, se for o caso, ser corrigida de acordo com as instruções 
-%recebidas dos elementos júri.
+Neste documento as duas plataformas de gestão de nuvens são revistas e uma delas é escolhida para ser usada no projecto de nuvem privada da FEUP. As tecnologias que servem de suporte a estas plataformas são também abordadas, para que o leitor consiga sentir-se contextualizado.
 
-%Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed vehicula
-%lorem commodo dui. Fusce mollis feugiat elit. Cum sociis natoque
-%penatibus et magnis dis parturient montes, nascetur ridiculus
-%mus. Donec eu quam. Aenean consectetuer odio quis nisi. Fusce molestie
-%metus sed neque. Praesent nulla. Donec quis urna. Pellentesque
-%hendrerit vulputate nunc. Donec id eros et leo ullamcorper
-%placerat. Curabitur aliquam tellus et diam. 
-
-%Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-%scelerisque libero faucibus sem. Nullam molestie leo quis
-%tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
-%laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
-%aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
-%ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
-%ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
-
-%Phasellus ullamcorper justo id risus. Nunc in leo. Mauris auctor
-%lectus vitae est lacinia egestas. Nulla faucibus erat sit amet lectus
-%varius semper. Praesent ultrices vehicula orci. Nam at metus. Aenean
-%eget lorem nec purus feugiat molestie. Phasellus fringilla nulla ac
-%risus. Aliquam elementum aliquam velit. Aenean nunc odio, lobortis id,
-%dictum et, rutrum ac, ipsum. 
-
-%Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-%scelerisque libero faucibus sem. Nullam molestie leo quis
-%tellus. Donec ipsum. 
+O trabalho e pesquisa envolvido na criação de um sistema web baseado em \textit{Python} e \textit{Django} que é capaz de criar imagens de máquinas virtuais de acordo com os requisitos do utilizador, bem como capaz de registar essas imagens na plataforma de gestão de nuvens, nomeadamente \textit{OpenStack}, é também documentado.

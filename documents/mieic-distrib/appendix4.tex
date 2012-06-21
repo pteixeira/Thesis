@@ -1,44 +1,26 @@
-\chapter{Use Cases} \label{chap:ap4}
+\chapter{vmbuilder script} \label{chap:ap4}
 
-\section{Use Case 1: Search the existing VM images}
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode 
-    \includegraphics[scale=0.5]{uc1-search}
-    \caption{Use Case 1: Search the existing VM images.}
-    \label{fig:uc1-search}
-  \end{center}
-\end{figure}
+Script used to create VM images dynamically.
 
-\clearpage
-\section{Use Case 2: View all the available VM images}
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode 
-    \includegraphics[scale=0.5]{uc2}
-    \caption{Use Case 2: View all the available VM images.}
-    \label{fig:uc2}
-  \end{center}
-\end{figure}
+This creates a \texttt{KVM Ubuntu} image, version \textit{Precise Pangolin} (\texttt{--suite=precise}), suitable for virtual environments (\texttt{--flavour=virtual}), for 32 bit machine (\texttt{--arch=i386}), using the official \textit{Ubuntu} mirrors to get the packages (\texttt{--mirror}).
 
-\clearpage
-\section{Use Case 3: Create a VM from scratch}
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode 
-    \includegraphics[scale=0.5]{uc3}
-    \caption{Use Case 3: Create a VM from scratch.}
-    \label{fig:uc3}
-  \end{center}
-\end{figure}
+The section \texttt{-o --libvirt=qemu:///system} tells the system to register the newly created with the system's virtual machine manager.
 
-\clearpage
-\section{Use Case 4: Launch an already existing VM image}
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode 
-    \includegraphics[scale=0.5]{uc3}
-    \caption{Use Case 4: Launch an already existing VM image.}
-    \label{fig:uc4}
-  \end{center}
-\end{figure}
+In this case, a file named \texttt{vmbuilder.partition} was used to define the disk partitioning. The section \texttt{--templates=templates} points to the folder where \texttt{vmbuilder} should use the templates to build the image. 
+
+After this, we have the definition of the user, the name to be used and the password. This password is reset on first boot, as described in the file \texttt{boot.sh}.
+
+\texttt{--addpkg} tells \texttt{vmbuilder} to install the security updates, \texttt{vim} and \textit{acpid} (used for functions such as closing a laptop lid, pressing the power button, etc).
+
+Finally, \texttt{--mem=256} specifies the total RAM and \textit{--hostname}, defines the machine's hostname.
+\begin{verbatim}
+#!/bin/bash
+sudo vmbuilder kvm ubuntu --suite=precise --flavour=virtual \
+	--arch=i386 --mirror=http://de.archive.ubuntu.com/ubuntu \
+	-o --libvirt=qemu:///system --ip=192.168.0.101 \
+	--part=vmbuilder.partition --templates=templates \
+	--user=administrator --name=Administrator --pass=howtoforge \
+	--addpkg=vim-nox --addpkg=unattended-upgrades \
+	--addpkg=acpid --firstboot=/home/pedro/Desktop/scripts/boot.sh \
+	--mem=256 --hostname=vm1 
+\end{verbatim}
