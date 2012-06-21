@@ -1,18 +1,20 @@
 # Create your views here.
 
-from computing.models import Image
-from computing.models import ImageForm
+from computing.models import Image, Details_OpenStack
+from computing.models import ImageForm, Details_OpenStackForm
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory
 from django.core.context_processors import csrf
 from django.template import RequestContext
+import djcelery
 import tagging
 import tagging.utils
 import os
 
 def index(request):
-	latest_image_list = Image.objects.all().order_by('-date_added') [:5]
+	latest_image_list = Image.objects.all().order_by('-name') [:5]
 	return render_to_response('computing/index2.html', {'latest_image_list': latest_image_list})
 def detail(request, image_id):
 	i = get_object_or_404(Image, pk=image_id)
@@ -21,20 +23,11 @@ def detail(request, image_id):
 def filetree(request):
 	url = os.getcwd()
 	dirList = os.listdir(url)
-	latest_image_list = Image.objects.all().order_by('-date_added') [:5]
+	latest_image_list = Image.objects.all().order_by('-name') [:5]
 	return render_to_response('computing/detail.html', {'dirList': dirList, 'latest_image_list': latest_image_list})
 
 def search_form(request):
 	return render_to_response('computing/search_form.html')
-	
-def create_image(request):
-	form = ImageForm()
-	return render_to_response('computing/create_image.html', {"formset": form,}, context_instance=RequestContext(request))
-
-def create_results(request):
-
-
-	return render_to_response('computing/create_results.html')
 	
 def search(request):
     if 'q' in request.GET and request.GET['q']:

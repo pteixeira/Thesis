@@ -1,6 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.static import *
 from django.conf import settings
+from computing.forms import StackWizard
+from computing.models import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.http import HttpResponse
@@ -22,7 +24,9 @@ urlpatterns = patterns('',
     url(r'^computing/search_form/$', 'computing.views.search_form'),
     url(r'^computing/search/$', 'computing.views.search'),
     url(r'^computing/create_image/$', 'computing.views.create_image'),
-    url(r'^computing/create_results/$', 'computing.views.create_results'),
+    url(r'^computing/create_results', 'computing.views.create_results'),
+    url(r'^computing/create_stack', 'computing.views.create_stack'),
+    url(r'^computing/create_negocio/$', StackWizard([Image_StackForm, Details_StackForm])),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^mymedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root':     settings.MEDIA_ROOT}),
 )

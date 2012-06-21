@@ -22,6 +22,8 @@ The web application will connect with \textit{OpenStack's} image service (\texti
 If one or more VM images are found according to what was inputted, the search term and a list of VM images are presented. The items in the list are clickable, which mean they link to the details of the VM images displayed.
 If no images are found, a specific text is displayed warning the researcher.
 
+This use case is shown in Figure~\ref{fig:uc1-search}.
+
 
 \subsection{View all the available VM images}\label{subsec:uc2}
 
@@ -32,6 +34,8 @@ If no images are found, a specific text is displayed warning the researcher.
 \end{itemize}\ \\
 \textbf{Use Case description:} After the web application is accessed, the researcher will need to choose the appropriate option displayed --- ``View available images, details and statistics''. The researcher will then be shown a list of all the available images in the system.
 
+This use case is shown in Figure~\ref{fig:uc2}.
+
 \subsection{Create a VM image from scratch}\label{subsec:uc3}
 
 \textbf{Actors}:
@@ -41,7 +45,9 @@ If no images are found, a specific text is displayed warning the researcher.
 \end{itemize}\ \\
 \textbf{Use Case description:} After the web application is accessed, the researcher will need to choose the appropriate option displayed --- ``Create an image suiting your needs (advanced)''. The researcher will then be shown a list of packages which will have a check box next to them. If the researcher wishes to include one package in the VM image to be created, he/she should click the check box next to the package name. 
 
-A feature for including the packages outside the available list is discussed in Section~\ref{sec:futurework} - \nameref{sec:future work}.
+This use case is shown in Figure~\ref{fig:uc3}.
+
+A feature for including the packages outside the available list is discussed in Section~\ref{sec:future-work} - \nameref{sec:future-work}.
 
 
 \subsection{Launching an already existing VM image}\label{subsec:uc4}
@@ -53,6 +59,8 @@ A feature for including the packages outside the available list is discussed in 
 \end{itemize}\ \\
 \textbf{Use Case description:} After the web application is accessed, the researcher will need to choose the appropriate option displayed --- ``Use an already existing image.''. The researcher will then be shown a list of all the available VM images, from which he/she will be able to choose one for deployment. The web application will then connect with \textit{Glance}
 
+This use case is shown in Figure~\ref{fig:uc4}.
+
 
 \section{Implementation}\label{sec:implementation}
 
@@ -60,7 +68,7 @@ A feature for including the packages outside the available list is discussed in 
 The application of the design and architecture described in Chapter~\ref{chap:chap3} is presented, being divided in three main areas:
 
 \begin{itemize}
-\item Cloud environment deployment \textit{OpenStack};
+\item Cloud environment deployment (\textit{OpenStack});
 \item Development of a web application;
 \item Creation and management of VM images (communication between the two parts of the system mentioned in the previous bullet points).
 \end{itemize}
@@ -82,14 +90,15 @@ Firstly, a clean installation of Ubuntu 12.04 LTS (as recommended by \textit{Dev
   \end{center}
 \end{figure}
 
-All the desired services were up and running, as shown in Figure~\ref{fig:stack-services}. Even though the image service (\textit{Glance}) was what was needed the most, it showed that the \textit{DevStack} deployment is a viable development tool.
+All the desired services were up and running, as shown in Figure~\ref{fig:stack-services}. Even though the image service (\textit{Glance}) was what was needed the most, it showed that the \textit{DevStack} deployment is a viable \textit{OpenStack} development tool.
 
 \subsection{Creation and management of VM images}\label{subsec:vm-create-manage}
 
 As it was concluded in Chapter~\ref{chap:chap3} (~\nameref{chap:chap3}), the VM creation was implemented by using \textit{Ubuntu}'s \texttt{vmbuilder}. 
 
-A \texttt{bash}~\footnote{Unix command shell.} script was created in order to automate the process. Since it is nothing more than a text file, it is easily modified by the \textit{Python} classes which are called by the web application. The script needs write permissions to be ran.
+A \texttt{bash}~\footnote{Unix command shell.} script was created in order to automate the process. Since it is nothing more than a text file, it is easily modified by the \textit{Python} classes which are called by the web application. The user needs ``write'' permissions to run that file.
 
+This script is run when the user finishes the VM image creating process in the web application.
 
 \subsection{Web Application}\label{subsec:webapp}
 
@@ -104,22 +113,21 @@ The user is only able to execute the following tasks:
 \item Use an already existing VM to be deployed.
 \end{itemize}
 
-All of the web application is developed in \textit{Python} and \textit{Django}. The searching of VM images is also built on \textit{Python} and one of its modules (\texttt{python-tagging}) is used (and needed to be executed). What the system currently does is assign a set of ``tags'' to the VM images. When the user uses the ``search'' function, the system is searching for these attacked tags. Should the user input match (partially or fully) any of the tags in the VMs, they will be returned in the final list.
+This was explored in greater detail in the previous section, \nameref{sec:use-cases}.
 
 
+The web application is fully developed in \textit{Python} and \textit{Django}. The searching of VM images is also built on \textit{Python} and one of its modules (\texttt{python-tagging}) is used. What the system currently does is assign a set of ``tags'' to the VM images. When the user uses the ``search'' function, the system is searching for these attacked tags. Should the user input match (partially or fully) any of the tags in the VMs, they will be returned in the final list.
 
+The creation of VM images is made by using \texttt{vmbuilder}, which is called by using a \texttt{bash} script. This script is modified in real time by using the inputs from the user. The user chooses which packages to include in the VM image creation by selecting the appropriate boxes in the web application.
 
+This script needs to be ran in \texttt{sudo} mode due to some restrictions enforced by the use of \texttt{vmbuilder}. In order to not compromise the server that runs the web application, the user will \textbf{only} be allowed to run this and only this script with \texttt{sudo} permitions.
 
-%Este capítulo pode ser dedicado à apresentação de detalhes de nível
-%mais baixo relacionados com o enquadramento e implementação das
-%soluções preconizadas no capítulo anterior.
-%Note-se no entanto que detalhes desnecessários à compreensão do
-%trabalho devem ser remetidos para anexos.
+Connection with \textit{Glance} is made through a RESTful API. Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
 
-%Dependendo do volume, a avaliação do trabalho pode ser incluída neste
-%capítulo ou pode constituir um capítulo separado.
+Since the web application has \textit{Python} code on the background and \textit{OpenStack} is coded in the same programming language, this connection is seamless.
 
-\section{Resumo ou Conclusões}
+The modules \texttt{python-tagging} and \texttt{South} are needed for the web application to function properly. \texttt{python-tagging}, as it was mentioned earlier, is crucial for the search function, whereas \texttt{South} is used in database migrations.
+\section{Conclusions}
 
 This chapter presented how the architecture described in the previous chapter (\nameref{chap:chap3}) was implemented, as well as what were the use cases, the challenges encountered and if and how they were overcome. 
 As for the goal completetion, \textit{OpenStack} was fully deployed, as well as the web application. VM image creation was successful, as well as the contextualization process.

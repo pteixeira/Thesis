@@ -180,7 +180,7 @@ The authors try to distinguish the different actors and scenarios that can arise
   \begin{center}
     \leavevmode
     \includegraphics[width=\linewidth]{cloud_actors}
-    \caption{Cloud Actors~\cite{Buyya2009599}.}
+    \caption{Cloud Actors.~\cite{Buyya2009599}}
     \label{fig:cloud_actors}
   \end{center}
 \end{figure}
@@ -300,7 +300,7 @@ Just like \textit{Ruby on Rails}, \textit{Django} focuses itself on the DRY~\foo
 \end{quote}
 \textit{Django}’s documentation is extremely extensive, and can be found in its official website~\footnote{\url{https://docs.djangoproject.com/en/1.4/}} and in the online version of ``The Django Book'', a free book about the \textit{Django} Web Framework~\footnote{\url{http://www.djangobook.com}}.
 
-\textit{Python} and \textit{Django} are the best candidates to be used, as \textit{vmbuilder} is a suitable choice for the needs of this project, since it can run inside Ubuntu and is Python based. Python will also be used in any scripting necessary, unless it cannot be done specifically in
+\textit{Python} and \textit{Django} are the best candidates to be used, as \texttt{vmbuilder} is a suitable choice for the needs of this project, since it can run inside Ubuntu and is Python based. Python will also be used in any scripting necessary, unless it cannot be done specifically in
 Python. The back-end scritping is written in Bash, something that can be easily integrated into Python modules~\cite{stackoverflow-python-bash}.
 
 In addition and as it will be mentioned later in this document, \textit{OpenStack} is coded in \textit{Python} which makes integration easier than what would happen if different languages were used.
@@ -442,7 +442,7 @@ The following figure depicts OpenStack's software diagram:
   \begin{center}
     \leavevmode
     \includegraphics[width=\textwidth]{openstack-software-diagram}
-    \caption{OpenStack Software Diagram\cite{openstack}.}
+    \caption{OpenStack Software Diagram.~\cite{openstack}}
     \label{fig:openstack_sw_diag}
   \end{center}
 \end{figure}
@@ -495,7 +495,7 @@ It was first released as a software package in \textit{Ubuntu} 9.04, has its own
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{nebula_arch}
-    \caption{OpenNebula's Architecture~\cite{nebulatech}.}
+    \caption{OpenNebula's Architecture.~\cite{nebulatech}}
     \label{fig:nebula_arch}
   \end{center}
 \end{figure}
@@ -504,7 +504,7 @@ It was first released as a software package in \textit{Ubuntu} 9.04, has its own
   \begin{center}
     \leavevmode
     \includegraphics[scale=0.5]{nebula_components}
-    \caption{OpenNebula's components~\cite{nebulacomponents}.}
+    \caption{OpenNebula's components.~\cite{nebulacomponents}}
     \label{fig:nebula_components}
   \end{center} 
 \end{figure}
@@ -535,7 +535,7 @@ In March 2010, \textit{OpenNebula}'s main authors founded \textit{C12G Labs}~\fo
 \item \textbf{HA Manager} --- Makes instances or groups of instances manageable. Provides isolation, recovery and notification of failed applications or instances. Lets the user create policies for maintaining or relaunching services within a specific infrastructure.
 \end{itemize}
 
-\subsection{Contextualization}
+\subsection{Contextualization}\label{subsec:contextualization}
 
 At the end of instantiating a VM, its data can be set or overrun by user request, thus creating the possibility of setting up an infinite number of environments using only one VM image.
 
@@ -547,7 +547,7 @@ At the end of instantiating a VM, its data can be set or overrun by user request
 
 Currently only \textit{Ubuntu} and \textit{Amazon} AMI images can be contextualized using \textit{OpenStack}. This happens because \textit{cloud-init}~\footnote{\textit{Ubuntu} package that handles early initialization of a cloud instance. It is installed in the \textit{Ubuntu Enterprise Cloud} (UEC) images and also in the official Ubuntu images available on \textit{Amazon}'s EC2.} is used~\cite{essex-cloudinit}.
 
-\textit{Cloud-init} handles importing ssh keys for password-less login and setting host name, amongst other things. The instance acquires the instance specific configuration from Nova-compute by connecting to a meta data interface~\cite{essex-cloudinit}.
+\textit{Cloud-init} handles importing ssh keys for password-less login and setting the host name, amongst other things. The instance acquires the instance specific configuration from Nova-compute by connecting to a meta data interface~\cite{essex-cloudinit}.
 
 If an image from a distribution that does not have \textit{cloud-init} is being used, this setup needs to be performed via the use of a set of scripts which should be included in a specific file (rc.local) so they can be executed at boot time.
 
@@ -575,7 +575,7 @@ This technology will be used in the solution proposed as it matches perfectly wi
 \end{figure}
 
 
-It is important to mention that information on \textit{cloud-init} was obtained after going on \textit{OpenStack}'s \textit{Internet Relay Chat} (IRC) channel~\footnote{\#openstack on irc.freenode.net} and talking directly to the main contributers of the \textit{cloud-init} module, Joshua Harlow and Scott Moser.
+It is important to mention that information on \textit{cloud-init} was obtained after going on \textit{OpenStack}'s \textit{Internet Relay Chat} (IRC) channel in the Freenode IRC network~\footnote{\#openstack on irc.freenode.net} and talking directly to the main contributers of the \textit{cloud-init} module, Joshua Harlow and Scott Moser.
 
 According to both of them, \textit{cloud-init} is in the process of being available to a wider selection of distributions, which include \textit{openSUSE}, \textit{Fedora} and \textit{Red Hat}. 
 
@@ -640,7 +640,7 @@ There are three funcionalities available in \textit{Oz}:
 \item Generate metadata on that OS --- This includes package manifest. This metadata is represented in an XML file denominated ICICLE.
 \end{itemize}
 
-In the OS customization process (which is always done as a separate step from the OS install in order to reduce the chances of failure), \textit{Oz} is able to run the native tools, such as \textit{Yum} and \textit{apt-get}; modify the OS disk image in order to allow remote access, start up the OS in a controlled \textit{KVM} guest; run remote commands (for example: \textit{ssh}) to install packages and files and shut down the OS. It then undoes the changes to the disk and generates the metadata on that OS~\ref{oz}.
+In the OS customization process (which is always done as a separate step from the OS install in order to reduce the chances of failure), \textit{Oz} is able to run the native tools, such as \textit{Yum} and \textit{apt-get}; modify the OS disk image in order to allow remote access, start up the OS in a controlled \textit{KVM} guest; run remote commands (for example: \textit{ssh}) to install packages and files and shut down the OS. It then undoes the changes to the disk and generates the metadata on that OS~\cite{oz}.
 
 \subsection{JeOS and vmbuilder}\label{subsec:vmbuilder}
 
@@ -650,16 +650,16 @@ In the OS customization process (which is always done as a separate step from th
 
 With only the minimal required packages and without unnecessary drivers, software companies can configure their OS according to their needs. They have the safety of knowing that the updates required will be limited and the users will be able to deploy virtual appliances on top of \textit{JeOS} which will need less maintenance than what would have been needed were they installed on top of a full server.
 
-\textit{vmbuilder} takes away the need of downloading a \textit{JeOS} ISO. It will fetch the various package and build a VM specifically designed for what the users desire. It is a script that automates the process of creating a ready to use \textit{Linux} based VM, currently supporting the \textit{KVM} and \textit{Xen} hypervisors.
+\texttt{vmbuilder} takes away the need of downloading a \textit{JeOS} ISO. It will fetch the various package and build a VM specifically designed for what the users desire. It is a script that automates the process of creating a ready to use \textit{Linux} based VM, currently supporting the \textit{KVM} and \textit{Xen} hypervisors.
 
 Command line options can be used to perform actions such as adding or removing packages, choosing which \textit{Ubuntu} version and mirror and more.
 
-\textit{vmbuilder} was first introduced as a shell script in \textit{Ubuntu} 8.04 LTS, as a hack to help developers test their code in a VM without needing to restart the server from scratch every time they needed. A few of \textit{Ubuntu} administrators noticed the script, improved and adapted it to so many use cases that the author of this script (Soren Hansen) rewrote it as a \textit{Python} script with revamped goals:
+\texttt{vmbuilder} was first introduced as a shell script in \textit{Ubuntu} 8.04 LTS, as a hack to help developers test their code in a VM without needing to restart the server from scratch every time they needed. A few of \textit{Ubuntu} administrators noticed the script, improved and adapted it to so many use cases that the author of this script (Soren Hansen) rewrote it as a \textit{Python} script with revamped goals:
 
 \begin{itemize}
 \item Ability to be reused by other distributions other than \textit{Ubuntu};
 \item Use plugin mechanisms for all virtualization interactions so that others can easily add logic for other virtualization environments;
-\item Provide an easy to maintain web interface as an alternative to the CLI~\ref{jeos}.
+\item Provide an easy to maintain web interface as an alternative to the CLI~\cite{jeos}.
 \end{itemize}
 
 This technology becomes extremely relevant to the project as it covers the creation of customizable environments.
@@ -669,7 +669,7 @@ This technology becomes extremely relevant to the project as it covers the creat
 
 \textit{Vagrant}'s development is not supported by any company, as its developers work on the project on their free time. The only external help they get is via contributions, which can be done via completing \textit{Vagrant}'s documentation, its code (open-source project) or submitting financial donations (the developers prefer other types of contributions)~\cite{vagrant-contribution}.
 
-\textit{VeeWee} is a toll built by Patrick Debois as a way to customize the boxes \textit{Vagrant} creates. This process is simple, as \textit{Vagrant} creates three files, one of which is \texttt{definition.rb}, a \textit{Ruby} file which contains the main definition of the template created by \textit{VeeWee}. In this file the user can define settings like the memory and disk size. Another file \textit{VeeWee} creates is \texttt{preseed.cfg} which can be modified to configure the actual install process, controlling details including, but not limited to, the partitions and their size and timezone setup~\ref{vagrant-ducea}.
+\textit{VeeWee} is a toll built by Patrick Debois as a way to customize the boxes \textit{Vagrant} creates. This process is simple, as \textit{Vagrant} creates three files, one of which is \texttt{definition.rb}, a \textit{Ruby} file which contains the main definition of the template created by \textit{VeeWee}. In this file the user can define settings like the memory and disk size. Another file \textit{VeeWee} creates is \texttt{preseed.cfg} which can be modified to configure the actual install process, controlling details including, but not limited to, the partitions and their size and timezone setup~\cite{vagrant-ducea}.
 
 Besides \textit{Vagrant} boxes, \textit{VeeWee} can be used for:
 
@@ -687,4 +687,4 @@ In this chapter the main technologies to consider for the project implementation
 
 \textit{Python} and \textit{Django} were chosen as the tools to build the web application, since they integrate well with \textit{OpenStack}, which is coded almost fully in \textit{Python} and the \textit{Horizon} dashboard is built in \textit{Django}.
 
-As for the image creation process, it was decided to use \textit{vmbuilder} to build instances of \textit{Ubuntu JeOS} and compare it to the use of \textit{cloud-init} in the contextualization process (\textit{cloud-init} is used on already built images).
+As for the image creation process, it was decided to use \texttt{vmbuilder} to build instances of \textit{Ubuntu JeOS} and compare it to the use of \textit{cloud-init} in the contextualization process (\textit{cloud-init} is used on already built images).

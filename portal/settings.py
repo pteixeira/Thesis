@@ -1,5 +1,7 @@
 # Django settings for portal project.
 import os.path
+import djcelery
+djcelery.setup_loader()
 
 
 DEBUG = True
@@ -10,6 +12,8 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+BROKER_URL = 'django://'
 
 DATABASES = {
     'default': {
@@ -119,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'computing',
+    'djcelery',
     'south',
     'tagging',
     # Uncomment the next line to enable the admin:

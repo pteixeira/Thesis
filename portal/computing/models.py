@@ -4,6 +4,7 @@ from tagging.fields import TagField
 from tagging.models import Tag
 import tagging.models
 from django.forms import ModelForm
+from django import forms
 # Create your models here.
 
 
@@ -35,7 +36,7 @@ DRIVER_CHOICES = (
 
 class Image(models.Model):
 	name = models.CharField(max_length=500)
-	date_added = models.DateTimeField('date added to system')
+#	date_added = models.DateTimeField('date added to system')
 	type_of_image = models.CharField(max_length=10, choices=IMAGE_CHOICES) #can be OpenStack or OpenNebula - Different Details
 	number_of_uses = models.IntegerField(blank=True, null=True)
 	tags = tagging.fields.TagField()
@@ -54,13 +55,14 @@ class Image(models.Model):
 class ImageForm(ModelForm):
 	class Meta:
 		model = Image
+
 		
 class Details_OpenStack(models.Model):
 	image = models.ForeignKey(Image)
 	kernel_id = models.CharField(max_length=500) #can be kernel-id
 	size = models.IntegerField()
 	public = models.BooleanField()
-	date_updated = models.DateTimeField('date updated')
+#	date_updated = models.DateTimeField('date updated')
 	image_status = models.CharField(max_length=100)
 #	kernel_id = image_id*
 	ramdisk_id = models.CharField(max_length=200, blank=True, null=True)
@@ -86,3 +88,27 @@ class Details_OpenNebula(models.Model):
 	def __unicode__(self):
 		return self.image_name
 
+
+class Details_StackForm(forms.Form):
+	image = models.ForeignKey(Image)
+	kernel_id = forms.CharField(max_length=500)
+	size = forms.IntegerField()
+	public = forms.BooleanField()
+#	date_updated = forms.CharField()
+	image_status = forms.CharField(max_length=100)
+	ramdisk_id = forms.CharField(max_length=200)
+	architecture = forms.CharField(max_length=200)
+	container_format = forms.CharField(max_length=200)
+	disk_format = forms.CharField(max_length=200)
+
+class Image_StackForm(forms.Form):
+	name = forms.CharField(max_length=500)
+#	date_added = forms.DateTimeField(default=datetime.date.today)
+	type_of_image = forms.ChoiceField(choices=IMAGE_CHOICES) #can be OpenStack or OpenNebula - Different Details
+	number_of_uses = forms.CharField(max_length=2)
+	tags = forms.CharField(max_length=30)
+
+class Details_OpenStackForm(ModelForm):
+	class Meta:
+		model = Details_OpenStack
+		#exclude = ('image',)
