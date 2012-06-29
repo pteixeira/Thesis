@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+	</head>
+<body>
+<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<br />
+
+<h2>ATTENTION:</h2>DO NOT CLICK SUBMIT IF YOU DO NOT WISH TO CREATE A VM IMAGE. CLICK THE LINK BELOW THE FORM TO GO BACK TO THE MAIN PAGE.
+<p>ONLY CLICK "SUBMIT" IF YOU REALLY WANT TO CREATE A VM IMAGE, AS CLICKING THE BUTTON WILL START A SCRIPT IN THE BACKGROUND
+THAT CANNOT BE STOPPED.</p>
+
+<form method="post" action="/computing/create_results/">
+	{% csrf_token %}
+	{{ formset.management_form }}
+	{% for field in formset %}
+	    {% if field.label == "Name" %}
+	    <p>{{ field.label_tag }}: {{ field }} <b>NOTE: </b>Please do not use special characters. Use only alphanumerical characters, upper or lower case (a-z; A-Z; 0-9). The name will be converted to uppercase for convenience.</p>
+	    {% else %}
+	    {% if field.label == "Tags" %}
+	    <p>{{ field.label_tag }}: {{ field }} <b>NOTE: </b>Separate different tags by using commas. Example: ubuntu, vim, this is science.</p>
+	    {% else %}
+	    {% if field.label == "Vim" %}
+	    <br /> <br />
+	    <p>Please choose from the applications below those you wish to be included in your VM:</p>
+	    {{ field.label_tag }}: {{ field }}
+	    {% else %}
+    	    <p>{{ field.label_tag }}: {{ field }}</p>
+	    {% endif %}
+	   {% endif %}
+	   {% endif %}
+	{% endfor %}
+
+<input type="submit" value="Submit">
+</form>
+
+<p><a href="/computing/">Go back to the start page.</a></p>
+</body>
+</html>
+

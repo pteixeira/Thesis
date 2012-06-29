@@ -1,0 +1,26 @@
+\chapter{vmbuilder script} \label{chap:ap5}
+
+Script used to create VM images dynamically.
+
+This creates a \texttt{KVM Ubuntu} image, version \textit{Precise Pangolin} (\texttt{--suite=precise}), suitable for virtual environments (\texttt{--flavour=virtual}), for 32 bit machine (\texttt{--arch=i386}), using the official \textit{Ubuntu} mirrors to get the packages (\texttt{--mirror}).
+
+The section \texttt{-o --libvirt=qemu:///system} tells the system to register the newly created with the system's virtual machine manager.
+
+In this case, a file named \texttt{vmbuilder.partition} was used to define the disk partitioning. The section \texttt{--templates=templates} points to the folder where \texttt{vmbuilder} should use the templates to build the image. 
+
+After this, we have the definition of the user, the name to be used and the password. This password is reset on first boot, as described in the file \texttt{boot.sh}.
+
+\texttt{--addpkg} tells \texttt{vmbuilder} to install the security updates, \texttt{vim} and \textit{acpid} (used for functions such as closing a laptop lid, pressing the power button, etc).
+
+Finally, \texttt{--mem=256} specifies the total RAM and \textit{--hostname}, defines the machine's hostname.
+\begin{verbatim}
+#!/bin/bash
+sudo vmbuilder kvm ubuntu --suite=precise --flavour=virtual \
+	--arch=i386 --mirror=http://de.archive.ubuntu.com/ubuntu \
+	-o --libvirt=qemu:///system --ip=192.168.0.101 \
+	--part=vmbuilder.partition --templates=templates \
+	--user=administrator --name=Administrator --pass=howtoforge \
+	--addpkg=vim-nox --addpkg=unattended-upgrades \
+	--addpkg=acpid --firstboot=/home/pedro/Desktop/scripts/boot.sh \
+	--mem=256 --hostname=vm1 
+\end{verbatim}

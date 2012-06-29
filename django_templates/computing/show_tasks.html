@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+<!--	<meta http-equiv="refresh" content="5" >-->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+<!--		<script type="text/javascript">-->
+<!--			$(document).ready(function() {-->
+<!--			$.ajax({-->
+<!--				type: 'POST',-->
+<!--				url: 'http://localhost:8000/computing/update_tasks/',-->
+<!--				data: {id_list: ["78c3f152-7d52-407d-8443-058a085a5de6"]},-->
+<!--				dataType: 'text',-->
+<!--				success: function(result){document.getElementById("tasks_completas").innerHTML = "<p>task concluida:"+result+"</p>";}-->
+<!--			});-->
+<!--		 });-->
+<!--		</script>-->
+		
+		<script type="text/javascript">
+		$(document).ready(function() {
+		$.post("http://localhost:8000/computing/update_tasks/", { id_list: ["78c3f152-7d52-407d-8443-058a085a5de6"] },
+  		function(data) {
+    			alert("Data Loaded: " + data);
+  		});});
+  		</script>
+	</head>
+<body>
+<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<br />
+
+{% for task in tasks %}
+{{ task.result }}
+{% endfor %}
+
+
+
+<div id="tasks_completas"></div>
+<a href="/computing/logout/">Logout</a>
+</body>
+</html>

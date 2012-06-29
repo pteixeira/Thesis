@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+	</head>
+<body>
+<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+
+<h4>Welcome to the management area, {{ user_in_session }}.</h4>
+
+<p><b>The following VM images have been in the system for over a day and have not been used for one day. You should consider deleting them.</b></p>
+{% for image in user_images %}
+{% if image.get_time_in_system.days > 0 and image.get_time_since_last_used.days > 0 %}
+{{ image.name }} <br />
+{% endif %}
+{% endfor %}
+
+
+<b><p>Images currently in the system:</p></b>
+
+{% for image in user_images  %}
+<p>{{ image.name }} is in the system for {{ image.get_time_in_system.days }} day(s).
+It has been {{ image.get_time_since_last_used.days }} day(s) since it was last used.</p>
+{% endfor %}
+
+<a href="/computing/logout/">Logout</a>
+</body>
+</html>
+
+

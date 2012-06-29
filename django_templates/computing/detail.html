@@ -6,20 +6,56 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>Available ISO images:</h1>
+<h1>Available VM images:</h1>
+<h4>These are images that are public or you have created.</h4>
 
 {% if latest_image_list %}
 	<ul>
-	{% for image in latest_image_list %}
-		<li><a href="/computing/{{ image.id }}/">{{ image.name }}.</a> 
-		Tags: {% for tag in image.get_tags %}
-			{{ tag }}
+	{% for item in latest_image_list %}
+		<li><a href="/computing/{{ item.id }}/">{{ item.name }}</a> 
+		Tags: {% for tag in item.get_tags %}
+			{{ tag }};
 		      {% endfor %}</li>
-	{% endfor %}
+	{% endfor  %}
 	</ul>
+	
+<h1>Most used images by you:</h1>
+<h4>These are the most used images by you. You may consider reusing them instead of creating a new one.</h4>
+{% for image in user_most_used_images %}
+{{ image.image.name }}
+{% endfor %}
+	
+<h1>Most used VM images in the system:</h1>
+<h4>These are the most used VM images currently in the system. If you believe one of these images may help you, but you do not have access to it, contact either the VM image creator or the system administrator so that they can set their image to ``Public''. Their contacts are displayed next to the image they created.</h4>
+
+{% for image in ordered_by_usage %}
+	<p><a href="/computing/{{ image.id }}">{{ image.name }}</a>: - Created by: {{ image.user_owner.username }}. Email: {{ image.user_owner.email }} </p>
+{% endfor %}
+
 {% else %}
 	<p>No images available.</p>
 {% endif %}
+
+<h1>Tag Cloud</h1>
+<h4>This shows the current tag usage in the VM images in the system. A bigger font means a higher use of that tag.</h4>
+{% load tagging_tags %}
+{% tag_cloud_for_model computing.Image_Stack as tags with steps=20 distribution=log %}
+{% for tag in tags %}
+	
+	    <font style="font-size:{{ tag.font_size|add:"10" }}pt">
+	        {{ tag.name }} - {% for image in full_image_list %}
+				 	{% for tagita in image.get_tags %}
+				 		{% if tagita == tag %}
+				 			{{ image.name }}
+				 		{% endif %}
+				 	{% endfor %}
+				 {% endfor %}<br />
+	    </font>
+	    {% endfor %}
+
 <p><a href="/computing/">HOME</a></p>
+
+{{ full_image_list }}
+
 </body>
 </html>

@@ -1,10 +1,12 @@
-from celery import Celery
+from celery.task import task
+from celery.signals import task_sent
+from subprocess import call
+import subprocess 
 
-celery = Celery('tasks', broker='amqp://guest@localhost//')
-
-@celery.task()
-def add(x, y):
-    return x + y
-
-if __name__ == '__main__':
-    celery.start()
+@task(name="computing.tasks.add")#portal.computing.tasks.add
+def add():
+    subprocess.call(['sudo', "/home/pedro/Desktop/scripts/test.sh"]) 
+    
+    
+    return 102893
+    

@@ -7,7 +7,7 @@
 <body>
 <h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
 <br />
-This portal was designed to help researchs find the most suitable virtual image for their computing needs.<br />
+This portal was designed to help researchers find the most suitable virtual image for their computing needs.<br />
 Please choose one of the options below to continue:
 <br />
 <ol>
@@ -25,18 +25,16 @@ Please choose one of the options below to continue:
 		      {% endfor %}</li>
 	{% endfor %}
 	</ul>
-<!--{% load tagging_tags %}-->
-<!--{% tags_for_model computing.Image as derp %}-->
-<!--{{ derp|length }}-->
-<!--{% for tag in derp %}-->
-<!--{% if tag.name == "HERPDERPTAG" %}-->
-<!--VERDADEIRO!-->
-<!--{% else %}-->
-<!--FALSO!-->
-<!--{% endif %}-->
-<!--{% endfor %}-->
+
 {% else %}
 	<p>No images available.</p>
 {% endif %}	
+
+{% if user_in_session.is_superuser %}
+<a href="/computing/management">Image management.</a>
+{% endif %}
+
+
+<a href="/computing/logout/">Logout</a>
 </body>
 </html>

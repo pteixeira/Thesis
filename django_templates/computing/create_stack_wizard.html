@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+	</head>
+<body>
+
+<p>Step {{ step }} of {{ step_count }}</p>
+<form action="." method="post">{% csrf_token %}
+<table>
+{{ form }}
+</table>
+<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+{{ previous_fields|safe }}
+<input type="submit">
+</form>
+
+</body>
+</html>

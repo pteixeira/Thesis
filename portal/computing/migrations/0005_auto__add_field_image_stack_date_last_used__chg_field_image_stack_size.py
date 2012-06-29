@@ -8,92 +8,32 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Image'
-        db.create_table('computing_image', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('type_of_image', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('number_of_uses', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
-            ('tags', self.gf('tagging.fields.TagField')()),
-        ))
-        db.send_create_signal('computing', ['Image'])
+        # Adding field 'Image_Stack.date_last_used'
+        db.add_column('computing_image_stack', 'date_last_used', self.gf('django.db.models.fields.DateField')(null=True), keep_default=False)
 
-        # Adding model 'Image_Stack'
-        db.create_table('computing_image_stack', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('user_owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('type_of_image', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('number_of_uses', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
-            ('tags', self.gf('tagging.fields.TagField')()),
-            ('kernel_id', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('size', self.gf('django.db.models.fields.IntegerField')()),
-            ('public', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('image_status', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('ramdisk_id', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('architecture', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('container_format', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('disk_format', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('vim', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('matlab', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('abaqus', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('gcc', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('r', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('octave', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('gromacs', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('openfoam', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('ansys', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal('computing', ['Image_Stack'])
+        # Changing field 'Image_Stack.size'
+        db.alter_column('computing_image_stack', 'size', self.gf('django.db.models.fields.IntegerField')(null=True))
 
-        # Adding model 'Details_OpenStack'
-        db.create_table('computing_details_openstack', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('image', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['computing.Image'])),
-            ('kernel_id', self.gf('django.db.models.fields.CharField')(max_length=500, blank=True)),
-            ('size', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
-            ('public', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('image_status', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('ramdisk_id', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('architecture', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('container_format', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('disk_format', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-        ))
-        db.send_create_signal('computing', ['Details_OpenStack'])
+        # Changing field 'Image_Stack.kernel_id'
+        db.alter_column('computing_image_stack', 'kernel_id', self.gf('django.db.models.fields.CharField')(max_length=500, null=True))
 
-        # Adding model 'Details_OpenNebula'
-        db.create_table('computing_details_opennebula', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('image', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['computing.Image'])),
-            ('image_name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=500)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('image_type', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('public', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('persistent', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('dev_prefix', self.gf('django.db.models.fields.CharField')(default='hd', max_length=10)),
-            ('bus', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('driver', self.gf('django.db.models.fields.CharField')(max_length=10)),
-            ('path', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
-            ('source', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('size', self.gf('django.db.models.fields.IntegerField')()),
-            ('fstype', self.gf('django.db.models.fields.CharField')(max_length=50)),
-        ))
-        db.send_create_signal('computing', ['Details_OpenNebula'])
+        # Changing field 'Image_Stack.image_status'
+        db.alter_column('computing_image_stack', 'image_status', self.gf('django.db.models.fields.CharField')(max_length=100, null=True))
 
 
     def backwards(self, orm):
         
-        # Deleting model 'Image'
-        db.delete_table('computing_image')
+        # Deleting field 'Image_Stack.date_last_used'
+        db.delete_column('computing_image_stack', 'date_last_used')
 
-        # Deleting model 'Image_Stack'
-        db.delete_table('computing_image_stack')
+        # Changing field 'Image_Stack.size'
+        db.alter_column('computing_image_stack', 'size', self.gf('django.db.models.fields.IntegerField')(default=1))
 
-        # Deleting model 'Details_OpenStack'
-        db.delete_table('computing_details_openstack')
+        # Changing field 'Image_Stack.kernel_id'
+        db.alter_column('computing_image_stack', 'kernel_id', self.gf('django.db.models.fields.CharField')(default=1, max_length=500))
 
-        # Deleting model 'Details_OpenNebula'
-        db.delete_table('computing_details_opennebula')
+        # Changing field 'Image_Stack.image_status'
+        db.alter_column('computing_image_stack', 'image_status', self.gf('django.db.models.fields.CharField')(default=1, max_length=100))
 
 
     models = {
@@ -170,12 +110,14 @@ class Migration(SchemaMigration):
             'ansys': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'architecture': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'container_format': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'date_added': ('django.db.models.fields.DateField', [], {'null': 'True'}),
+            'date_last_used': ('django.db.models.fields.DateField', [], {'null': 'True'}),
             'disk_format': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'gcc': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'gromacs': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image_status': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'kernel_id': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'image_status': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
+            'kernel_id': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True'}),
             'matlab': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
             'number_of_uses': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
@@ -184,11 +126,17 @@ class Migration(SchemaMigration):
             'public': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'r': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'ramdisk_id': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'size': ('django.db.models.fields.IntegerField', [], {}),
+            'size': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             'tags': ('tagging.fields.TagField', [], {}),
             'type_of_image': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
             'user_owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'vim': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
+        },
+        'computing.tag_search_frequency': {
+            'Meta': {'object_name': 'Tag_Search_Frequency'},
+            'freq': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'tag': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'})
         },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},

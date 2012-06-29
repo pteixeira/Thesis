@@ -1,4 +1,4 @@
-from computing.models import Image, Details_OpenNebula, Details_OpenStack
+from computing.models import Image, Details_OpenNebula, Details_OpenStack, Image_Stack, Usage
 from django.contrib import admin
 
 class ImageAdmin(admin.ModelAdmin):
@@ -13,6 +13,5 @@ class ImageAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 	
 admin.site.register(Image, ImageAdmin)
-admin.site.register(Details_OpenNebula)
-admin.site.register(Details_OpenStack)
-
+admin.site.register(Image_Stack)
+admin.site.register(Usage)
