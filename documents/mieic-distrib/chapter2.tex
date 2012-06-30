@@ -1,4 +1,4 @@
-\chapter{State of the Art} \label{chap:sota}
+\chapter{Cloud Middleware} \label{chap:sota}
 
 This chapter presents a bibliographic review on the subjects covered by this project. Firstly, the concepts of Virtualization, Grid and Cloud Computing are presented, as well as a comparison between these two areas. There is also an analysis on existing developments, applications and projects on the area of Cloud and Grid Computing, with greater focus on two community driven projects (OpenStack and OpenNebula), since they are currently in use at FEUP. Some of the computing technologies in use at FEUP are also presented and discussed.
 
@@ -611,6 +611,57 @@ When using the generic contextualization mechanism, the VM description file can 
 \item Pre-defined variables.~\cite{nebula-contextualization}
 \end{itemize}
 
+\subsection{OpenNebula VS OpenStack}\label{subsec:nebula-vs-stack}
+One thing was missing in the cloud computing scene... A cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{stackgithub}
+
+There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available and is already up and running at FEUP. So why choose \textit{OpenStack}?
+
+First of all, \textit{OpenStack} is a more recent project and \textit{OpenNebula}. It is backed up by some renowned names in the industry, such as \textit{Dell}, \textit{AMD}, \textit{Intel}, \textit{Canonical}, \textit{Cisco}, \textit{StackOps}, \textit{HP}, \textit{NEC}, \textit{AT \& T}, \textit{Yahoo!} and \textit{Red Hat}. Some of these companies also support \textit{OpenNebula}.
+
+The coding activity on both projects was also taken into account when chosing which to deploy. With the help of OHLOH~\footnote{An open source directory that anyone can edit. It features comprehensive metrics and analysis on thousands of open source projects.~\cite{ohloh}}, the differences can be easily observed as it is shown in Figure~\ref{fig:ohloh_compare}, which is included in Appendix~~\ref{chap:ap2}.
+
+\textit{OpenStack} has more favourable statistics, such as the number of committers and number of commits (shown in Figures~\ref{fig:committers} and~\ref{fig:commits}) over time. If this is viewed with the knowledge that \textit{OpenNebula} was created first, and \textit{OpenStack} managed to outdo it, great things can be expected.
+
+\begin{figure}[h]
+  \begin{center} 
+    \leavevmode 
+    \includegraphics[scale=0.65]{committers}
+    \caption{Comparison between the number of committers on \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}} 
+    \label{fig:committers} 
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\textwidth]{commits}
+    \caption{Comparison between the number of commits on \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}}
+    \label{fig:commits}
+  \end{center}
+\end{figure}
+
+In addition to this and as it was refered in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers an enterpreise version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains.
+
+On a more technical aspect, \textit{OpenStack} is mainly written in \textit{Python} whereas \textit{OpenNebula} is mainly coded in \textit{C++} and \textit{Ruby}, as it can be observed in Figure~\ref{fig:code-stack-nebula}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \fbox{\includegraphics[scale=0.5]{code-stack-nebula}}
+    \caption{Comparison between the programming languages in \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}}
+    \label{fig:code-stack-nebula}
+  \end{center}
+\end{figure}
+
+Rodrigo Benzaquen, director of site operations and infrastructure at MercadoLibre, a Latin America e-commerce market leader which chose to use \textit{OpenStack} as their cloud solution, stated the following:
+
+\begin{quote}
+ ``Before this [\textit{OpenStack}'s deployment], we would have had someone physically deploy the server which would take a day or longer. With \textit{OpenStack}, we don't have to do that; our developers are now able to create and manage their servers.''\cite{openstack-userstories}
+\end{quote}
+
+which came directly into the objective of this dissertation, easing the cloud creation and management process.
+
+
 \clearpage
 \section{Image creation} \label{sec:iso}
 
@@ -685,6 +736,6 @@ The customization process relevant to the project by modifying the templates use
 
 In this chapter the main technologies to consider for the project implementation were presented, as well as some of the key concepts needed for contextualization. Some of the technologies related to the development of the web application were also discussed (\textit{Python, Django, Ruby and Rails}).
 
-\textit{Python} and \textit{Django} were chosen as the tools to build the web application, since they integrate well with \textit{OpenStack}, which is coded almost fully in \textit{Python} and the \textit{Horizon} dashboard is built in \textit{Django}.
+\textit{Python} and \textit{Django} were chosen as the tools to build the web application, since they integrate well with \textit{OpenStack}, which is coded almost fully in \textit{Python} and the \textit{Horizon} dashboard is built on \textit{Django} (\textit{OpenNebula} is mostly coded in \textit{C++} and its interface \textit{Sunstone} is built on \textit{Ruby on Rails}).
 
 As for the image creation process, it was decided to use \texttt{vmbuilder} to build instances of \textit{Ubuntu JeOS} and compare it to the use of \textit{cloud-init} in the contextualization process (\textit{cloud-init} is used on already built images).

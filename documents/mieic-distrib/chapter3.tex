@@ -4,23 +4,23 @@ In this chapter the problem will be described and justified, using references fr
 
 The problem statement includes the project's requirements specification, which in turn includes the stakeholder identification. 
 
-A design for the solution is presented, including the UML (Unified Modeling Language) diagram, so that the thought process behind the design is more clear. Use cases are also described so that a clear view on what the system does can be obtained. 
+A design for the solution is presented, including the UML (Unified Modeling Language) diagram, so that the reasoning behind the solution can be understood. Use cases are also described so that a clear view on what the system does can be obtained. 
 
-The details for web system implementation are described in the next chapter (Chapter \ref{chap:chap4} --~\nameref{chap:chap4}).
+The details for the implementation are described in the next chapter (Chapter \ref{chap:chap4} --~\nameref{chap:chap4}).
 
 \section{Problem Description}
 
 Currently, FEUP's computing infrastructures are only accessed by those who have the technical knowledge to interact with the system. These people are technicians whose area of expertise encompasses outsourcing computing resources to perform computing jobs. 
 
-If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time for both parties cutting through red tape.
+If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time trying to find someone that can be of assistance.
 
 Having this in mind, CICA has started developing a project that reduces the amount of knowledge necessary to perform the said computing operations.
 
 This document focuses only on the front-end of the project, the back-end having already been developed by former MIEIC student Nuno Cardoso as part of his Master Thesis. CICA's project is described in greater detail in the following section.
 
-\section{The project} \label{sec:project}
+\section{CICA's private cloud project} \label{sec:project}
 
-In this section the project itself is described in a greater detail, along with the implemented architectural solution.
+In this section CICA's private cloud project is described in a greater detail, along with the implemented architectural solution.
 
 The use case scenarios are presented, as well as the UML diagram which shows the entities involved in the web application. As it is customary when designing a software application, a requirements elicitation process was held and the results are also shown in this section.
 
@@ -61,7 +61,7 @@ The following stakeholders were identified for this project:
 \item Web system administrator;
 \end{itemize} 
 
-These are the only people or groups of people which will interact with the server.
+These are the only people or groups of people which will interact with the system.
 
 \subsection{The objectives}\label{subsec:objectives}
 
@@ -162,28 +162,30 @@ Use case diagrams are used as visual aids for their textual representation and s
 \item Researcher/Administrator.
 \end{itemize}
 
+\ \\
 \textbf{Brief description}:
-
-The researcher wishes to log into the web system.
-
+\ \\
+The researcher/administrator (known as ``user'' for the rest of this use case for simplicity) wishes to log into the web system.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
-\item The web system prompts the researcher/administrator for his/her username and password combination (provided beforehand by the system administrator in order to maintain control over who accesses the web system);
-\item The researcher inputs his/her username and password in the boxes provided;
+\item The web system prompts the user for his/her username and password combination (provided beforehand by the system administrator in order to maintain control over who accesses the web system);
+\item The user inputs his/her username and password in the boxes provided;
 \item The web system validates the entered username and password and logs the researcher/administrator into the system.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-If an incorrect username and password combination is supplied, the page will simply reload. The user must enter a valid username and password combination to proceed.
-
-\textbf{Pre-conditions}:
-
-None.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+If an incorrect username and password combination is supplied, the page will simply reload. The user must enter a valid username and password combination to proceed.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 If the use case is successful, the user is logged into the system. If the user is a researcher, no special privileges will be gained. If the user is an administrator, ``administrator'' status will be granted and he/she will gain administration privileges over the system.
 
 If the use case is unsuccessful, no changes are made to the system state.
@@ -196,10 +198,11 @@ If the use case is unsuccessful, no changes are made to the system state.
 \item System administrator.
 \end{itemize}
 
-\textbf{Brief description}:
-
-The system administrator wants to perform management operations in the system.
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+The system administrator wants to perform management operations in the system.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -213,16 +216,17 @@ The system administrator wants to perform management operations in the system.
 \item After the changes are saved, the state of the system is updated.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-None.
-
-\textbf{Pre-conditions}:
-
-User must be logged in as administrator.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in as administrator.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 The system state will change to whichever operations the system administrator chose to perform.
 
 \subsubsection{UC3 -- Create a new VM image}\label{uc3}
@@ -233,10 +237,11 @@ The system state will change to whichever operations the system administrator ch
 \item Researcher.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher wishes to create a new VM image.
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher wishes to create a new VM image.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -253,19 +258,19 @@ A researcher wishes to create a new VM image.
 \item The researcher will then be redirected to the ``Post VM image creation'' page which will be refreshed every few minutes so that the VM creation process status can be updated and displayed to the researcher. After the VM is created, the researcher will be prompted on whether the system should launch the VM;
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-The VM image name is already in use. In this case the VM image creation will fail and the page will be refreshed so that the VM image details can be filled out one more time.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
-If the use case is successful, a new VM image will be inserted into the system. IF the use case fails, no changes will occur.
-
-If the researcher chooses to launch the VM image, he/she will go into the use case~\ref{uc4} ---~\nameref{uc4}.
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+The VM image name is already in use. In this case the VM image creation will fail and the page will be refreshed so that the VM image details can be filled out one more time.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
+If the use case is successful, a new VM image will be inserted into the system. If the use case fails, no changes will occur.\\
+If the researcher chooses to launch the VM image, he/she will go into the use case~\ref{uc4} ---~\nameref{uc4}.\\
 
 \subsubsection{UC4 -- Launch a VM}\label{uc4}
 
@@ -275,10 +280,11 @@ If the researcher chooses to launch the VM image, he/she will go into the use ca
 \item Researcher.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher wishes to launch a VM.
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher wishes to launch a VM.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -295,17 +301,19 @@ A researcher wishes to launch a VM.
 \item If the researcher clicks the ``Launch VM'' button in the VM image detail's page, he/she will be redirected to the VM launch page, which will display the information regarding the state of the launch. This page will refresh every few seconds and as soon as the VM image is deployed, a warning will be displayed, informing the researcher. The system will also provide the researcher with a username and password combination so that the researcher can access the newly deployed VM.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-The researcher chose to launch a VM after creating it (coming from the use case~\ref{uc3} ---~\nameref{uc3}). In that case the researcher only needs to click the ``Launch VM'' button displayed.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+The researcher chose to launch a VM after creating it (coming from the use case~\ref{uc3} ---~\nameref{uc3}). In that case the researcher only needs to click the ``Launch VM'' button displayed.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 If the use case is successful, a VM image will be deployed and will be ready for use.
+
 
 \subsubsection{UC5 -- View system wide statistics}\label{uc5}
 
@@ -315,10 +323,11 @@ If the use case is successful, a VM image will be deployed and will be ready for
 \item Researcher/Administrator.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher or administrator (known as ``user'' in this use case for simplicity) wishes to see the system statistics.
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher or administrator (known as ``user'' in this use case for simplicity) wishes to see the system statistics.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -333,16 +342,17 @@ A researcher or administrator (known as ``user'' in this use case for simplicity
 \item After viewing the statistics, the user can return to the ``Index'' page by clicking the appropriate link.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-None.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 None.
 
 \subsubsection{UC6 -- Search for a VM image}\label{uc6}
@@ -353,30 +363,33 @@ None.
 \item Researcher/Administrator.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher or administrator (known as ``user'' in this use case for simplicity) wishes to search for a VM image.
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher or administrator (known as ``user'' in this use case for simplicity) wishes to search for a VM image.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
 \item In order to search for an existing VM image, the user must be logged in;
-\item After a successful login, the user can search for an existing VM by clicking the appropriate link -- ``View statistics'';
+\item After a successful login, the user can search for an existing VM by clicking the appropriate link -- ``Search for a VM image'';
 \item After being redirected to the search page, the user must input the search terms he/she wishes to search for. The search terms should be separated by commas (``,'');
 \item If the system finds any VM images which are tagged with any of the search terms inputted, these VM images will be displayed in a list with clickable names, which redirect to the VM image details' page.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-Search terms are not found. An error message is displayed and the user is redirected to the search page.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+Search terms are not found. An error message is displayed and the user is redirected to the search page.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 None.
+
 
 \subsubsection{UC7 -- View the details of an existing VM image}\label{uc7}
 
@@ -386,10 +399,11 @@ None.
 \item Researcher/Administrator.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher or administrator (known as ``user'' in this use case for simplicity) wishes view the details of an existing VM image. 
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher or administrator (known as ``user'' in this use case for simplicity) wishes view the details of an existing VM image.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -403,16 +417,17 @@ A researcher or administrator (known as ``user'' in this use case for simplicity
 	\end{enumerate}
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-None.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 None.
 
 \subsubsection{UC8 -- Modify the details of an existing VM image}\label{uc8}
@@ -423,10 +438,11 @@ None.
 \item Researcher.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher wishes to modify the details of an existing VM image. 
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher wishes to modify the details of an existing VM image.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -436,16 +452,17 @@ A researcher wishes to modify the details of an existing VM image.
 \item After the user is done updating the desired fields, he/she must click the ``Update'' button.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-The selected VM image is currently being used by another user. The user will not be able to modify the VM image and the use case will fail.
-
-\textbf{Pre-conditions}:
-
-User must be logged in and he/she must be the creator of the VM image.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+The selected VM image is currently being used by another user. The user will not be able to modify the VM image and the use case will fail.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in and he/she must be the creator of the VM image.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 VM image details are updated.
 
 
@@ -457,10 +474,11 @@ VM image details are updated.
 \item Researcher.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher wishes to view his/her own details. 
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher wishes to view his/her own details.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -469,16 +487,17 @@ A researcher wishes to view his/her own details.
 \item The researcher will then be redirected to the user details' page.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-None.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 None.
 
 \subsubsection{UC10 -- Modify the user's details}\label{uc10}
@@ -489,10 +508,11 @@ None.
 \item Researcher.
 \end{itemize}
 
-\textbf{Brief description}:
-
-A researcher wishes to modify his/her own details. 
-
+\ \\
+\textbf{Brief description}:\\
+\ \\
+A researcher wishes to modify his/her own details.\\
+\ \\
 \textbf{Basic flow}:
 
 \begin{itemize}
@@ -504,116 +524,84 @@ A researcher wishes to modify his/her own details.
 \item After the researcher performs the wanted modifications, he/she must click the ``Update'' button.
 \end{itemize}
 
-\textbf{Alternative flows}:
-
-None.
-
-\textbf{Pre-conditions}:
-
-User must be logged in.
-
-\textbf{Post-Conditions}:
-
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
 User details are updated.
 
+\subsection{Relevant system details}%how this helps the users in choosing a suitable VM?
+
+In this part of the document, relevant system details are presented, namely how the system helps a user in choosing a suitable VM image.\ \\
+The Vm image management issue is also addressed, and specifications on how it can be done by an administrator inside the web system is shown.
+
+\subsubsection{Helping the user}
+
+
+In order to help a user choose a suitable VM image to use for his/her computational job, the following was implemented:
+
+\begin{itemize}
+\item A set of statistics was created so the user can see which VM images or ``tags'' are more used across the system (detailed below);
+\item A search function so the user can find a VM image by searching for ``tags'' associated with VM images;
+\end{itemize}
+
+\ \\
+The search function was implemented so that the user can access the system and search for the programs he/she needs to have installed in VM image. If any of the inputted terms match any of the ``tags'' used in a VM image, that VM image will be displayed to the user. Since the system supports multiple ``tag'' search, the user can search for all the terms he/she wishes to and if a VM image containing all the terms searched exists in the system, it will be shown and the user will know that is the suitable environment for his/her needs.\\
+\ \\
+As for the set of statistics, different types were created:
+
+\begin{enumerate}
+\item What VM images the user that is logged in has available to him (this includes public images and those the user created);
+\item Which VM images are more used across the system;
+\item A ``Tag'' Cloud was created, showing which ``tags'' were most used across the system;
+\item Which ``tags'' were most searched across the system.
+\end{enumerate}
+
+\ \\
+For users who already created a VM image, it is important to know which ones they already created, since they might need to re-use them again.
+
+The most used VM images can be used to identify better created VM images, which can complement the VM image the user had in mind.
+
+Knowing which ``tags'' were more used can help the users identify an environment that was not created yet, an environment that aggregates some of the most used ``tags'' may be helpful for some researchers.
+
+Knowing which ``tags'' were more searched across the system can help the system administrator in knowing if it might be profitable in pinning some of the images ``tagged'' with some of the most searched ``tags'' in the ``Index'' page so that users do not have to spend time searching for something they use regularly.
 
 
 
-%As mentioned in the above section, one of the main objectives of this dissertation is the integration of an \textit{OpenStack} --- presented in Chapter~\ref{chap:sota} --- deployment environment as it should simplify the cloud creation and management. 
+----> tag cloud <---- falta falar
 
+\subsection{VM image management}\label{subsec:vm-manag}
 
-\subsection{The chosen technologies}\label{subsec:tech}
+One of the objectives for this project was that the created VM images can be manageable.
 
-One thing was missing in the cloud computing scene... A cloud management layer. A cloud operating system that added automation and control at scale. That is where \textit{OpenStack} comes into play. As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack} it is built by a world wide community of developers, something that made it a good choice to investigate, as the open source culture is something always worthy of enriching.~\cite{stackgithub}
+This management can be performed by either a normal user (limited management) or a system administrator.
 
-There is one thing one must keep in mind: as it was described in Chapter~\ref{chap:sota}, \textit{OpenStack} is not the only solution available. \textit{OpenNebula} was also available and is already up and running at FEUP. So why choose \textit{OpenStack}?
+\subsubsection{Normal users}
 
-First of all, \textit{OpenStack} is a more recent project and \textit{OpenNebula}. It is backed up by some renowned names in the industry, such as \textit{Dell}, \textit{AMD}, \textit{Intel}, \textit{Canonical}, \textit{Cisco}, \textit{StackOps}, \textit{HP}, \textit{NEC}, \textit{AT \& T}, \textit{Yahoo!} and \textit{Red Hat}. Some of these companies also support \textit{OpenNebula}.
+A normal user can mark an image for deletion (in case he/she misstyped the image details or realized that the image would not be needed after all).
 
-The coding activity on both projects was also taken into account when chosing which to deploy. With the help of OHLOH~\footnote{An open source directory that anyone can edit. It features comprehensive metrics and analysis on thousands of open source projects.~\cite{ohloh}}, the differences can be easily observed as it is shown in Figure~\ref{fig:ohloh_compare}, which is included in Appendix~~\ref{chap:ap2}.
+Another important feature from the system is the possibility of reserving a VM image for later use. If a user knows he/she will need to use a certain VM image in a certain time in the future, he/she can reserve it, by specifying the date when the image will be needed and the system will prevent that image from being deleted.
 
-\textit{OpenStack} has more favourable statistics, such as the number of committers and number of commits (shown in Figures~\ref{fig:committers} and~\ref{fig:commits}) over time. If this is viewed with the knowledge that \textit{OpenNebula} was created first, and \textit{OpenStack} managed to outdo it, great things can be expected.
+\subsubsection{System administrators}
 
-\begin{figure}[h]
-  \begin{center} 
-    \leavevmode 
-    \includegraphics[scale=0.65]{committers}
-    \caption{Comparison between the number of committers on \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}} 
-    \label{fig:committers} 
-  \end{center}
-\end{figure}
+System administrators have access to a reserved space inside the system, somewhere that the normal users cannot access (they cannot see it).
 
-\begin{figure}[h]
-  \begin{center}
-    \leavevmode
-    \includegraphics[width=\textwidth]{commits}
-    \caption{Comparison between the number of commits on \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}}
-    \label{fig:commits}
-  \end{center}
-\end{figure}
+In this section of the system, administrators are presented with details that help them manage the VM images registered in the system.
 
-In addition to this and as it was refered in Chapter~\ref{chap:sota}, section~\ref{subsec:opennebula}, \textit{OpenNebula}'s creators have founded an enterprise of their own (C12G Labs) which offers an enterpreise version of \textit{OpenNebula} (named \textit{OpenNebulaPro}). This deviates from the open source philosophy, something that \textit{OpenStack} maintains.
+Administrators can see every VM image in the system, as well as for how long they have been registered and how long it has passed since they were last used. 
+If a certain time has passed since the image was last used, combining that information with how long they were registered in the system, the administrators are warned of that occurrence and are given the option to eliminate them from the system.
 
-On a more technical aspect, \textit{OpenStack} is mainly written in \textit{Python} whereas \textit{OpenNebula} is mainly coded in \textit{C++} and \textit{Ruby}, as it can be observed in Figure~\ref{fig:code-stack-nebula}. 
-
-In order to understand the relevance of this detail, it must be said that there is an extensive and obligatory contact with \textit{C++} in MIEIC, something that does not happen with \textit{Ruby}, and \textit{Python} is not presented at all. Previous experience with both \textit{C++} and \textit{Ruby} proved to be unfulfilling (\textit{C++} due to its not-so-high-level nature and \textit{Ruby} because it was used in the context of \textit{Ruby on Rails}, which due to some installation quirks was deemed impossible to start and use). 
-
-\textit{Python} on the other hand, was a different programming language, something that was going to be a challenge. Coupled with \textit{Django}, it promised the same advantages as \textit{Ruby on Rails}, but with less trouble getting it up and running. Since \textit{Horizon} is built on \textit{Django}, the choice seemed obvious. The cherry on top of the cake would be contributing to FEUP's knowledge on the new technologies to be researched (\textit{Django}, \textit{Python} and of course, \textit{OpenStack}).
-
-The previous experience with \textit{Ruby} paired with the desire for new challenges and learning new programming languages, \textit{OpenStack} was chosen. This would also allow to contribute to FEUP's knowledge on this new technology.
-
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode
-    \fbox{\includegraphics[scale=0.5]{code-stack-nebula}}
-    \caption{Comparison between the programming languages in \textit{OpenStack} and \textit{OpenNebula}.~\cite{ohloh}}
-    \label{fig:code-stack-nebula}
-  \end{center}
-\end{figure}
-
-Rodrigo Benzaquen, director of site operations and infrastructure at MercadoLibre, a Latin America e-commerce market leader which chose to use \textit{OpenStack} as their cloud solution, stated the following:
-
-\begin{quote}
- ``Before this [\textit{OpenStack}'s deployment], we would have had someone physically deploy the server which would take a day or longer. With \textit{OpenStack}, we don't have to do that; our developers are now able to create and manage their servers.''\cite{openstack-userstories}
-\end{quote}
-
-which came directly into the objective of this dissertation, easing the cloud creation and management process.
-
-\clearpage
-\subsection{Connecting the dots}\label{subsec:architecture}
-
-As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack}, \textit{OpenStack} is designed to deliver a massively scalable cloud operating system, each of the components being designed to work together in order to prodive complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
-
-Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
-
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{nova-concept-int-essex}
-    \caption{Relationships between the different \textit{OpenStack} services.~\cite{ken-pepple:essex-arch}}
-    \label{fig:openstack_services}
-  \end{center}
-\end{figure}
-
-The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture}.
-
-\begin{figure}[t]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{architecture}
-    \caption{Proposed architecture implementation.}
-    \label{fig:architecture}
-  \end{center}
-\end{figure}
-
-As it can be observed, the web application will use \texttt{vmbuilder} and \textit{cloudinit} whenever needed and then passing that information to the \textit{OpenStack Horizon} dashboard, which will communicate with the rest of \textit{OpenStack} services.
-
-Since \texttt{vmbuilder} and \textit{cloudinit} work for different purposes (\texttt{vmbuilder} creates contextualized VM images and \textit{cloudinit} contextualizes clean VM images), different tools will be used for different purposes.
+Administrators also can see if a user has marked an image for deletion (in case the user missclicked or misstyped the VM image details) and can choose to eliminate the images from the system.
 
 
 
-An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard itself.
- 
 
 %Este capítulo deve começar por fazer uma apresentação detalhada do
 %problema a resolver\footnote{Na introdução a apresentação do
@@ -627,4 +615,10 @@ An interesting feature to complete in future work could be eliminating the web s
 %\clearpage
 \section{Conclusions}
 
-In this chapter was presented the architecture to be followed in Chapter~\ref{chap:chap4} in the implementation phase of the project. The objectives were also outlined, as well as which technologies to use.
+In this chapter was presented the architecture to be followed in Chapter~\ref{chap:chap4} in the implementation phase. CICA's private cloud project was presented, this document covering the front-end of that project. The objectives were outlined, as well as the use cases and stakeholders.
+
+A model for a solution was also shown, which includes the UML diagram for the current work. This diagram, along with the use cases and stakeholder identification, describe the system to be implemented.
+
+The VM creation and management was successfully implemented.
+
+The project's use cases and stakeholders were also specified.
