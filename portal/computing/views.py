@@ -1,6 +1,6 @@
 # Create your views here.
 
-from computing.models import Image, Details_OpenStack, Tag_Search_Frequency, Usage, User_Tasks
+from computing.models import Image, Details_OpenStack, Tag_Search_Frequency, Usage, User_Tasks, UserForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -28,6 +28,7 @@ def logout_page(request):
 	logout(request)
 	return HttpResponseRedirect('/computing') #returns to the start page
 
+@login_required
 def management(request):
 	image_list = Image_Stack.objects.all()
 	user_in_session = request.user
@@ -39,7 +40,44 @@ def management(request):
 	return render_to_response('computing/management.html', {'image_list': image_list, 'user_in_session': user_in_session, 
 								'user_images': user_images})
 
-@login_required()
+@login_required
+def user_details(request, user_id):
+	user_in_session = request.user
+	user_image_list = Image_Stack.objects.filter(user_owner = request.user) #list of the user created images
+	return render_to_response('computing/user_details.html', {'user_in_session': user_in_session, 'user_image_list': user_image_list})
+
+@login_required
+def modify_user(request, user_id):
+	form = UserForm()
+	return render_to_response('computing/modify_user.html', {'form': form}, context_instance=RequestContext(request))
+
+@login_required	
+def modify_user_results(request):
+	if request.POST['first_name']:
+		user = User.objects.get(id=request.user.id)
+		user.name = request.POST['first_name']
+		user.save()
+	#user = request.POST['first_name']
+	return render_to_response('computing/modify_user_results.html', {'user': user})
+
+@login_required
+def list_vms(request):
+	public_image_list = Image_Stack.objects.filter(public = True) #list of the public images
+	user_image_list = Image_Stack.objects.filter(user_owner = request.user) #list of the user created images
+	#lists of public and user created images
+	user_image_listlist = list(user_image_list)
+	public_image_listlist = list(public_image_list)
+	
+	for item in user_image_listlist:
+		for item2 in public_image_listlist:
+			if item == item2:
+				public_image_listlist.remove(item2)			
+	
+	user_image_listlist.extend(public_image_listlist)
+	return render_to_response('computing/list_vms.html', {'user_image_list': user_image_listlist})
+
+
+@login_required
 def index(request):
 	if not request.user.is_authenticated():
 		return render_to_response('computing/login_error.html')
@@ -61,42 +99,50 @@ def create_image(request):
 
 @login_required
 def create_results(request):
+	if not request.POST['name']:
+		return render_to_response('computing/create_results_error.html', {'no_name': 'dummy'})
 	post_data = request.POST.lists()
-	i = Image_Stack.objects.filter(name=post_data[0][1][0].upper()) #check if image already exists
+	dummy = 1
+	if Image_Stack.objects.filter(name=request.POST['name'].upper()): #check if image already exists
+		return render_to_response('computing/create_results_error.html', {'error': request.POST['name']})
+	else:
+		dummy = 1
 	user1 = request.user #get user that is currently creating the image
 
-	packages = list()
-	packages.append("#!/bin/bash \nsudo vmbuilder kvm ubuntu --suite=precise --flavour=virtual --arch=i386 --mirror=http://de.archive.ubuntu.com/ubuntu -o --libvirt=qemu:///system --ip=192.168.0.101 --gw=192.168.0.1 --part=vmbuilder.partition --templates=mytemplates --user=user --name=Administrator --pass=password --firstboot=/home/pedro/Desktop/scripts/boot.sh --mem=256 --addpkg=vim-nox --addpkg=unattended-upgrades --addpkg=acpid --hostname=vm3")
+	packages = "#!/bin/bash \nsudo vmbuilder kvm ubuntu --suite=precise --flavour=virtual --arch=i386 --mirror=http://de.archive.ubuntu.com/ubuntu -o --libvirt=qemu:///system --ip=192.168.0.101 --gw=192.168.0.1 --part=vmbuilder.partition --templates=mytemplates --user=user --name=Administrator --pass=password --firstboot=/home/pedro/Desktop/scripts/boot.sh --mem=256 --addpkg=vim-nox --addpkg=unattended-upgrades --addpkg=acpid "
 	for x in range(0, len(post_data)):
 		if post_data[x][0] == "matlab":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = packages+"--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "vim":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = packages+"--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "abaqus":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = "--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "gcc":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = "--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "openfoam":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = "--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "gromacs":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = "--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "ansys":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
+			packages = "--addpkg="+post_data[x][0]+" \ "
 		elif post_data[x][0] == "r":
-			packages.append("--addpkg="+post_data[x][0]+" \ ")
-
-	
+			packages = "--addpkg="+post_data[x][0]+" \ "
+		elif post_data[x][0] == "name":
+			packages = packages+"--hostname="+request.POST['name']+" \ "
+#	
 	#script generation
 
 	f = open('/home/pedro/Desktop/scripts/derp.sh', "r+")
-	for y in range(0, len(packages)):
-		f.write(packages[y])
+	f.write(packages)
+	f.close()
 	
 	derp = tasks.add.delay()
 	derp = derp.task_id
 	User_Tasks(user=request.user, task=derp).save()
 	
-	return render_to_response('computing/create_results.html', {'data': derp})
+
+	
+	return render_to_response('computing/create_results.html', {'data': packages})
 #	if i:
 #		return render_to_response('computing/image_exists.html', {'data': post_data[0][1][0]})
 #	else:	
@@ -123,7 +169,7 @@ def show_tasks(request):
 
 def update_tasks(request):
 	#no POST vai receber as tasks que nao estao completas
-	post_list = request.POST["id_list"] #vem do ajax lista de ids de tasks incompletas
+	post_list = request.POST['id_list'] #vem do ajax lista de ids de tasks incompletas
 	completed_tasks = list()
 	f = open('/home/pedro/Desktop/aoisdnb.txt', 'w')
 	f.write('derp')
@@ -140,12 +186,13 @@ def filetree(request):
 	latest_image_list = list()
 	public_image_list = Image_Stack.objects.filter(public = True) #list of the public images
 	user_image_list = Image_Stack.objects.filter(user_owner = request.user) #list of the user created images
+	most_searched_tags = Tag_Search_Frequency.objects.all().order_by('-freq')
 	
 	#--- user in session so it shows only his images	
 	user_in_session = request.user
 	
 	#user's most used images
-	user_most_used_images = Usage.objects.filter(user=user_in_session).order_by('-number_of_uses')
+	user_most_used_images = Usage.objects.filter(user=user_in_session).order_by('-number_of_uses') [:5]
 	
 	#--- end of user's most used images
 	
@@ -174,7 +221,8 @@ def filetree(request):
 	ordered_by_usage = Image_Stack.objects.all().order_by('number_of_uses')
 	return render_to_response('computing/detail.html', {'ordered_by_usage': ordered_by_usage, 'latest_image_list': user_image_listlist,
 				  			    'user': user_in_session, 'full_image_list': full_image_list,
-				  			    'user_most_used_images': user_most_used_images})
+				  			    'user_most_used_images': user_most_used_images,
+				  			    'most_searched_tags': most_searched_tags})
 
 @login_required
 def search_form(request):
@@ -185,6 +233,7 @@ def search(request):#se for so uma tag, devolve as imagens com essa tag
     if 'q' in request.GET and request.GET['q']:
     	q = request.GET['q']
     	q = q.split(', ')
+    	query = request.GET['q']
     	
     	#criar lista de frequencias de tags pesquisadas
     	for item in q:
@@ -201,30 +250,34 @@ def search(request):#se for so uma tag, devolve as imagens com essa tag
     	list_of_images = list()
     	listinha = list()
     	dummy = 0
-    	cenas = TaggedItem.objects.get_by_model(models.Image_Stack, Tag.objects.get(name=q[0]))
+    	
+
     	for item in q:
-    		taggy = Tag.objects.get(name=item)
+    		try:
+    			taggy = Tag.objects.get(name=item)
+    		except Tag.DoesNotExist: 
+    			return render_to_response('computing/search_results.html')
     		cenassas = TaggedItem.objects.get_by_model(models.Image_Stack, taggy)
-    		for i in cenassas:
-    			if i in listinha:
-    				dummy = 1
+		for i in cenassas:
+			if i in listinha:
+				dummy = 1
     			else:
-    					listinha.append(i)
+				listinha.append(i)
 
 	#coiso = TaggedItem.objects.get_by_model(models.Image_Stack, taggy2)
 	#tag_list = Tag_Search_Frequency.objects.get(tag = tag_found.tag).freq
 	
-	return render_to_response('computing/create_results.html', {'data': listinha})
-	
-    	q = q.upper()
-    	images = Image_Stack.objects.all()
-    	l = list()
-    	counter = 0
-    	for image in images:
-    		tags = image.get_tags()
-    		for tag in tags:
-    			if tag.name.upper() == q:
-    				l.append((image.id, image.name))
+	return render_to_response('computing/search_results.html', {'image_list': listinha, 'searched_item': query})
+#	
+#    	q = q.upper()
+#    	images = Image_Stack.objects.all()
+#    	l = list()
+#    	counter = 0
+#    	for image in images:
+#    		tags = image.get_tags()
+#    		for tag in tags:
+#    			if tag.name.upper() == q:
+#    				l.append((image.id, image.name))
     	#return render_to_response('computing/search_results.html', {'images': images, 'query': q, 'list': l}) --> this works!
     else:
-    	return HttpResponse('Please submit a search term.')
+    	return render_to_response('computing/search_results.html')

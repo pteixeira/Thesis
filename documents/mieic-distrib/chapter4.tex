@@ -102,14 +102,9 @@ This access can be granted by modifying the \texttt{sudoers} file and granting \
 
 This guarantees that nothing in the system is compromised and that only specific scripts can be ran using \texttt{sudo} permissions.\\
 \ \\
-\textbf{Managing tasks}:
-
-falar do celery
-
-
-insert this script somewhere 
-
-One thing to have in mind is that the VM image creation process is very time consuming. Several tests were ran and the average time passed the twenty minute timeframe, on a small deployment (only \texttt{vim} and \texttt{openssh-server} were downloaded and installed). One of the script executions can be seen in Figure~\ref{fig:script-timer}.
+\textbf{Managing tasks}:\\
+\ \\
+Another aspect of the system worth detailing is how it deals with requests for VM image creations. At the end of the VM image creation process inside the web system (shown in Figure~\ref{fig:img-creation})<<inserir print>> the method \texttt{subprocess.call()} from the \textit{Python} module \texttt{subprocess} (allows to create new processes, connect to input/output/error pipes and obtain the return codes) is used to run the VM creation script. If this method is called inside the \textit{Python} code, the \textit{Django} ``View'' will wait until the return code is obtained from the VM creation script call, and will only render itself \emph{after} the script finishes. Some tests were run and the average time for the script completion came to around twenty minutes (as seen in Figure~\ref{script-timer}), which is a very high amount of time to wait.
 
 \begin{figure}[h]
   \begin{center}
@@ -120,6 +115,16 @@ One thing to have in mind is that the VM image creation process is very time con
   \end{center}
 \end{figure}
 
+As such, an asynchrounous task/job queue based on distributed message passing named \texttt{Celery} was used. \texttt{Celery} allows for the execution of certain tasks in the background, so the ``Views'' can be loaded without having to wait for the subprocesses to finish executing.
+
+After the user clicks the "Create VM image" button in the VM creation webpage (Figure~\ref{fig:vm-creation} -- \nameref{fig:vm-creation})<<insert screen>>, he/she will be redirected to the ``VM launch'' screen, which will be refreshed every few minutes and check if the \texttt{celery} task which contains the command to run the VM creation script has finished executing. As soon as it does, the page will refresh and show a link to launch the VM (Figure~\ref{fig:launch-vm} -- \nameref{fig:launch-vm}).
+
+\texttt{Celery} is also used to schedule certain maintenance jobs, such as checking if the disk where the VMs are being stored is reaching a certain capacity (useful for administrators).
+
+Finally, \texttt{Celery} sends these tasks to \textit{workers} (processes created by \texttt{Celery}) who receive them in a distributed manner (if a worker is free, it receives the task, instead of a worker who is already working on something else). This means that more than one request that needs to be handled in the background can be run at the same time~\cite{http://celeryproject.org/}.
+
+
+
 
 ----- derpderpderp
 
@@ -128,30 +133,27 @@ The modules \texttt{python-tagging} and \texttt{South} are needed for the web ap
 
 \pagebreak
 
-
-
-
-
-
-
-
-
-
+insert this somewhere:
+The modules \texttt{python-tagging} and \texttt{South} are needed for the web application to function properly. \texttt{python-tagging}, as it was mentioned earlier, is crucial for the search function, whereas \texttt{South} is used in database migrations.
 
 \section{Integrating with OpenStack}
 
-Connection with \textit{Glance} is made through a RESTful API. Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
+As it was described in Chapter~\ref{chap:derpderp}, in section~\ref{derpderpderp} --~\nameref{derpderpderp}, this projects interacts with a cloud middleware, namely \textit{OpenStack}.
+
+Connection with \textit{Glance} is made by two ways:
+
+\begin{itemize}
+\item Through a RESTful API.
+\item Using a command line API.
+\end{itemize} 
+
+Since this is a web system, the RESTful API will be used.
+
+Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
 
 Since the web application has \textit{Python} code on the background and \textit{OpenStack} is coded in the same programming language, this connection is seamless.
-%The application of the design and architecture described in Chapter~\ref{chap:chap3} is presented, being divided in three main areas:
 
-%\begin{itemize}
-%\item Cloud environment deployment (\textit{OpenStack});
-%\item Development of a web application;
-%\item Creation and management of VM images (communication between the two parts of the system mentioned in the previous bullet points).
-%\end{itemize}
-
-\subsection{Cloud environment deployment}\label{subsec:cloud_env}
+\subsection{The cloud middleware deployment}\label{subsec:middleware-deployment}
 
 As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsubsec:devstack}, \textit{DevStack} was used in order to simplify the cloud deployment.
 
@@ -179,22 +181,9 @@ All the desired services were up and running, as shown in Figure~\ref{fig:servic
   \end{center}
 \end{figure}
 
-%\subsection{Creation and management of VM images}\label{subsec:vm-create-manage}
+\subsection{The proposed solution for integration}\label{subsec:proposition}
 
-%As it was concluded in Chapter~\ref{chap:chap3} (~\nameref{chap:chap3}), the VM creation was implemented by using \textit{Ubuntu}'s \texttt{vmbuilder}. 
-
-%A \texttt{bash} script was created in order to automate the process. Since it is nothing more than a text file, it is easily modified by the \textit{Python} classes which are called by the web application. The user needs ``write'' permissions to run that file. An example of the script is attached in Appendix~\ref{chap:ap4} -~\nameref{chap:ap4}.
-
-%This script is run when the user finishes the VM image creating process in the web application.
-
-
-The modules \texttt{python-tagging} and \texttt{South} are needed for the web application to function properly. \texttt{python-tagging}, as it was mentioned earlier, is crucial for the search function, whereas \texttt{South} is used in database migrations.
-
-
-\clearpage
-\subsection{Connecting the dots}\label{subsec:architecture}
-
-As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsec:openstack}, \textit{OpenStack} is designed to deliver a massively scalable cloud operating system, each of the components being designed to work together in order to prodive complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
+\textit{OpenStack} being created to deliver a massively scalable cloud operating system, each of the components is designed to work together in order to provide complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
 
 Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
 
@@ -218,19 +207,27 @@ The solution proposed for this project links the \textit{OpenStack} Dashboard --
   \end{center}
 \end{figure}
 
-As it can be observed, the web application will use \texttt{vmbuilder} and \textit{cloudinit} whenever needed and then passing that information to the \textit{OpenStack Horizon} dashboard, which will communicate with the rest of \textit{OpenStack} services.
+As it can be observed and was mentioned earlier in the chapter (section~\ref{sec wherever vmbuilder was referenced}), the web application will use \texttt{vmbuilder} to create the images. 
 
-Since \texttt{vmbuilder} and \textit{cloudinit} work for different purposes (\texttt{vmbuilder} creates contextualized VM images and \textit{cloudinit} contextualizes clean VM images), different tools will be used for different purposes.
+\textit{cloudinit} should be used whenever there is the need to contextualize already built images and then passing that information \textit{Glance}.
 
+This integration proposition would expand the power of the private cloud project, by taking advantage of \textit{OpenStack}.
 
+\subsection{Advantages over \textit{OpenStack}}
 
-An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard itself.
- 
+At this moment, \textit{OpenStack} does not offer the possibility of searching for a specific VM image to launch. It just displays all the VM images registered and the user must manually search for the VM he/she is looking for.
+
+\textit{OpenStack} also does not provide a way of actually creating a contextualized VM image. 
+
+Its dashboard \textit{Horizon} is not user friendly for people who are not familiarized with some of the computing aspects, but the developed system is. It simplifies the way it interacts with the user, showing helpful tips and notes wherever is deemed necessary, successfully completing the objective defined at the start -- letting the users interact with the system without needing specific technical knowledge.
+
 
 \section{Conclusions}
 
-This chapter presented how the architecture described in the previous chapter (\nameref{chap:chap3}) was implemented, as well as what were the use cases, the challenges encountered and if and how they were overcome. 
-As for the goal completion, \textit{OpenStack} was fully deployed, as well as the web application. VM image creation was successful, as well as the contextualization process.
+This chapter presented how the architecture described in the previous chapter (\nameref{chap:chap3}) was implemented, from a technical point of view. 
 
+It was shown how the use of some \textit{Django} modules were used in order to complete some of the objectives and how the system works internally.
 
-MUST COMPLETE CONCLUSIONS
+An integration with \textit{OpenStack} was proposed, in order to maximize the power of the system. This web system can be used as the interface for the cloud middleware, as long as the connections are correctly created.
+
+Improvements over the current \textit{OpenStack} version were also referred, underlining the user-friendly characteristic of the web system developed.

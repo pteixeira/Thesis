@@ -17,6 +17,14 @@ IMAGE_CHOICES = (
 	('nebula', 'OpenNebula Image'),
 )
 
+STATUS_CHOICES = (
+	('running', 'RUNNING'),
+	('reserved', 'RESERVED'),
+	('delete', 'MARKED FOR DELETION'),
+	('created', 'BEING CREATED'),
+	('ready', 'READY'),
+)
+
 	
 TYPE_CHOICES = (
 	('OS', 'Operating System Image'),
@@ -41,7 +49,11 @@ DRIVER_CHOICES = (
 class Tag_Search_Frequency(models.Model):
 	freq = models.IntegerField(null=True)
 	tag = models.CharField(max_length=20, null = True)
-	
+
+class UserForm(ModelForm):
+	class Meta:
+		model = User
+		fields = {'first_name', 'last_name', 'email'}
 
 
 class Image(models.Model):
@@ -71,17 +83,19 @@ class Image_Stack(models.Model):
 	user_owner = models.ForeignKey(User)
 	date_added = models.DateField('date added to system', null = True)
 	date_last_used = models.DateField(null = True)
-	type_of_image = models.CharField(max_length=10, choices=IMAGE_CHOICES) #can be OpenStack or OpenNebula - Different Details
 	number_of_uses = models.IntegerField(blank=True, null=True)
 	tags = tagging.fields.TagField()
-	kernel_id = models.CharField(max_length=500, null = True) #can be kernel-id
-	size = models.IntegerField(null=True)
+	status = models.CharField(max_length=500, choices=STATUS_CHOICES)
+	description = models.CharField(max_length=500, null=True)
 	public = models.BooleanField()
-	image_status = models.CharField(max_length=100, null = True)
-	ramdisk_id = models.CharField(max_length=200, blank=True, null=True)
-	architecture = models.CharField(max_length=200, blank=True, null=True)
-	container_format = models.CharField(max_length=200, blank=True, null=True)
-	disk_format = models.CharField(max_length=200, blank=True, null=True)
+#	size = models.IntegerField(null=True)
+#	type_of_image = models.CharField(max_length=10, choices=IMAGE_CHOICES) #can be OpenStack or OpenNebula - Different Details
+#	image_status = models.CharField(max_length=100, null = True)
+#	ramdisk_id = models.CharField(max_length=200, blank=True, null=True)
+#	architecture = models.CharField(max_length=200, blank=True, null=True)
+#	container_format = models.CharField(max_length=200, blank=True, null=True)
+#	disk_format = models.CharField(max_length=200, blank=True, null=True)
+#	kernel_id = models.CharField(max_length=500, null = True) #can be kernel-id
 	vim = models.BooleanField()
 	matlab = models.BooleanField()
 	abaqus = models.BooleanField()
@@ -120,7 +134,7 @@ class User_Tasks(models.Model):
 class Image_StackForm(ModelForm):
 	class Meta:
 		model = Image_Stack
-		exclude = ('number_of_uses', 'size', 'user_owner')
+		exclude = ('number_of_uses', 'date_last_used', 'date_added', 'user_owner', 'status')
 
 class Details_OpenStack(models.Model):
 	image = models.ForeignKey(Image)
