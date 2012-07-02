@@ -7,17 +7,25 @@
 <body>
 <h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
 <br />
-This portal was designed to help researchers find the most suitable virtual image for their computing needs.<br />
-Please choose one of the options below to continue:
-<br />
-<ol>
-	<li><a href="/computing/details">View statistics.</a></li>
-	<li><a href="/computing/list_vms">Launch an already existing VM image.</a></li>
-	<li><a href="/computing/create_image">Create a new VM image.</a></li>
-	<li><a href="/computing/search_form">Search for a VM image.</a></li>
-</ol>
+<h2>Viewing user details</h2>
 
+<div id="user_info">
+Username: {{ user_in_session }}<br />
+First name: {{ user_in_session.first_name }} <br />
+Last name: {{ user_in_session.last_name }} <br />
+Email: {{ user_in_session.email }} <br />
+</div>
 
+<div id="images_owned">
+<h3>VM images created:</h3>
+<ul>
+{% for item in user_image_list %}
+<li><a href="/computing/{{ item.id }}/">{{ item }}</a></li>
+{% endfor %}
+</ul>
+</div>
+
+<p><a href="/computing/">Go back to the start page.</a></p>
 <div id="user_corner">
 Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
 {% if user_in_session.is_staff %}

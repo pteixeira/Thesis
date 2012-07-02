@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<!--	<meta http-equiv="refresh" content="5" >-->
 		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
 	</head>
@@ -12,33 +11,15 @@
 {% if no_name %}
 <b>ERROR:</b> The image must have a name!
 {% else %}
+
 {% if error %}
 <b>ERROR:</b> An image with the name {{ error }} already exists in the system. Please <a href="/computing/create_image">go back</a> and select another name for the image.
 {% else %}
-<!--{% if data %}-->
-<!--{{ data }}-->
-<!--{% endif %}-->
 
-<h2>The Virtual Machine image was successfully created and added to the database.</h2>
-
-
-
-<p>The VM is being prepared. A warning will appear once the process is complete. <br />
-To access the VM, SSH into it using the following login and password combination:</p>
-<p>Login: user <br />
-Password: password</p>
 {% endif %}
 {% endif %}
 
 <p><a href="/computing/">Go back to the start page.</a></p>
-<div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
-{% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
-{% endif %}
-<br /><a href="/computing/logout/">Logout</a>
-</div>
 
 </body>
 </html>

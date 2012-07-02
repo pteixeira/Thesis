@@ -8,12 +8,26 @@
 <body>
 <h1>Search Form</h1>
 
+
+
 <form action="/computing/search/" method="get">
 	<input type="text" name="q"/>
 	<input type="submit" value="Search" />
 </form>
 
-<p><a href="/computing/">HOME</a></p>
-<p><a href="/computing/logout/">Logout</a></p>
+Input the terms you wish to search for. <br />
+Use commas "," to separate search terms. <br />
+
+<b>Example:</b> chemistry, organic chemistry, matlab
+
+<p><a href="/computing/">Go back to the start page.</a></p>
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+{% if user_in_session.is_staff %}
+<b>Administration:</b>
+<a href="/computing/management">Image management.</a>
+{% endif %}
+<br /><a href="/computing/logout/">Logout</a>
+</div>
 </body>
 </html>

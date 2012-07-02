@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
+		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
+	</head>
+<body>
+<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+
+<h1>Available VM images:</h1>
+<h4>These are images that are public or you have created.</h4>
+
+<ul>
+	{% for item in user_image_list %}
+		<li><a href="/computing/{{ item.id }}/">{{ item.name }}</a> 
+		Tags: {% for tag in item.get_tags %}
+			{{ tag }};
+		      {% endfor %}</li>
+	{% endfor  %}
+	</ul>
+
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>.<br />
+<a href="/computing/logout/">Logout</a>
+</div>
+
+</body>
+</html>

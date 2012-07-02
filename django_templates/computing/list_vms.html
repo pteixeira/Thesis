@@ -6,17 +6,18 @@
 	</head>
 <body>
 <h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
-<br />
-This portal was designed to help researchers find the most suitable virtual image for their computing needs.<br />
-Please choose one of the options below to continue:
-<br />
-<ol>
-	<li><a href="/computing/details">View statistics.</a></li>
-	<li><a href="/computing/list_vms">Launch an already existing VM image.</a></li>
-	<li><a href="/computing/create_image">Create a new VM image.</a></li>
-	<li><a href="/computing/search_form">Search for a VM image.</a></li>
-</ol>
 
+<h1>Available VM images:</h1>
+<h4>These are images that are public or you have created.</h4>
+
+<ul>
+	{% for item in user_image_list %}
+		<li><a href="/computing/{{ item.id }}/">{{ item.name }}</a> 
+		Tags: {% for tag in item.get_tags %}
+			{{ tag }};
+		      {% endfor %}</li>
+	{% endfor  %}
+	</ul>
 
 <div id="user_corner">
 Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
@@ -26,6 +27,6 @@ Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.fir
 {% endif %}
 <br /><a href="/computing/logout/">Logout</a>
 </div>
-
+<p><a href="/computing/">Go back to the start page.</a></p>
 </body>
 </html>

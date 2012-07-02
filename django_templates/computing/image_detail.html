@@ -32,27 +32,27 @@
 </ul>
 {% else %}{% if image.type_of_image == "stack" %}
 
-<ul>
-	<li>Image name: {{ image.name}}</li>
-	<li>Image creator: {{ image.user_owner }}</li>
-	<li>Type of image: {{ image.type_of_image }}</li>
-	<li>Kernel ID: {{ image.kernel_id }}</li>
-	<li>Size: {{ image.size }}</li>
-	<li>Public: {{ image.public }}</li>
-	<li>Image status: {{ image.image_status }}</li>
-	<li>Ramdisk ID: {{ image.ramdisk_id }}</li>
-	<li>Architecture: {{ image.architecture }}</li>
-	<li>Container format:{{ image.container_format }}</li>
-	<li>Disk format: {{ image.disk_format }}</li>
+
 </ul>
 
-{% if user == image.user_owner %}
-Placeholder para lançar imagem.
-{% endif %}
+
 {% else %}
 
-Wrong type of image.
+<ul>
+	<li>Image name: {{ image.name}}</li>
+	<li>Image creator: {{ image.user_owner }} - {{ image.user_owner.email }}</li>
+	<li>Public: {{ image.public }}</li>
+	<li>Image status: {{ image.status }}</li>
+	<li>Added to the system on: {{ image.date_added }}</li>
+	<li>Last used on: {{ image.date_last_used }}</li>
+</ul>
 
+{% if user == image.user_owner and image.public %}
+Launch VM image! <br />
+{% else %}
+This image was not created by you or it is not public. <br />
+Please contact either the owner or the system administrator if you wish to use this image. <br />
+{% endif %}
 {% endif %}
 
 {% endif %}
@@ -60,5 +60,13 @@ Wrong type of image.
 <form><input type="button" value="Back" onClick="history.go(-1); return true;"></form>
 <p><a href="/computing/">Back to the start page.</a></p>
 <p><a href="/computing/logout/">Logout</a></p>
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user.first_name }} {{ user.last_name }}</a>
+{% if user.is_staff %}
+<b>Administration:</b>
+<a href="/computing/management">Image management.</a>
+{% endif %}
+<br /><a href="/computing/logout/">Logout</a>
+</div>
 </body>
 </html>

@@ -6,20 +6,30 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<p>You searched for: <strong>{{ query }}</strong></p>
 
-{% if list %}
-<p> Found {{ list|length }} Image{{ list|pluralize }}.</p>
+
+{% if image_list %}
+<p>You searched for: <strong>{{ searched_item }}</strong></p>
+<p> Found {{ image_list|length }} Image{{ image_list|pluralize }}.</p>
 <ul>
-	{% for item in list %}
-	<li><a href="/computing/{{ item.0 }}/">{{ item.0 }} - {{ item.1 }}</a></li>
+	{% for item in image_list %}
+	<li><a href="/computing/{{ item.id }}/">{{ item }}</a></li>
 	{% endfor %}
 </ul>
 {% else %}
-<p>No images matched your search criteria.</p>
+<p>No images matched your search criteria.<br />
+Please go back to the <a href="/computing/search_form">previous page</a> and insert other search terms.
+</p>
 {% endif %}
-{{ list|length }}
 
 <p><a href="/computing/">HOME</a></p>
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+{% if user_in_session.is_staff %}
+<b>Administration:</b>
+<a href="/computing/management">Image management.</a>
+{% endif %}
+<br /><a href="/computing/logout/">Logout</a>
+</div>
 </body>
 </html>

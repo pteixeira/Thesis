@@ -6,7 +6,7 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>Available VM images:</h1>
+<h2>Available VM images</h2>
 <h4>These are images that are public or you have created.</h4>
 
 {% if latest_image_list %}
@@ -19,13 +19,13 @@
 	{% endfor  %}
 	</ul>
 	
-<h1>Most used images by you:</h1>
+<h2>Most used images by you</h2>
 <h4>These are the most used images by you. You may consider reusing them instead of creating a new one.</h4>
 {% for image in user_most_used_images %}
 {{ image.image.name }}
 {% endfor %}
 	
-<h1>Most used VM images in the system:</h1>
+<h2>Most used VM images in the system</h2>
 <h4>These are the most used VM images currently in the system. If you believe one of these images may help you, but you do not have access to it, contact either the VM image creator or the system administrator so that they can set their image to ``Public''. Their contacts are displayed next to the image they created.</h4>
 
 {% for image in ordered_by_usage %}
@@ -36,7 +36,7 @@
 	<p>No images available.</p>
 {% endif %}
 
-<h1>Tag Cloud</h1>
+<h2>Tag Cloud</h2>
 <h4>This shows the current tag usage in the VM images in the system. A bigger font means a higher use of that tag.</h4>
 {% load tagging_tags %}
 {% tag_cloud_for_model computing.Image_Stack as tags with steps=20 distribution=log %}
@@ -46,16 +46,33 @@
 	        {{ tag.name }} - {% for image in full_image_list %}
 				 	{% for tagita in image.get_tags %}
 				 		{% if tagita == tag %}
-				 			{{ image.name }}
+				 			<a href="/computing/{{ image.id }}">{{ image.name }}</a>
 				 		{% endif %}
 				 	{% endfor %}
 				 {% endfor %}<br />
 	    </font>
 	    {% endfor %}
 
-<p><a href="/computing/">HOME</a></p>
+<h2>Most searched tags in the system</h2>
+<h4>This shows the most searched tags in the system and which images are tagged with them.</h4>
 
-{{ full_image_list }}
 
+{% for tagasd in most_searched_tags %}
+{{ tagasd.tag }} - {% tagged_objects tagasd.tag in computing.Image_Stack as coisas %}
+		   {% for coisa in coisas %}
+			<a href="/computing/{{ image.id }}">{{ coisa.name }}</a>
+		   {% endfor %} <br />
+{% endfor %}
+
+
+<p><a href="/computing/">Go back to the start page.</a></p>
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+{% if user_in_session.is_staff %}
+<b>Administration:</b>
+<a href="/computing/management">Image management.</a>
+{% endif %}
+<br /><a href="/computing/logout/">Logout</a>
+</div>
 </body>
 </html>
