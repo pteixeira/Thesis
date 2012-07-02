@@ -1,0 +1,41 @@
+body {
+
+background-color: #eee;
+margin: 50px auto;
+width: 1150px;
+border: 1px solid #aaa;
+box-shadow: 0 0 5px 5px #aaa;
+padding: 10px;
+}
+
+div#user_corner {
+position: absolute;
+top:0;
+right:0;
+width: 440px;
+margin: 7px;
+}
+
+#user_corner {
+
+
+}
+
+h1 {
+text-align:center;
+font-family: "Verdana", sans-serif;
+
+}
+
+h2 {
+text-align:center;
+
+}
+
+html {
+position:relative;
+background: #fff;
+font-family: "Arial", "Helvetica", sans-serif;
+font-size: 14px;
+
+}
