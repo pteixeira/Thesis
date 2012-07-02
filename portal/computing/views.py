@@ -74,7 +74,7 @@ def list_vms(request):
 				public_image_listlist.remove(item2)			
 	
 	user_image_listlist.extend(public_image_listlist)
-	return render_to_response('computing/list_vms.html', {'user_image_list': user_image_listlist})
+	return render_to_response('computing/list_vms.html', {'user_image_list': user_image_listlist, 'user_in_session': request.user})
 
 
 @login_required
@@ -95,7 +95,7 @@ def detail(request, image_id):
 @login_required	
 def create_image(request):
 	imageForm = Image_StackForm()
-	return render_to_response('computing/create_image.html', {'formset': imageForm}, context_instance=RequestContext(request))
+	return render_to_response('computing/create_image.html', {'formset': imageForm, 'user_in_session': request.user}, context_instance=RequestContext(request))
 
 @login_required
 def create_results(request):
@@ -142,7 +142,7 @@ def create_results(request):
 	
 
 	
-	return render_to_response('computing/create_results.html', {'data': packages})
+	return render_to_response('computing/create_results.html', {'data': packages, 'user_in_session': request.user})
 #	if i:
 #		return render_to_response('computing/image_exists.html', {'data': post_data[0][1][0]})
 #	else:	
@@ -222,11 +222,11 @@ def filetree(request):
 	return render_to_response('computing/detail.html', {'ordered_by_usage': ordered_by_usage, 'latest_image_list': user_image_listlist,
 				  			    'user': user_in_session, 'full_image_list': full_image_list,
 				  			    'user_most_used_images': user_most_used_images,
-				  			    'most_searched_tags': most_searched_tags})
+				  			    'most_searched_tags': most_searched_tags, 'user_in_session': request.user})
 
 @login_required
 def search_form(request):
-	return render_to_response('computing/search_form.html')
+	return render_to_response('computing/search_form.html', {'user_in_session': request.user})
 
 @login_required	
 def search(request):#se for so uma tag, devolve as imagens com essa tag 
@@ -267,7 +267,8 @@ def search(request):#se for so uma tag, devolve as imagens com essa tag
 	#coiso = TaggedItem.objects.get_by_model(models.Image_Stack, taggy2)
 	#tag_list = Tag_Search_Frequency.objects.get(tag = tag_found.tag).freq
 	
-	return render_to_response('computing/search_results.html', {'image_list': listinha, 'searched_item': query})
+	return render_to_response('computing/search_results.html', {'image_list': listinha, 'searched_item': query, 
+							            'user_in_session': request.user})
 #	
 #    	q = q.upper()
 #    	images = Image_Stack.objects.all()
