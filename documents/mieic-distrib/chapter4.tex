@@ -1,11 +1,13 @@
 \chapter{Approach and Results}\label{chap:chap4}
 
 
-This chapter presents the main work which derived from the study performed in Chapter~\ref{chap:sota}.
+This chapter depicts the main work which derived from the study performed in Chapter~\ref{chap:sota}. 
 
+The implementation of some of the capabilities of the web system is explained, with special detail to the ``tag'' system and its importance in the system.
 
-MUST COMPLETE INTRO
+A proposed integration with \textit{OpenStack} is described, including the system architecture and some technical details. Some advantages the developed web system has over this cloud middleware are explained.
 
+The results gathered from the work described in this document are presented.
 
 \section{Implementation}\label{sec:implementation}
 
@@ -21,17 +23,13 @@ Two frameworks were considered for building the web system:
 
 As it was concluded in Chapter~\ref{chap:sota} --~\nameref{chap:sota} -- in the section~\nameref{sota:concl}, \textit{Django} (and consequently \textit{Python}) was chosen for the development of the web system.
 
-Some of the functionalities implemented are documented in the next part of this chapter.
+In this segment of the document, some of the web system functionalities are document with regards to their technical aspect.
 
-\subsubsection{Web system functionalities}
+\subsubsection{The login system}
 
-In this segment of the document, some of the web system functionalities are document with regards to their technical aspect.\\
-\ \\
-\textbf{The login system}:\\
-\ \\
 The login system was implemented using the \texttt{django.contrib.auth} module (referred to as: ``Authentication module'' for the rest of the chapter for readability reasons) which comes bundled with a clean \textit{Django} installation.
 
-This module automates the process of managing users, permissions and the overall authentication aspect of a system, by providing a pre-created ``Model'' with a set of attributes,  (\textit{Django} uses an MVC architecture, as mentioned in Chapter~\ref{chap:sota} --~\nameref{chap:sota}, section~\nameref{inserir seccao do sota onde o django e comentado}) which can be edited if the necessity arises.
+This module automates the process of managing users, permissions and the overall authentication aspect of a system, by providing a pre-created ``Model'' with a set of attributes,  (\textit{Django} uses an MVC architecture, as mentioned in Chapter~\ref{chap:sota} --~\nameref{chap:sota}, section~\nameref{python}) which can be edited if the necessity arises.
 
 This module handles every user as a ``normal'' user unless the fields ``is\_staff'' and/or ``is\_superuser'' are changed to ``True'' (these fields are present ), which mean that a user will be able to access the administration panel and have all the permissions inside the system without needing to explicitly assigning them, respectively.
 
@@ -41,10 +39,10 @@ In order to know which user has access to what, the user who is currently logged
 
 The administrator is shown a link to ``Management'' section hidden in the ``Index'' page from the rest of the users, using the same login system. The ``view'' checks if the current user has the field ``is\_staff'' set to ``True'' and if it is, that link is shown.
 
-Even if the normal users are aware of the management area and know the link to it, they still cannot access it even if they are logged in, since the ``view'' for that page checks if the user has access, thus preventing an outsider from doing harm to the system.\\
-\ \\
-\textbf{The ``Search'' function and the ``Tag'' system}:\\
-\ \\
+Even if the normal users are aware of the management area and know the link to it, they still cannot access it even if they are logged in, since the ``view'' for that page checks if the user has access, thus preventing an outsider from doing harm to the system.
+
+\subsubsection{The ``Search'' function and the ``Tag'' system}
+
 In order to provide for a better VM image management, it was decided to implement a search function, where users could easily find which VM images they were looking for with little effort required. 
 
 The search function itself is not hard to implement, as long as the fields it searches over are properly created. As such, it was necessary to identify which fields would be used.
@@ -53,13 +51,13 @@ The search function itself is not hard to implement, as long as the fields it se
 
 The user has the ability of ``tagging'' an image on its creation process simply by typing which keywords he/she wishes to attach to that image. Multiple word keywords are supported, as long as they are separated via commas (specified in the image creation page).
 
-This ``tag'' system now allows for the search function to use them. When the user uses this function, he/she has to type in which keywords to search for. The system will then iterate over the tags which were inputted and search in the system for all the images which were tagged with that keyword, using a method included in the \texttt{django-tagging} module called \texttt{get_by_model} which takes the ``Model'' that is needed to search over and the keyword inputted in the search form.
+This ``tag'' system now allows for the search function to use them. When the user uses this function, he/she has to type in which keywords to search for. The system will then iterate over the tags which were inputted and search in the system for all the images which were tagged with that keyword, using a method included in the \texttt{django-tagging} module called \texttt{get\_by\_model} which takes the ``Model'' that is needed to search over and the keyword inputted in the search form.
 
-The ``Search'' function also updates the frequency of which the ``tags'' were searched. If the search term does not exist in the database, it is created with the usage of ``1''. If it exists, its usage is incremented once.\\
-\ \\
-\textbf{Helping the user choose a VM image}:\\
-\ \\
-As it was mentioned in Chapter~\ref{chap:chap4} --~\nameref{chap:chap4}, in section~\nameref{seccao onde se fala da ajuda que se da ao utilizador} -- different types of ``tools'' were implemented in order to help the user choose which VM he/she should use:
+The ``Search'' function also updates the frequency of which the ``tags'' were searched. If the search term does not exist in the database, it is created with the usage of ``1''. If it exists, its usage is incremented once.
+
+\subsubsection{Helping the user choose a VM image}
+
+As it was mentioned in Chapter~\ref{chap:chap3} --~\nameref{chap:chap3}, in section~\nameref{subsubsec:help} -- different types of ``tools'' were implemented in order to help the user choose which VM he/she should use:
 
 \begin{itemize}
 \item A set of statistics;
@@ -76,7 +74,7 @@ The set of statistics contains the following:
 \item A ``Tag'' Cloud was created, showing which ``tags'' were most used across the system.
 \end{enumerate}
 \ \\
-These statistics were implemented by taking advantage of the relationships created and depicted in the UML diagram shown in the previous section (~\nameref{seccao onde esta o diagrama uml}). 
+These statistics were implemented by taking advantage of the relationships created and depicted in the UML diagram shown in the previous section (~\nameref{subsec:uml-diag}). 
 
 As it can be understood from the diagram, there is a direct relation between the user and the VM image, as an image has an owner explicitly declared in its attributes.
 
@@ -86,11 +84,11 @@ As for knowing which VMs are more used across the system, this is done by using 
 
 As it was explained earlier, when the user search for a ``tag'', the number of uses of that ``tag'' increases internally.
 
-The creation of a ``Tag'' cloud is also a built-in functionality of the \texttt{django-tagging} module. What it does it create a list of the ``tags'' used for a specified ``Model'', using how many times the ``tags'' were used and associate them with a certain font size to be displayed. This assignment uses either a logarithmic or a linear distribution so that a visual comparison can be made. The bigger the used font, the more times that tag was used~\cite{http://django-tagging.googlecode.com/svn/trunk/docs/overview.txt}.\\
-\ \\
-\textbf{VM image creation}:\\
-\ \\
-The VM image creation was created by using \texttt{bash}~\footnote{Unix command shell.} scripts. The web system calls these scripts and they are ran server side. An example of those scripts can be found in Appendix~\ref{ap:ap4} (~\nameref{ap:ap4}).
+The creation of a ``Tag'' cloud is also a built-in functionality of the \texttt{django-tagging} module. What it does it create a list of the ``tags'' used for a specified ``Model'', using how many times the ``tags'' were used and associate them with a certain font size to be displayed. This assignment uses either a logarithmic or a linear distribution so that a visual comparison can be made. The bigger the used font, the more times that tag was used~\cite{django-tagging}.
+
+\subsubsection{VM image creation}\label{subsubsec:vmcreation}
+
+The VM image creation was created by using \texttt{bash}~\footnote{Unix command shell.} scripts. The web system calls these scripts and they are ran server side. An example of those scripts can be found in Appendix~\ref{chap:ap4} (~\nameref{chap:ap4}).
 
 These scripts are created using the information inputted by the user in the VM image creation page. They take the name of the image and the name of the programs to be included in the VM creation in order to contextualize it. 
 
@@ -100,11 +98,13 @@ In order for the scripts to be run, whichever user is logged into the server and
 
 This access can be granted by modifying the \texttt{sudoers} file and granting \texttt{sudo} permission to the user which will run the web system and \emph{only} to the files which need to be run.
 
-This guarantees that nothing in the system is compromised and that only specific scripts can be ran using \texttt{sudo} permissions.\\
-\ \\
-\textbf{Managing tasks}:\\
-\ \\
-Another aspect of the system worth detailing is how it deals with requests for VM image creations. At the end of the VM image creation process inside the web system (shown in Figure~\ref{fig:img-creation})<<inserir print>> the method \texttt{subprocess.call()} from the \textit{Python} module \texttt{subprocess} (allows to create new processes, connect to input/output/error pipes and obtain the return codes) is used to run the VM creation script. If this method is called inside the \textit{Python} code, the \textit{Django} ``View'' will wait until the return code is obtained from the VM creation script call, and will only render itself \emph{after} the script finishes. Some tests were run and the average time for the script completion came to around twenty minutes (as seen in Figure~\ref{script-timer}), which is a very high amount of time to wait.
+This guarantees that nothing in the system is compromised and that only specific scripts can be ran using \texttt{sudo} permissions.
+
+Furthermore, when the user creates a VM image, the system automatically adds ``tags'' to the ``Image'' object created, according to which programs the user wished to include. This is done to remove the possibility of the users forgetting to do so and the image ``tagging'' becoming incomplete and consequently hurting the rest of the user base.
+
+\subsubsection{Managing tasks}
+
+Another aspect of the system worth detailing is how it deals with requests for VM image creations. At the end of the VM image creation process inside the web system (shown in Figure~\ref{fig:vm-creation}) the method \texttt{subprocess.call()} from the \textit{Python} module \texttt{subprocess} (allows to create new processes, connect to input/output/error pipes and obtain the return codes) is used to run the VM creation script. If this method is called inside the \textit{Python} code, the \textit{Django} ``View'' will wait until the return code is obtained from the VM creation script call, and will only render itself \emph{after} the script finishes. Some tests were run and the average time for the script completion came to around twenty minutes (as seen in Figure~\ref{fig:script-timer}), which is a very high amount of time to wait.
 
 \begin{figure}[h]
   \begin{center}
@@ -115,47 +115,48 @@ Another aspect of the system worth detailing is how it deals with requests for V
   \end{center}
 \end{figure}
 
-As such, an asynchrounous task/job queue based on distributed message passing named \texttt{Celery} was used. \texttt{Celery} allows for the execution of certain tasks in the background, so the ``Views'' can be loaded without having to wait for the subprocesses to finish executing.
+As such, an asynchronous task/job queue based on distributed message passing named \texttt{Celery} was used. \texttt{Celery} allows for the execution of certain tasks in the background, so the ``Views'' can be loaded without having to wait for the subprocesses to finish executing.
 
-After the user clicks the "Create VM image" button in the VM creation webpage (Figure~\ref{fig:vm-creation} -- \nameref{fig:vm-creation})<<insert screen>>, he/she will be redirected to the ``VM launch'' screen, which will be refreshed every few minutes and check if the \texttt{celery} task which contains the command to run the VM creation script has finished executing. As soon as it does, the page will refresh and show a link to launch the VM (Figure~\ref{fig:launch-vm} -- \nameref{fig:launch-vm}).
+After the user clicks the "Create VM image" button in the VM creation page (Figure~\ref{fig:vm-creation} -- \nameref{fig:vm-creation}), he/she will be redirected to the ``VM launch'' screen, which will be refreshed every few minutes and check if the \texttt{celery} task which contains the command to run the VM creation script has finished executing. As soon as it does, the page will refresh and show a link to launch the VM.
 
 \texttt{Celery} is also used to schedule certain maintenance jobs, such as checking if the disk where the VMs are being stored is reaching a certain capacity (useful for administrators).
 
-Finally, \texttt{Celery} sends these tasks to \textit{workers} (processes created by \texttt{Celery}) who receive them in a distributed manner (if a worker is free, it receives the task, instead of a worker who is already working on something else). This means that more than one request that needs to be handled in the background can be run at the same time~\cite{http://celeryproject.org/}.
+Finally, \texttt{Celery} sends these tasks to \textit{workers} (processes created by \texttt{Celery}) who receive them in a distributed manner (if a worker is free, it receives the task, instead of a worker who is already working on something else). This means that more than one request that needs to be handled in the background can be run at the same time~\cite{celery}.
 
-
-
-
------ derpderpderp
-
-The modules \texttt{python-tagging} and \texttt{South} are needed for the web application to function properly. \texttt{python-tagging}, as it was mentioned earlier, is crucial for the search function, whereas \texttt{South} is used in database migrations.
-
-
-\pagebreak
-
-insert this somewhere:
 The modules \texttt{python-tagging} and \texttt{South} are needed for the web application to function properly. \texttt{python-tagging}, as it was mentioned earlier, is crucial for the search function, whereas \texttt{South} is used in database migrations.
 
 \section{Integrating with OpenStack}
 
-As it was described in Chapter~\ref{chap:derpderp}, in section~\ref{derpderpderp} --~\nameref{derpderpderp}, this projects interacts with a cloud middleware, namely \textit{OpenStack}.
+As it was mentioned earlier in the document, this project interacts with a cloud middleware, namely \textit{OpenStack}.
 
-Connection with \textit{Glance} is made by two ways:
+\textit{OpenStack} being created to deliver a massively scalable cloud operating system, each of the components is designed to work together in order to provide complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
 
-\begin{itemize}
-\item Through a RESTful API.
-\item Using a command line API.
-\end{itemize} 
+Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
 
-Since this is a web system, the RESTful API will be used.
+\begin{figure}[h!]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{nova-concept-int-essex}
+    \caption{Relationships between the different \textit{OpenStack} services.~\cite{ken-pepple:essex-arch}}
+    \label{fig:openstack_services}
+  \end{center}
+\end{figure}
 
-Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
+The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture}.
 
-Since the web application has \textit{Python} code on the background and \textit{OpenStack} is coded in the same programming language, this connection is seamless.
+\begin{figure}[t]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{openstack-arch}
+    \caption{Proposed architecture implementation for integrating with \textit{OpenStack}.}
+    \label{fig:architecture}
+  \end{center}
+\end{figure}
 
-\subsection{The cloud middleware deployment}\label{subsec:middleware-deployment}
 
-As mentioned in Chapter~\ref{chap:sota}, section~\ref{subsubsec:devstack}, \textit{DevStack} was used in order to simplify the cloud deployment.
+This integration proposition would expand the power of the private cloud project, by taking advantage of \textit{OpenStack}.
+
+\textit{DevStack} was used in order to simplify the cloud deployment.
 
 Firstly, a clean installation of Ubuntu 12.04 LTS (as recommended by \textit{DevStack}' homepage) was created on Linux's \textit{Virtual Machine Manager} (\textit{libvirt}).
 
@@ -181,46 +182,47 @@ All the desired services were up and running, as shown in Figure~\ref{fig:servic
   \end{center}
 \end{figure}
 
-\subsection{The proposed solution for integration}\label{subsec:proposition}
+Connection with \textit{OpenStack} is made by communicating with \textit{Glance}, which can be made by two ways:
 
-\textit{OpenStack} being created to deliver a massively scalable cloud operating system, each of the components is designed to work together in order to provide complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
+\begin{itemize}
+\item Through a RESTful API.
+\item Using a command line API.
+\end{itemize} 
 
-Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
+Since this is a web system, the RESTful API will be used.
 
-\begin{figure}[h!]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{nova-concept-int-essex}
-    \caption{Relationships between the different \textit{OpenStack} services.~\cite{ken-pepple:essex-arch}}
-    \label{fig:openstack_services}
-  \end{center}
-\end{figure}
+Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
 
-The solution proposed for this project links the \textit{OpenStack} Dashboard --- \textit{Horizon} --- with the designed \textit{Web application} developed in \textit{Python} and \textit{Django}, as shown in Figure~\ref{fig:architecture}.
+Since the web application has \textit{Python} code on the background and \textit{OpenStack} is coded in the same programming language, this connection is seamless.
 
-\begin{figure}[t]
-  \begin{center}
-    \leavevmode
-    \includegraphics[scale=0.5]{architecture}
-    \caption{Proposed architecture implementation.}
-    \label{fig:architecture}
-  \end{center}
-\end{figure}
+Due to time constraints, the full integration with \textit{OpenStack} was not possible, but the work described in this document provide a good start for that to happen.
 
-As it can be observed and was mentioned earlier in the chapter (section~\ref{sec wherever vmbuilder was referenced}), the web application will use \texttt{vmbuilder} to create the images. 
+The web interface which was developed offers some advantages over \textit{OpenStack} itself, which are described in the next section.
 
-\textit{cloudinit} should be used whenever there is the need to contextualize already built images and then passing that information \textit{Glance}.
-
-This integration proposition would expand the power of the private cloud project, by taking advantage of \textit{OpenStack}.
-
+\clearpage
 \subsection{Advantages over \textit{OpenStack}}
 
 At this moment, \textit{OpenStack} does not offer the possibility of searching for a specific VM image to launch. It just displays all the VM images registered and the user must manually search for the VM he/she is looking for.
 
-\textit{OpenStack} also does not provide a way of actually creating a contextualized VM image. 
+\textit{OpenStack} also does not provide a way of actually creating a contextualized VM image. The user must create on his/her own the script which will contextualize a pre-created clean VM image (as it can be seen in Figure~\nameref{fig:customization-script}). 
 
-Its dashboard \textit{Horizon} is not user friendly for people who are not familiarized with some of the computing aspects, but the developed system is. It simplifies the way it interacts with the user, showing helpful tips and notes wherever is deemed necessary, successfully completing the objective defined at the start -- letting the users interact with the system without needing specific technical knowledge.
+Its \textit{Horizon} dashboard is not user friendly for people who are not familiarized with some of the computing aspects, but the developed system is. It simplifies the way it interacts with the user, showing helpful tips and notes wherever is deemed necessary, successfully completing the objective defined at the start -- letting the users interact with the system without needing specific technical knowledge.
 
+\section{Results}\label{sec:results}
+
+In order to test whether the developed web system helped users in choosing which environment was more suitable for their needs, a series of tests had to be run.
+
+These tests involved the successive creation of VM images and their deployment, while measuring the time it took from when the ``Create VM image'' was pressed in the web system until the time when the VM was launched and ready to use.
+
+As it was mentioned earlier, the creation of the VMs took an average of 20 minutes (this was tested by using the \texttt{time} command which measures the system resource usage) and the actual VM launch (from when the creation script finished until the VM was ready to use) took around 10 minutes (this on a laptop with an \textit{Intel} i7 CPU running at 1.60 GHz with 4 GB of RAM).
+
+Launching already existing VMs took an average of 10 minutes when they were launched from the web system, keeping the time consistent with when they were launched right after they were created.
+
+This however, needs further testing in different machines and different environments, so an actual measure can be taken.
+
+Nevertheless, it can be said that with the use of a web system like the one that was developed, users can actually take advantage from the VM images created by other users, which removes the VM creation time, regardless of what that is.
+
+With \textit{OpenStack}, the VM images had to be constantly re-contextualized, something that this web system addresses and fixes.
 
 \section{Conclusions}
 
@@ -228,6 +230,6 @@ This chapter presented how the architecture described in the previous chapter (\
 
 It was shown how the use of some \textit{Django} modules were used in order to complete some of the objectives and how the system works internally.
 
-An integration with \textit{OpenStack} was proposed, in order to maximize the power of the system. This web system can be used as the interface for the cloud middleware, as long as the connections are correctly created.
+An integration with \textit{OpenStack} was proposed, in order to maximize the power of the system. This web system can be used as the interface for the cloud middleware, even replacing some of its functions (i.e. image contextualization).
 
 Improvements over the current \textit{OpenStack} version were also referred, underlining the user-friendly characteristic of the web system developed.

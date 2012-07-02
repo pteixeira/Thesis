@@ -1,37 +1,45 @@
 \chapter{Conclusion} \label{chap:concl}
 
-The problem described in Chapter~\ref{chap:chap3} has been solved as described in Chapter~\ref{chap:chap4}
+In this chapter the conclusions gathered from the work described in the previous sections is described. 
+
+Recommendations for future work are also made.
 
 \section{Conclusions}\label{sec:conclusions}
 
 During the realization of this project a few conclusions were drawn.
 
-First of all, cloud computing is one major topic in this scene at the moment. Researchers are very fond of the possibilities that cloud computing has and what it has to offer and they want to take as much out of it as they can. 
+First of all, cloud computing is one major topic in its area at the moment. Researchers are very fond of the possibilities that cloud computing has and what it has to offer and they want to take as much out of it as they can. 
 
-Companies are also shifting towards the cloud. They are setting their IT foundations in it, abandoning the physical infrastructures and costs that come with them. More and more enterprises offer cloud deployment services and the open source community 
+Companies are also shifting towards the cloud. They are setting their IT foundations in it, abandoning the physical infrastructures and costs that come with them. More and more enterprises offer cloud deployment services and the open source community is opened to these changes, as it could be seen in the development of \textit{OpenStack} and \textit{OpenNebula}.
 
 \textit{OpenStack} is a major competitor in the cloud computing scene. If it continues with the same pace it had (and maintained) since its first release, it will overthrow its competitors. It is extremely powerful and has both the community and industry backup. \textit{OpenNebula} is also trying to keep up the pace, using the revenue from their enterprise edition to fuel the development of the project.
 
-Furthermore, the creation of VM images on-the-fly is only worth it when there are few to no usable VMs present in the system. As time passes, almost every scenario will be covered and the need for VM image creation will decrease. It may be profitable to setup a VM image repository so that others can benefit from the VM images created by this project, but further research is needed in this subject.
+In addition, the \textit{Django} framework came to be a powerful tool in this project. Its MVC architecture simplified the development process and \textit{Python} is an easy to pickup programming language with a very strong community behind it. The downside was that even though \textit{Python} is relatively simple, \textit{Django} can become troublesome in some areas. If someone is not used to this kind of \textit{frameworks}, the learning process may be slow.
 
-In addition, the \textit{Django} framework came to be a powerful tool in this project. Its MVC architecture simplified the development process and \textit{Python} is an easy to pickup programming language with a very strong community behind it. The downside was that even though \textit{Python} is relatively simple, \textit{Django} can become troublesome in some areas. If someone is not used to this kind of \textit{frameworks}, they will have a somewhat slow learning process. 
+As for initially delineated objectives for this project, it can be concluded that the development of the web system can help users in choosing the suitable VMs for their computing jobs. The usage of statistics and visual aids helps the users locate what they are looking for.
 
-It is easy to be stuck in the same step for quite some time and not understanding why something is not working, as even though the MVC architecture helps in separating the user interface from the rest of the code, understanding the connections between the views and the controllers can be hard. Most of the issues encountered revolved around the same problem: defining which regular expressions to use for the URL recognition (\textit{Django} uses regular expressions so automatically identify which view to use according to the URL in the browser). Luckily \textit{Django} (similarly to what was described in \nameref{subsec:contextualization} with \textit{cloud-init}) has its own IRC channel in the Freenode IRC network~\footnote{irc.freenode.net} and the users in there were able to solve most of the issues encountered.
+The search function is a powerful tool in the web system, as it can locate anything that is ``tagged'' with anything. If the user is looking for a VM image with the program \textit{Vim} installed, the search function will find it. As it was mentioned in the previous chapter, the automatic ``tag'' addition complements the search function and expands its power.
 
-\textit{Django} and \textit{Python}'s full potential is only unleashed after the editor used by the developer is fully optimized in terms of \textit{plugins}. Due to the great number of functions needed to be used (most of them follow the same schema), use of a template language to code the views (which leads once more to a great repetition in the code process), having the appropriate \textit{plugins} to reduce the amount this repetition can reduce the coding time by a huge amount. \textit{Plugins} like \texttt{Snippets} for \textit{gedit} (the text editor used for this project) improved the coding time after they were installed.
+VM images were created at an average of twenty minutes since the script was launched and they were booted after an average of ten minutes since the script finished executing.
+
+This boot time was also observed if the script to boot the images was launched regardless of the time the image was created, which means that using a previously created image can improve the actual use time of the system by twenty minutes.
+
+This shows that users that use the web system can actually benefit from using images from other users, as long as the VM images fit their needs.
+
+The implementation of the possibility to reserve a VM image for usage in the future gives an incredible amount of flexibility to the system, so that a user is not restrained as to when the VM image might be created (the script finishing time may be slower due to high amounts of traffic in the web system at that time).
+
+Improvements over \textit{OpenStack} were observed, namely in the way \textit{OpenStack} approaches users who do not have any technical knowledge in cloud computing. The \textit{Horizon} dashboard contains very technical terms, some of which may be unfamiliar to a use base that may contain users from other engineering fields (FEUP's user base, for example).
 
 \section{Future Work}\label{sec:future-work}
 
-One of the main improvements that can be done is the full integration with \textit{OpenStack}'s dashboard, instead of relying on a middleman (the web application).
+One of the main improvements to be done is implementing the ability of customizing already existing VM images in the system. The use case was presented (Figure~\ref{fig:uc13} --~\nameref{fig:uc13}) and the technology was discussed (\texttt{cloud-init}) but it was not implemented. 
+This would improve the web system in a great way, simplifying the process of providing a proper VM image to the user without the need of recreating an image when all that was needed was to slightly tweak a previous VM image.
 
 Another improvement would be the possibility of adding new packages to the VM images configuration by user input, instead of choosing them on a fixed list, since this limits what the user can choose from. Removing this limitation can potentially allow the project to scale outside of FEUP's range and open the possibility of deployment on other facilities. This could be achieved by possibly searching repositories in real time, so that the user can have as many choices as possible.
 
 The direct comparison with \textit{OpenNebula} would be a great contribution as well. Comparing VM creation and contextualization time, even comparing the development process by using \textit{Ruby on Rails} would lead to discover which process is more appropriate and benefitial.
+Plus, a direct comparison between these two systems is yet to be found at the date of the creation of this document. It has been discussed in both \textit{OpenStack} and \textit{OpenNebula}'s mailing lists, but no comparison has yet been made.
 
+Extending the use of this web system to other facilities is also a possibility. There are many sites that can benefit from a web system like the one presented in this document. Furthermore, there are no actual restrictions as to where this system can be implemented and it can be adapted to any facility who wishes to use it.
 
-
-
-
-
-
-An interesting feature to complete in future work could be eliminating the web system and passing the image creation and contextualization to \textit{OpenStack}, modifying the \textit{Horizon} dashboard itself.
+Improvements could also be made in the management section of the web system. The areas of management can be expanded outside of the web system itself. Checking the disk quota for VM images is a possibility, and the system may be able to free some space by deleting older VM images, similar to what is already implemented, but in a larger scale.

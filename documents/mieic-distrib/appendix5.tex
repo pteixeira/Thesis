@@ -1,26 +1,122 @@
-\chapter{vmbuilder script} \label{chap:ap5}
+\chapter{Use cases} \label{chap:ap5}
 
-Script used to create VM images dynamically.
+In this appendix all the use case diagrams are collected.
 
-This creates a \texttt{KVM Ubuntu} image, version \textit{Precise Pangolin} (\texttt{--suite=precise}), suitable for virtual environments (\texttt{--flavour=virtual}), for 32 bit machine (\texttt{--arch=i386}), using the official \textit{Ubuntu} mirrors to get the packages (\texttt{--mirror}).
 
-The section \texttt{-o --libvirt=qemu:///system} tells the system to register the newly created with the system's virtual machine manager.
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.7]{uc/uc1}
+    \caption{UC1 -- Login into the web system.}
+    \label{fig:uc1}
+  \end{center}
+\end{figure}
 
-In this case, a file named \texttt{vmbuilder.partition} was used to define the disk partitioning. The section \texttt{--templates=templates} points to the folder where \texttt{vmbuilder} should use the templates to build the image. 
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc2}
+    \caption{UC2 -- Perform management operations.}
+    \label{fig:uc2}
+  \end{center}
+\end{figure}
 
-After this, we have the definition of the user, the name to be used and the password. This password is reset on first boot, as described in the file \texttt{boot.sh}.
 
-\texttt{--addpkg} tells \texttt{vmbuilder} to install the security updates, \texttt{vim} and \textit{acpid} (used for functions such as closing a laptop lid, pressing the power button, etc).
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc3}
+    \caption{UC3 -- Create a new VM image.}
+    \label{fig:uc3}
+  \end{center}
+\end{figure}
 
-Finally, \texttt{--mem=256} specifies the total RAM and \textit{--hostname}, defines the machine's hostname.
-\begin{verbatim}
-#!/bin/bash
-sudo vmbuilder kvm ubuntu --suite=precise --flavour=virtual \
-	--arch=i386 --mirror=http://de.archive.ubuntu.com/ubuntu \
-	-o --libvirt=qemu:///system --ip=192.168.0.101 \
-	--part=vmbuilder.partition --templates=templates \
-	--user=administrator --name=Administrator --pass=howtoforge \
-	--addpkg=vim-nox --addpkg=unattended-upgrades \
-	--addpkg=acpid --firstboot=/home/pedro/Desktop/scripts/boot.sh \
-	--mem=256 --hostname=vm1 
-\end{verbatim}
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc4}
+    \caption{UC4 -- Launch a VM.}
+    \label{fig:uc4}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc5}
+    \caption{UC5 -- View system wide statistics.}
+    \label{fig:uc5}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc6}
+    \caption{UC6 -- Search for a VM image.}
+    \label{fig:uc6}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc7}
+    \caption{UC7 -- View the details of an existing VM image.}
+    \label{fig:uc7}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc8}
+    \caption{UC8 -- Modify the details of an existing VM image.}
+    \label{fig:uc8}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc9}
+    \caption{UC9 -- View user details.}
+    \label{fig:uc9}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc10}
+    \caption{UC10 -- Modify the user's details.}
+    \label{fig:uc10}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc11}
+    \caption{UC11 -- Reserve an image for later use.}
+    \label{fig:uc11}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc12}
+    \caption{UC12 -- Mark an image for deletion.}
+    \label{fig:uc12}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[scale=0.5]{uc/uc13}
+    \caption{UC13 -- Customize an image and save it.}
+    \label{fig:uc13}
+  \end{center}
+\end{figure}

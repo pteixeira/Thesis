@@ -6,9 +6,9 @@ Current Grid Computing infrastructures are generally not very flexible when it c
 
 On the other hand, Cloud Computing is associated with an extreme flexibility allowing the infrastructure to adapt itself to the users' requirements. Another aspect present in Cloud Computing but non-existent in Grid Computing is the Quality of Service factor, where a user can submit a job according to a certain cost or deadline.
 
-Furthermore, there is also the elasticity component\footnote{An application can exapand and contract on demand, across all its tiers (presentation layer, services, database, security and more). Its components can expand independently from each other, without affecting, reconfiguring or changing the other components.}, something that is not available in Grid Computing technologies but is inherent to Cloud Computing, and is one of its flagships that may be able to cross over to grid infrastructures.
+Furthermore, there is also the elasticity component\footnote{An application can expand and contract on demand, across all its tiers (presentation layer, services, database, security and more). Its components can expand independently from each other, without affecting, reconfiguring or changing the other components.}, something that is not available in Grid Computing technologies but is inherent to Cloud Computing, and is one of its flagships that may be able to cross over to grid infrastructures.
 
-In this document is presented a study that analyzes a community project for creating and managing private Cloud infrastructures (along with some of the technologies that supports this project) and how it can be implemented in FEUP - Faculty of Engineering of the University of Porto.
+In this document is presented the design and implementation of a web system that serves as an interface for CICA's private cloud project. Some of the technologies that support this web system are also described, as well as providing a contextual background in terms of computing and some of its internal fields.
 
 This first chapter introduces a brief technological and situational context, as well as the motivation behind the choice of this subject and the objectives set. The document's structure is also shown.
 
@@ -36,15 +36,14 @@ However, as powerful as these infra-structures can be, they can be deemed useles
 
 This project aims at increasing the usability of the current computing system that exists at FEUP and with this, increase its usage and stop the lack of growth. In order to achieve this goal, it was proposed that a web portal would be developed which would simplify the access to the system. This portal would have a list of common software packets and Linux distributions that the user could choose from and create an VM image which would be used to run the researcher's computing job.
 
-Furthermore, this project covers an emerging technology in the cloud computing field (\textit{OpenStack}), a technology that surpassed some of its direct competitors, even though it was started later.
+Furthermore, this document presents a possible integration with an emerging technology in the cloud computing field (\textit{OpenStack}), a technology that surpassed some of its direct competitors, even though it was started later.
 
 \section{Dissertation Structure} \label{sec:structure}
 
 This Dissertation is structured as follows:\\
-\textbf{Chapter \ref{chap:intro}: ``\nameref{chap:intro}'' } --- This chapter.\\
-\textbf{Chapter \ref{chap:sota}: ``\nameref{chap:sota}'' } --- Bibliographic review on some of the most relevant areas for this project and on the technologies that could (and some will) be used.\\
+\textbf{Chapter \ref{chap:sota}: ``\nameref{chap:sota}'' } --- Bibliographic review on some of the most relevant areas for this project and on the candidate technologies for the implementation.\\
 \textbf{Chapter \ref{chap:chap3}: ``\nameref{chap:chap3}'' } --- Exposes the ``problem'' that originated this dissertation, as well as the solution proposed and its relevance and contribution.\\
-\textbf{Chapter \ref{chap:chap4}: ``\nameref{chap:chap4}'' } --- Reviews the current state of the implementation. FIXME\\
-\textbf{Chapter \ref{chap:concl}: ``\nameref{chap:concl}'' } --- Reviews the project, drawing conclusions on what was implemented and what remains to be done, with reference to Chapter~\ref{chap:chap4}. It provides a summary of the contributions and the future work and how it can be used for whoever wishes to work with these technologies in these environments.\\
+\textbf{Chapter \ref{chap:chap4}: ``\nameref{chap:chap4}'' } --- Reviews some implemented technical aspects considered relevant. In this chapter the integration with \textit{OpenStack} is discussed. \\
+\textbf{Chapter \ref{chap:concl}: ``\nameref{chap:concl}'' } --- Reviews the project, drawing conclusions on what was implemented and what remains to be done, with reference to Chapter~\ref{chap:chap4}. It provides a summary of the contributions and the future work for this project.\\
 
-Abbreviations are used throughout this document to improve readability, all of which can be found in~\ref{chap:abbrev}. References and citations appear inside [square brackets] and in \textcolor{blue}{highlight} color. Highlighted text will act as an hyperlink when visualizing this document in a computer.
+Abbreviations are used throughout this document to improve readability, all of which can be found in~\ref{chap:abbrev}. References and citations appear inside [square brackets] and in \textcolor{blue}{highlight} color. Highlighted text will act as an hyperlink when visualizing this document in a computer. Terms which refer to programming methods, functions, \textit{Django} modules, \textit{Python} libraries and \textit{Ubuntu} processes are displayed in \texttt{true type font}.

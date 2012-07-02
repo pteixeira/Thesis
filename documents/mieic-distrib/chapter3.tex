@@ -4,7 +4,7 @@ In this chapter the problem will be described and justified, using references fr
 
 The problem statement includes the project's requirements specification, which in turn includes the stakeholder identification. 
 
-A design for the solution is presented, including the UML (Unified Modeling Language) diagram, so that the reasoning behind the solution can be understood. Use cases are also described so that a clear view on what the system does can be obtained. 
+A design for the solution is presented, including the UML (Unified Modeling Language) diagram, so that the reasoning behind the solution can be understood. Use cases are also described so that a clear view on what the system does can be obtained. All the use case diagrams are collected in Appendix~\ref{chap:ap5} --~\nameref{chap:ap5}.
 
 The details for the implementation are described in the next chapter (Chapter \ref{chap:chap4} --~\nameref{chap:chap4}).
 
@@ -14,7 +14,7 @@ Currently, FEUP's computing infrastructures are only accessed by those who have 
 
 If someone from an area unrelated to the computing system wants to perform any operation in it, that someone must contact the said technicians and waste valuable time trying to find someone that can be of assistance.
 
-Having this in mind, CICA has started developing a project that reduces the amount of knowledge necessary to perform the said computing operations.
+Having this in mind, CICA has started developing a project that reduces the amount of technical knowledge necessary to perform the said computing operations.
 
 This document focuses only on the front-end of the project, the back-end having already been developed by former MIEIC student Nuno Cardoso as part of his Master Thesis. CICA's project is described in greater detail in the following section.
 
@@ -86,8 +86,8 @@ As such, interviews were held with some of these stakeholders in order to unders
 These requirements can be split in two categories:
 
 \begin{enumerate}
-\item Functional requirements --- what the system should do and what functions it should perform~\cite{http://dictionary.reference.com/browse/functional+requirements};
-\item Non-functional requirements --- Constraints or restrictions that must be considered when designing the solution~\cite{http://www.requirementsauthority.com/functional-and-non-functional.html}.
+\item Functional requirements --- what the system should do and what functions it should perform~\cite{funct-reqs};
+\item Non-functional requirements --- Constraints or restrictions that must be considered when designing the solution~\cite{nonfunct-reqs}.
 \end{enumerate}
 
 \subsubsection{Functional requirements}\label{subsubsec:funct-reqs}
@@ -190,6 +190,8 @@ If the use case is successful, the user is logged into the system. If the user i
 
 If the use case is unsuccessful, no changes are made to the system state.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc1} which is in Appendix~\ref{chap:ap5}.
+
 \subsubsection{UC2 -- Perform management operations}\label{uc2}
 
 \textbf{Actors}:
@@ -206,13 +208,33 @@ The system administrator wants to perform management operations in the system.\\
 \textbf{Basic flow}:
 
 \begin{itemize}
-\item In order to perform management operations, the system administrator must login into the system administration panel, which has a different URL from the web system the researchers use;
-\item The system administrator must perform the login action as described in the first use case (\nameref{uc1}) using his/her credentials, which are the same for both parts of the system;
-\item Inside the administration section, the administrator is able to perform several tasks:
-\begin{itemize}
-\item Manage the users who can access the web system. This includes adding and deleting users; editing users' details and promoting users to administrators.
-\item Manage the database of the system. The administrator can: add VM images to the database; edit VM images' details; and edit or add everything that can be registered by researchers (this may be helpful for testing purposes).
-\end{itemize}
+\item There are two ways the system administrator can perform management operations:
+	\begin{enumerate}
+	\item By accessing the system administration panel, which has a different URL from the web system the researchers use;
+	\item By logging into the web system and clicking ``Image management''.
+	\end{enumerate}
+\item If the administrator chooses the first option, he/she has to follow the next steps:
+	\begin{itemize}
+		\item The system administrator must perform the login action as described in the first use case (\nameref{uc1}) using his/her credentials, which are the same for both parts of the system;
+		\item Inside the administration section, the administrator is able to perform several tasks:
+			\begin{itemize}
+			\item Manage the users who can access the web system. This includes adding and deleting users; editing users' details and promoting users to administrators.
+			\item Manage the database of the system. The administrator can: add VM images to the database; edit VM images' details; and edit or add everything that can be registered by researchers (this may be helpful for testing purposes).
+			\end{itemize}
+	\end{itemize}
+\item If the administrator wishes to use the web system, he/she has to follow the next steps:
+	\begin{itemize}
+	\item The system administrator must perform the login action as described in the first use case (\nameref{uc1}) using his/her credentials;
+	\item He/she must click on the link ``Image management'';
+	\item He/she will then be able to:
+		\begin{itemize}
+		\item View which of the images were marked for deletion by their creators;
+		\item View which of the images have been in the system for a certain amount of time and have not been used for another amount of time;
+		\item Decide whether to delete those images or not;
+		\item View the current status of all the VM images.
+		\end{itemize}
+	\end{itemize}
+\item After deciding what to do, he/she will have to save the modifications, whichever were made;
 \item After the changes are saved, the state of the system is updated.
 \end{itemize}
 
@@ -228,6 +250,8 @@ User must be logged in as administrator.\\
 \textbf{Post-Conditions}:\\
 \ \\
 The system state will change to whichever operations the system administrator chose to perform.
+
+The diagram for this use case can be viewed in Figure~\ref{fig:uc2} which is in Appendix~\ref{chap:ap5}.
 
 \subsubsection{UC3 -- Create a new VM image}\label{uc3}
 
@@ -272,6 +296,8 @@ User must be logged in.\\
 If the use case is successful, a new VM image will be inserted into the system. If the use case fails, no changes will occur.\\
 If the researcher chooses to launch the VM image, he/she will go into the use case~\ref{uc4} ---~\nameref{uc4}.\\
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc3} which is in Appendix~\ref{chap:ap5}.
+
 \subsubsection{UC4 -- Launch a VM}\label{uc4}
 
 \textbf{Actors}:
@@ -314,6 +340,7 @@ User must be logged in.\\
 \ \\
 If the use case is successful, a VM image will be deployed and will be ready for use.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc4} which is in Appendix~\ref{chap:ap5}.
 
 \subsubsection{UC5 -- View system wide statistics}\label{uc5}
 
@@ -355,6 +382,8 @@ User must be logged in.\\
 \ \\
 None.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc5} which is in Appendix~\ref{chap:ap5}.
+
 \subsubsection{UC6 -- Search for a VM image}\label{uc6}
 
 \textbf{Actors}:
@@ -390,6 +419,7 @@ User must be logged in.\\
 \ \\
 None.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc6} which is in Appendix~\ref{chap:ap5}.
 
 \subsubsection{UC7 -- View the details of an existing VM image}\label{uc7}
 
@@ -430,6 +460,8 @@ User must be logged in.\\
 \ \\
 None.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc7} which is in Appendix~\ref{chap:ap5}.
+
 \subsubsection{UC8 -- Modify the details of an existing VM image}\label{uc8}
 
 \textbf{Actors}:
@@ -465,6 +497,7 @@ User must be logged in and he/she must be the creator of the VM image.\\
 \ \\
 VM image details are updated.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc8} which is in Appendix~\ref{chap:ap5}.
 
 \subsubsection{UC9 -- View user details}\label{uc9}
 
@@ -499,6 +532,8 @@ User must be logged in.\\
 \textbf{Post-Conditions}:\\
 \ \\
 None.
+
+The diagram for this use case can be viewed in Figure~\ref{fig:uc9} which is in Appendix~\ref{chap:ap5}.
 
 \subsubsection{UC10 -- Modify the user's details}\label{uc10}
 
@@ -537,12 +572,123 @@ User must be logged in.\\
 \ \\
 User details are updated.
 
+The diagram for this use case can be viewed in Figure~\ref{fig:uc10} which is in Appendix~\ref{chap:ap5}.
+
+\subsubsection{UC11 -- Reserve an image for later use}\label{uc11}
+
+\textbf{Actors}:
+
+\begin{itemize}
+\item Researcher.
+\end{itemize}
+
+\ \\
+\textbf{Brief description}:\\
+\ \\
+The researcher wants to reserve an image so he/she can be able to use it in a certain time in the future.\\
+\ \\
+\textbf{Basic flow}:
+
+\begin{itemize}
+\item The user logs into the system and clicks the link ``Reserve an image for later use.'';
+\item The user is then redirected to a VM image creation page, which has an extra field: the date on which the user wishes to have the VM image ready for use;
+\item After inputting the date and customizing the VM image, the request is sent by clicking the appropriate button in the page;
+\item After the changes are saved, the state of the system is updated.
+\end{itemize}
+
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
+A new request for the creation of a VM image is sent for processing.
+
+The diagram for this use case can be viewed in Figure~\ref{fig:uc11} which is in Appendix~\ref{chap:ap5}.
+
+\subsubsection{UC12 -- Mark an image for deletion}\label{uc12}
+
+\textbf{Actors}:
+
+\begin{itemize}
+\item Researcher.
+\end{itemize}
+
+\ \\
+\textbf{Brief description}:\\
+\ \\
+The researcher wants to mark an image for deletion.\\
+\ \\
+\textbf{Basic flow}:
+
+\begin{itemize}
+\item The user logs into the system, goes to his/her user detail page (~\nameref{uc9}) and clicks the desired image to mark for deletion;
+\item At the image details page, the user then click the appropriate button.
+\item The request is sent to the system administrator.
+\end{itemize}
+
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+None.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in and must be the creator of the image he/she wants to mark for deletion.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
+A new request for the deletion of the VM image is sent to the system administrator.\\
+\ \\
+The diagram for this use case can be viewed in Figure~\ref{fig:uc12} which is in Appendix~\ref{chap:ap5}.
+
+\subsubsection{UC13 -- Customize an image and save it}\label{uc13}
+
+\textbf{Actors}:
+
+\begin{itemize}
+\item Researcher.
+\end{itemize}
+
+\ \\
+\textbf{Brief description}:\\
+\ \\
+The researcher wants to customize an image created by another user and save it in the system.\\
+\ \\
+\textbf{Basic flow}:
+
+\begin{itemize}
+\item The user logs into the system, goes to the detail page of the image he/she wishes to customize (~\nameref{uc7});
+\item The user will then click the button ``Customize this VM image.'';
+\item The user will be redirected to the ``Modify VM details'' page and click the ``Update'' button.
+\end{itemize}
+
+\ \\
+\textbf{Alternative flows}:\\
+\ \\
+If the new VM image has the same name as the original, the use case will fail.\\
+\ \\
+\textbf{Pre-conditions}:\\
+\ \\
+User must be logged in and the image he/she wants to customize must be public. The new VM image must have a different name than the original.\\
+\ \\
+\textbf{Post-Conditions}:\\
+\ \\
+A new VM image will be created using the new configuration.
+
+The diagram for this use case can be viewed in Figure~\ref{fig:uc13} which is in Appendix~\ref{chap:ap5}.
+
 \subsection{Relevant system details}%how this helps the users in choosing a suitable VM?
 
 In this part of the document, relevant system details are presented, namely how the system helps a user in choosing a suitable VM image.\ \\
 The Vm image management issue is also addressed, and specifications on how it can be done by an administrator inside the web system is shown.
 
-\subsubsection{Helping the user}
+\subsubsection{Helping the user}\label{subsubsec:help}
 
 
 In order to help a user choose a suitable VM image to use for his/her computational job, the following was implemented:
@@ -566,16 +712,18 @@ As for the set of statistics, different types were created:
 
 \ \\
 For users who already created a VM image, it is important to know which ones they already created, since they might need to re-use them again.
+This can be seen in Figure~\ref{fig:user-vms} --~\nameref{fig:user-vms}
 
 The most used VM images can be used to identify better created VM images, which can complement the VM image the user had in mind.
+This can be seen in Figure~\ref{fig:system-mostused-vms}
 
-Knowing which ``tags'' were more used can help the users identify an environment that was not created yet, an environment that aggregates some of the most used ``tags'' may be helpful for some researchers.
+Knowing which ``tags'' were more used can help the users identify an environment that was not created yet, an environment that aggregates some of the most used ``tags'' may be helpful for some researchers. For this a ``tag'' cloud was created.
+
+The ``tag'' cloud was included so the user could get a visual representation over the distribution of ``tags'' across the system. More used ``tags'' mean that whatever that ``tag'' describes is certainly relevant for most of the users in the system and as such, it may be relevant for the user who is trying to figure out if a new VM image should be created.
+A ``tag'' cloud can be seen in Figure~\ref{fig:tagcloud} --~\nameref{fig:tagcloud}
 
 Knowing which ``tags'' were more searched across the system can help the system administrator in knowing if it might be profitable in pinning some of the images ``tagged'' with some of the most searched ``tags'' in the ``Index'' page so that users do not have to spend time searching for something they use regularly.
-
-
-
-----> tag cloud <---- falta falar
+This can be seen in~\ref{fig:mostsearched-tags} --~\nameref{fig:mostsearched-tags}
 
 \subsection{VM image management}\label{subsec:vm-manag}
 
@@ -591,34 +739,27 @@ Another important feature from the system is the possibility of reserving a VM i
 
 \subsubsection{System administrators}
 
-System administrators have access to a reserved space inside the system, somewhere that the normal users cannot access (they cannot see it).
+System administrators have access to a reserved space inside the system, somewhere that the normal users cannot access (they cannot see it). 
+The link appears on the top-right corner of the screen, as seen in Figure~\ref{fig:management-login} --~\nameref{fig:management-login}. The user in this screenshot has administration privileges and can see the link to the management section.
 
 In this section of the system, administrators are presented with details that help them manage the VM images registered in the system.
 
-Administrators can see every VM image in the system, as well as for how long they have been registered and how long it has passed since they were last used. 
-If a certain time has passed since the image was last used, combining that information with how long they were registered in the system, the administrators are warned of that occurrence and are given the option to eliminate them from the system.
+Administrators can see every VM image in the system, as well as for how long they have been registered and how long it has passed since they were last used. If a certain time has passed since the image was last used, combining that information with how long they were registered in the system, the administrators are warned of that occurrence and are given the option to eliminate them from the system.
 
-Administrators also can see if a user has marked an image for deletion (in case the user missclicked or misstyped the VM image details) and can choose to eliminate the images from the system.
+They also can see if a user has marked an image for deletion (in case the user missclicked or misstyped the VM image details) and can choose to eliminate the images from the system.
 
+The management area can be seen in Figure~\ref{fig:management}. In this screenshot no VM images were marked for deletion.
 
+Administrators have access to the administration panel, a part of the system parallel to the web interface designed. In this space, administrators can control the database-oriented part of the system, which includes creating, modifying and deleting \emph{everything} that was designed in a way that can be stored in the database of the system.
 
+The most relevant part of this administration panel is the user management section, as this is the only way available for creating, modifying and deleting users that can access the system. The other features may be relevant if the system administrator wishes to test some aspects from the system.
 
-%Este capítulo deve começar por fazer uma apresentação detalhada do
-%problema a resolver\footnote{Na introdução a apresentação do
-%  problema foi breve.} podendo mesmo, caso se justifique,
-%constituir-se um capítulo com essa finalidade.
-
-%Deve depois dedicar-se à apresentação da solução sem detalhes de
-%implementação. 
-%Dependendo do trabalho, pode ser uma descrição mais teórica, mais
-%``arquitectural'', etc.
-%\clearpage
 \section{Conclusions}
 
 In this chapter was presented the architecture to be followed in Chapter~\ref{chap:chap4} in the implementation phase. CICA's private cloud project was presented, this document covering the front-end of that project. The objectives were outlined, as well as the use cases and stakeholders.
 
-A model for a solution was also shown, which includes the UML diagram for the current work. This diagram, along with the use cases and stakeholder identification, describe the system to be implemented.
+A model for a solution was also shown, which includes the UML diagram for the current work. This diagram, along with the use cases and stakeholder identification, describe the system to be implemented. 
 
-The VM creation and management was successfully implemented.
+Some relevant system details were also presented, including the ways that the user is helped when deciding what he/she needs to do to successfully run his/her computing job, while not wasting valuable resources by creating a VM image that may already exist in the system.
 
-The project's use cases and stakeholders were also specified.
+Screenshots were provided so a general look of the system can be obtained. All the screenshots are collected at Appendix~\ref{chap:ap6} --~\nameref{chap:ap6} for readability purposes and general document organization.
