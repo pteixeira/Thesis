@@ -3,6 +3,7 @@ from django.views.static import *
 from django.conf import settings
 from computing.forms import StackWizard
 from computing.models import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.http import HttpResponse
@@ -38,3 +39,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^mymedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root':     settings.MEDIA_ROOT}),
 )
+
+
+urlpatterns += staticfiles_urlpatterns()

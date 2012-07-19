@@ -6,11 +6,10 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>{{ image.name }}</h1>
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<h3 class="available_images">Image details</h3>
+<p><b>IMAGE NAME</b> {{ image.name}}</p>
 
-<p>Tags: {% for tag in image.get_tags %}
-			{{ tag }};
-		      {% endfor %}</p>
 
 
 
@@ -38,35 +37,52 @@
 
 {% else %}
 
-<ul>
-	<li>Image name: {{ image.name}}</li>
-	<li>Image creator: {{ image.user_owner }} - {{ image.user_owner.email }}</li>
-	<li>Public: {{ image.public }}</li>
-	<li>Image status: {{ image.status }}</li>
-	<li>Added to the system on: {{ image.date_added }}</li>
-	<li>Last used on: {{ image.date_last_used }}</li>
-</ul>
+<div id="image_information">
+<p><div class="tag_field"><b>TAGS</b>{% for tag in image.get_tags %}
+				<span class="tags">{{ tag }}</span>
+			      {% endfor %}</div></p>	
+	<p class="owner"><b>Image creator</b> {{ image.user_owner.first_name }} {{ image.user_owner.last_name }} ({{ image.user_owner.email }})</p>
+	<p class="owner"><b>Public</b> {{ image.public }}</p>
+	<p class="owner"><b>Image status</b> {{ image.status|upper }}</p>
+	<p class="owner"><b>Added to the system on</b> {{ image.date_added }}</p>
+	<p class="owner"><b>Last used in</b> {{ image.date_last_used }}</p>
+    	<p class="owner"><b>Times used</b> {{ image.number_of_uses }}</p>
+    	<p class="owner description"><b>Description</b> <span class="img_description">{{ image.description }}</span></p>
+</div>
 
+{% if image.status == "delete" %}
+<button id="delete_button">Delete image</button> <br />
+{% endif %}
+
+
+{% if user != image.user_owner and image.public %}
+<button id="launch_button">Launch VM image!</button> <br />
+{% else %}
 {% if user == image.user_owner and image.public %}
-Launch VM image! <br />
+<button id="launch_button">Launch VM image!</button> <br />
+{% else %}
+{% if user == image.user_owner and not image.public %}
+<button id="launch_button">Launch VM image!</button> <br />
 {% else %}
 This image was not created by you or it is not public. <br />
 Please contact either the owner or the system administrator if you wish to use this image. <br />
 {% endif %}
 {% endif %}
-
+{% endif %}
+{% endif %}
 {% endif %}
 
-<form><input type="button" value="Back" onClick="history.go(-1); return true;"></form>
-<p><a href="/computing/">Back to the start page.</a></p>
-<p><a href="/computing/logout/">Logout</a></p>
+
+
+<a id="back_button" href="/computing/">Go back to the start page</a>
+
+
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user.first_name }} {{ user.last_name }}</a>
+Hello <a href="/computing/user/{{ user.id }}/">{{ user.first_name }} {{ user.last_name }}</a>  
 {% if user.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 </body>
 </html>

@@ -33,12 +33,13 @@ def management(request):
 	image_list = Image_Stack.objects.all()
 	user_in_session = request.user
 	user_images = Image_Stack.objects.all()
+	deletion_images = Image_Stack.objects.filter(status='delete')
 #	user_images2 = list()
 #	for image in user_images:
 #		user_images2.append(image.get_time_in_system().days)
 	
 	return render_to_response('computing/management.html', {'image_list': image_list, 'user_in_session': user_in_session, 
-								'user_images': user_images})
+								'user_images': user_images, 'images_deleted': deletion_images})
 
 @login_required
 def user_details(request, user_id):
@@ -85,7 +86,8 @@ def index(request):
 		user_in_session = request.user
 		
 		latest_image_list = Image_Stack.objects.all().order_by('-name') 
-		return render_to_response('computing/index2.html', {'latest_image_list': latest_image_list, 'user_in_session': user_in_session})
+		c = RequestContext(request)
+		return render_to_response('computing/index2.html', {'latest_image_list': latest_image_list, 'user_in_session': user_in_session}, c)
 @login_required
 def detail(request, image_id):
 	user_in_session = request.user
@@ -100,11 +102,11 @@ def create_image(request):
 @login_required
 def create_results(request):
 	if not request.POST['name']:
-		return render_to_response('computing/create_results_error.html', {'no_name': 'dummy'})
+		return render_to_response('computing/create_results_error.html', {'no_name': 'dummy', 'user_in_session': request.user})
 	post_data = request.POST.lists()
 	dummy = 1
 	if Image_Stack.objects.filter(name=request.POST['name'].upper()): #check if image already exists
-		return render_to_response('computing/create_results_error.html', {'error': request.POST['name']})
+		return render_to_response('computing/create_results_error.html', {'error': request.POST['name'], 'user_in_session': request.user})
 	else:
 		dummy = 1
 	user1 = request.user #get user that is currently creating the image
@@ -218,7 +220,7 @@ def filetree(request):
 	full_image_list = Image_Stack.objects.all()
 	
 	#--- list ordered by number of uses across the system
-	ordered_by_usage = Image_Stack.objects.all().order_by('number_of_uses')
+	ordered_by_usage = Image_Stack.objects.all().order_by('-number_of_uses') [:5]
 	return render_to_response('computing/detail.html', {'ordered_by_usage': ordered_by_usage, 'latest_image_list': user_image_listlist,
 				  			    'user': user_in_session, 'full_image_list': full_image_list,
 				  			    'user_most_used_images': user_most_used_images,
@@ -281,4 +283,4 @@ def search(request):#se for so uma tag, devolve as imagens com essa tag
 #    				l.append((image.id, image.name))
     	#return render_to_response('computing/search_results.html', {'images': images, 'query': q, 'list': l}) --> this works!
     else:
-    	return render_to_response('computing/search_results.html')
+    	return render_to_response('computing/search_results.html', {'user_in_session': request.user})

@@ -5,31 +5,31 @@
 		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
 	</head>
 <body>
-<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
-<br />
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<h3 class="available_images">Create a VM image</h3>
 
 <form method="post" action="/computing/create_results/">
 	{% csrf_token %}
 	{{ formset.management_form }}
 	{% for field in formset %}
 	    {% if field.label == "Name" %}
-	    <p>{{ field.label_tag }}: {{ field }}<br /> <b>NOTE: </b>Please do not use special characters. Use only alphanumerical characters, upper or lower case (a-z; A-Z; 0-9). The name will be converted to uppercase for convenience.</p>
+	    <p><span class="label">{{ field.label_tag }}</span> {{ field }}</p> <p class="note"><b>NOTE: </b>Do not use special characters. Use only alphanumerical characters, upper or lower case (a-z; A-Z; 0-9). The name will be converted to uppercase for convenience.</p>
 	    {% else %}
 	    {% if field.label == "Tags" %}
-	    <p>{{ field.label_tag }}: {{ field }}<br /> <b>NOTE: </b>Separate different tags by using commas. Example: ubuntu, vim, this is science.</p>
+	    <p><span class="label">{{ field.label_tag }}</span> {{ field }}</p> <p class="note"><b>NOTE: </b>Separate different tags by using commas. Example: ubuntu, vim, this is science.</p>
 	    {% else %}
 	    {% if field.label == "Description" %}
-	    <p> {{ field.label_tag }}: {{ field }} <br /><b>NOTE:</b> Please write a short description about the VM you are about to create.</p>
+	    <p> <span class="label">{{ field.label_tag }}</span> {{ field }}</p> <p class="note"><b>NOTE:</b> Write a short description about the VM you are about to create.</p>
 	    {% else %}
 	    {% if field.label == "Public" %}
-	    <p> {{ field.label_tag }}: {{ field }}<br /> <b>NOTE:</b> Check the box if you wish to share the VM image with the rest of the users.</p>
+	    <p> <span class="label">{{ field.label_tag }}</span> {{ field }}</p> <p class="note"><b>NOTE:</b> Check the box if you wish to share the VM image with the rest of the users.</p>
 	    {% else %}
 	    {% if field.label == "Vim" %}
-	    <br /> <br />
-	    <p>Please choose from the applications below those you wish to be included in your VM:</p>
-	    {{ field.label_tag }}: {{ field }}
+
+	    <p id="separator">Please choose from the applications below those you wish to be included in your VM:</p>
+	    <p><span class="label">{{ field.label_tag }}</span> {{ field }}</p>
 	    {% else %}
-    	    <p>{{ field.label_tag }}: {{ field }}</p>
+    	    <p><span class="label">{{ field.label_tag }}</span> {{ field }}</p>
 	    {% endif %}
 	   {% endif %}
 	   {% endif %}
@@ -37,17 +37,16 @@
 	   {% endif %}
 	{% endfor %}
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" id ="create">
 </form>
 
-<p><a href="/computing/">Go back to the start page.</a></p>
+<a id="back_button" href="/computing/">Go back to the start page</a>
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 </body>
 </html>

@@ -19,7 +19,13 @@
 {% endif %}
 {% endif %}
 
-<p><a href="/computing/">Go back to the start page.</a></p>
-
+<a id="back_button" href="/computing/">Go back to the start page</a>
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
+{% if user_in_session.is_staff %}
+| <a href="/computing/management">Image management</a>
+{% endif %}
+| <a href="/computing/logout/">Logout</a>
+</div>
 </body>
 </html>

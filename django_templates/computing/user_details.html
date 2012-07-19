@@ -5,35 +5,45 @@
 		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
 	</head>
 <body>
+
+<div id="user_corner">
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
+{% if user_in_session.is_staff %}
+| <a href="/computing/management">Image management</a>
+{% endif %}
+| <a href="/computing/logout/">Logout</a>
+</div>
+
 <h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
-<br />
-<h2>Viewing user details</h2>
+
+<h3 class="available_images">User details</h3>
 
 <div id="user_info">
-Username: {{ user_in_session }}<br />
-First name: {{ user_in_session.first_name }} <br />
-Last name: {{ user_in_session.last_name }} <br />
-Email: {{ user_in_session.email }} <br />
+<h3>User information</h4>
+<b>Username</b> {{ user_in_session }}<br />
+<b>First name</b> {{ user_in_session.first_name }} <br />
+<b>Last name</b> {{ user_in_session.last_name }} <br />
+<b>Email</b> {{ user_in_session.email }} <br />
 </div>
 
 <div id="images_owned">
-<h3>VM images created:</h3>
-<ul>
+<h3>VM images created</h3>
+<ul class="latest_images">
 {% for item in user_image_list %}
-<li><a href="/computing/{{ item.id }}/">{{ item }}</a></li>
+<li><a href="/computing/{{ item.id }}/">{{ item }}</a>	
+	<div class="tag_field">{% for tag in item.get_tags %}
+				<span class="tags">{{ tag }}</span>
+		{% endfor %}</div>
+		<p class="owner"><b>Date added</b> {{ item.date_added }}</p>
+		<p class="owner"><b>Last used in</b> {{ item.date_last_used }}</p>
+		<p class="owner description"><b>Description</b> <span class="img_description">{{ item.description }}</span></p></li>
 {% endfor %}
 </ul>
 </div>
 
-<p><a href="/computing/">Go back to the start page.</a></p>
-<div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
-{% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
-{% endif %}
-<br /><a href="/computing/logout/">Logout</a>
-</div>
+<a id="back_button" href="/computing/">Go back to the start page</a>
+
+
 
 </body>
 </html>

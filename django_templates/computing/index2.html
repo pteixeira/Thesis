@@ -5,26 +5,25 @@
 		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
 	</head>
 <body>
-<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
 <br />
-This portal was designed to help researchers find the most suitable virtual image for their computing needs.<br />
-Please choose one of the options below to continue:
+<p id="index_p">This portal was designed to help researchers find the most suitable virtual image for their computing needs. <br />
+Please choose one of the options below to continue:</p>
 <br />
-<ol>
-	<li><a href="/computing/details">View statistics.</a></li>
-	<li><a href="/computing/list_vms">Launch an already existing VM image.</a></li>
-	<li><a href="/computing/create_image">Create a new VM image.</a></li>
-	<li><a href="/computing/search_form">Search for a VM image.</a></li>
+<ol id="menu_list">
+	<li><a href="/computing/details" ><img src="/mymedia/stats.png" /><span class="menu_text">View statistics</span></a></li>
+	<li><a href="/computing/list_vms"><img src="/mymedia/launch.png" /><span class="menu_text">Launch an already existing VM image</span></a></li>
+	<li><a href="/computing/create_image"><img src="/mymedia/create.png" /><span class="menu_text">Create a new VM image</span></a></li>
+	<li><a href="/computing/search_form"><img src="/mymedia/search.png" /><span class="menu_text">Search for a VM image</span></a></li>
 </ol>
 
 
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 
 </body>

@@ -30,7 +30,7 @@ As it was mentioned earlier in this chapter and in the document, the work depict
 
 This project aims at simplifying the process of submitting a computing job into FEUP's computing infrastructures, thus making them more accessible to the academic community, without the users having to spend time learning about the technologies and how the system actually works.
 
-In order to better understand the full extention of the issue, Figure~\ref{fig:big_picture} shows the whole system as it should function, through the means of an hypothetic and yet plausible use case scenario:
+In order to better understand the full extension of the issue, Figure~\ref{fig:big_picture} shows the whole system as it should function, through the means of an hypothetic and yet plausible use case scenario:
 
 \begin{figure}[h!]
   \begin{center}
@@ -665,7 +665,8 @@ The researcher wants to customize an image created by another user and save it i
 \begin{itemize}
 \item The user logs into the system, goes to the detail page of the image he/she wishes to customize (~\nameref{uc7});
 \item The user will then click the button ``Customize this VM image.'';
-\item The user will be redirected to the ``Modify VM details'' page and click the ``Update'' button.
+\item The user will be redirected to the ``Modify VM details'' page and click the ``Update'' button;
+\item This configuration can be done either in the web system or inside the VM image itself.
 \end{itemize}
 
 \ \\
@@ -680,6 +681,8 @@ User must be logged in and the image he/she wants to customize must be public. T
 \textbf{Post-Conditions}:\\
 \ \\
 A new VM image will be created using the new configuration.
+
+As it was mentioned in the flow of the use case, this allows for users to either append software which can be included using the web system or using software of their own, when they \texttt{ssh} into the VM image. This opens the possibility of using user-owned software, i.e. proprietary software owned by the researcher, and the sharing of this newly created VM image with others who do not own the said software but need it and for some reason cannot obtain it.
 
 The diagram for this use case can be viewed in Figure~\ref{fig:uc13} which is in Appendix~\ref{chap:ap5}.
 
@@ -746,9 +749,9 @@ In this section of the system, administrators are presented with details that he
 
 Administrators can see every VM image in the system, as well as for how long they have been registered and how long it has passed since they were last used. If a certain time has passed since the image was last used, combining that information with how long they were registered in the system, the administrators are warned of that occurrence and are given the option to eliminate them from the system.
 
-They also can see if a user has marked an image for deletion (in case the user missclicked or misstyped the VM image details) and can choose to eliminate the images from the system.
+They also can see if a user has marked an image for deletion (in case the user missclicked or mistyped the VM image details) and can choose to eliminate the images from the system.
 
-The management area can be seen in Figure~\ref{fig:management}. In this screenshot no VM images were marked for deletion.
+The management area can be seen in Figure~\ref{fig:management} and Figure~\ref{fig:management2}. In this screenshot no VM images were marked for deletion.
 
 Administrators have access to the administration panel, a part of the system parallel to the web interface designed. In this space, administrators can control the database-oriented part of the system, which includes creating, modifying and deleting \emph{everything} that was designed in a way that can be stored in the database of the system.
 

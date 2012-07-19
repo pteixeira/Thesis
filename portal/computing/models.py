@@ -113,9 +113,9 @@ class Image_Stack(models.Model):
 	def get_tags(self):
 		return Tag.objects.get_for_object(self)
 	def get_time_in_system(self):
-		return self.date_added - datetime.date.today()
+		return  datetime.date.today() - self.date_added
 	def get_time_since_last_used(self):
-		return self.date_last_used - datetime.date.today()
+		return  datetime.date.today() - self.date_last_used
 	
 	
 	def __unicode__(self):

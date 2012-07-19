@@ -6,30 +6,38 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
 
 
 {% if image_list %}
-<p>You searched for: <strong>{{ searched_item }}</strong></p>
-<p> Found {{ image_list|length }} Image{{ image_list|pluralize }}.</p>
-<ul>
+<div id="found_text">
+	<p id="searched_item">You searched for: <b>{{ searched_item }}</b></p>
+	<p> Found <b>{{ image_list|length }}</b> Image{{ image_list|pluralize }}:</p>
+</div>
+<ul class="latest_images">
 	{% for item in image_list %}
-	<li><a href="/computing/{{ item.id }}/">{{ item }}</a></li>
+	<li><a href="/computing/{{ item.id }}/">{{ item }}</a> <div class="tag_field">{% for tag in item.get_tags %}
+										<span class="tags">{{ tag }}</span>
+								   {% endfor %}</div>
+	<p class="owner"><b>Creator</b> {{ item.user_owner.first_name }} {{ item.user_owner.last_name }}<b>Email</b> {{ item.user_owner.email }}</p>
+		<p class="owner"><b>Times used</b> {{ item.number_of_uses }}</p>
+		<p class="owner description"><b>Description</b> <span class="img_description">{{ item.description }}</span></p></li>
 	{% endfor %}
 </ul>
 {% else %}
-<p>No images matched your search criteria.<br />
-Please go back to the <a href="/computing/search_form">previous page</a> and insert other search terms.
-</p>
+<div id="found_text">
+	<p>No images matched your search criteria.</p>
+</div>
+<p>Please go back to the <a href="/computing/search_form">previous page</a> and insert other search terms.</p>
 {% endif %}
 
-<p><a href="/computing/">HOME</a></p>
+<a id="back_button" href="/computing/">Go back to the start page</a>
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 </body>
 </html>

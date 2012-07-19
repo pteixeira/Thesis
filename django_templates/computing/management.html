@@ -6,36 +6,55 @@
 	</head>
 <body>
 <h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
-{% if user_in_session.is_staff %}
-<h4>Welcome to the management area, {{ user_in_session }}.</h4>
 
-<p><b>The following VM images have been in the system for over a day and have not been used for one day. You should consider deleting them.</b></p>
-<ul>
+
+{% if user_in_session.is_staff %}
+<p id="welcome_message">Welcome to the admin reserved area, {{ user_in_session.first_name }} {{ user_in_session.last_name }}.</p>
+
+<p id="warning_message">The following VM images have been in the system for over 10 days and have not been used for 10 days. You should consider deleting them.</p>
+<ul class="latest_images">
 {% for image in user_images %}
-<li>{% if image.get_time_in_system.days > 0 and image.get_time_since_last_used.days > 0 %}</li>
-{{ image.name }} <br />
+{% if image.get_time_in_system.days > 0 and image.get_time_since_last_used.days > 10 %}
+<li><a href="/computing/{{ image.id }}/">{{ image.name }}</a>
+			   <div class="tag_field">{% for tag in image.get_tags %}
+				<span class="tags">{{ tag }}</span>
+			    {% endfor %}</div>
+     <p class="owner"><b>Creator</b> {{ image.user_owner.first_name }} {{ image.user_owner.last_name }} <b>Email</b> {{ image.user_owner.email }}</p>
+     <p class="owner"><b>Last used in</b> {{ image.date_last_used }}</p>
+     <p class="owner"><b>Added to the system on</b> {{ image.date_last_used }}</p></li>
 {% endif %}
 {% endfor %}
 </ul>
 
-<b><p>Images currently in the system:</p></b>
+<p id="system_images">Images marked for deletion:</p>
 
-{% for image in user_images  %}
-<p>{{ image.name }} is in the system for {{ image.get_time_in_system.days }} day(s).
-It has been {{ image.get_time_since_last_used.days }} day(s) since it was last used.</p>
-{% endfor %}
+<ul class="latest_images system_images">{% for image in images_deleted  %}
+	<li><a href="/computing/{{ image.id }}/">{{ image.name }}</a> is in the system for <b>{{ image.get_time_in_system.days }}</b> day{{ image.get_time_in_system.days|pluralize }}.
+		It has been <b>{{ image.get_time_since_last_used.days }}</b> day{{ image.get_time_in_system.days|pluralize }} since it was last used.
+<p class="owner"><b>Creator</b> {{ image.user_owner.first_name }} {{ image.user_owner.last_name }} <b>Email</b> {{ image.user_owner.email }}</p>		</li>
+	{% endfor %}</ul>
+
+
+<p id="system_images">Images currently in the system:</p>
+
+<ul class="latest_images system_images">{% for image in user_images  %}
+	<li><a href="/computing/{{ image.id }}/">{{ image.name }}</a> is in the system for <b>{{ image.get_time_in_system.days }}</b> day{{ image.get_time_in_system.days|pluralize }}.
+		It has been <b>{{ image.get_time_since_last_used.days }}</b> day{{ image.get_time_in_system.days|pluralize }} since it was last used.
+<p class="owner"><b>Creator</b> {{ image.user_owner.first_name }} {{ image.user_owner.last_name }} <b>Email</b> {{ image.user_owner.email }}</p>		</li>
+	{% endfor %}</ul>
+
+
 {% else %}
-Nothing to see here, move along. <br />
+Nothing to see here, move along. 
 {% endif %}
 
-<a href="/computing">Go back to the start page.</a>
+<a id="back_button" href="/computing/">Go back to the start page</a>
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 </body>
 </html>

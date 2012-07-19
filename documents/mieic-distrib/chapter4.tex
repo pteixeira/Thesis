@@ -129,7 +129,7 @@ The modules \texttt{python-tagging} and \texttt{South} are needed for the web ap
 
 As it was mentioned earlier in the document, this project interacts with a cloud middleware, namely \textit{OpenStack}.
 
-\textit{OpenStack} being created to deliver a massively scalable cloud operating system, each of the components is designed to work together in order to provide complete IaaS. This integration is facilitated through pulic APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
+\textit{OpenStack} being created to deliver a massively scalable cloud operating system, each of the components is designed to work together in order to provide complete IaaS. This integration is facilitated through public APIs that each service offers, being available to the cloud's end users.~\cite{ken-pepple:essex-arch}. 
 
 Expanding the diagram shown in Figure~\ref{fig:openstack_sw_diag}, the relationships between the services are shown in Figure~\ref{fig:openstack_services}:
 
@@ -193,9 +193,7 @@ Since this is a web system, the RESTful API will be used.
 
 Communication with \textit{Glance} is established when the user wants to store a newly created VM image, wishes to use an already existing one and when the user wishes to view the images already stored in the server. This last case can be eliminated by storing the previous results on a text file, along with the timestamp of the last change made to that list (which should happen when a user creates and inserts a new VM image into the system).
 
-Since the web application has \textit{Python} code on the background and \textit{OpenStack} is coded in the same programming language, this connection is seamless.
-
-Due to time constraints, the full integration with \textit{OpenStack} was not possible, but the work described in this document provide a good start for that to happen.
+Due to time constraints, the full integration with \textit{OpenStack} was not possible, but the work described in this document provides a good start for that to happen.
 
 The web interface which was developed offers some advantages over \textit{OpenStack} itself, which are described in the next section.
 
@@ -206,7 +204,43 @@ At this moment, \textit{OpenStack} does not offer the possibility of searching f
 
 \textit{OpenStack} also does not provide a way of actually creating a contextualized VM image. The user must create on his/her own the script which will contextualize a pre-created clean VM image (as it can be seen in Figure~\nameref{fig:customization-script}). 
 
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\linewidth]{customization-script}
+    \caption{Customizing an instance in \textit{OpenStack}.}
+    \label{fig:customization-script}
+  \end{center}
+\end{figure}
+
+
 Its \textit{Horizon} dashboard is not user friendly for people who are not familiarized with some of the computing aspects, but the developed system is. It simplifies the way it interacts with the user, showing helpful tips and notes wherever is deemed necessary, successfully completing the objective defined at the start -- letting the users interact with the system without needing specific technical knowledge.
+
+Moreover the developed web system provides a simple and easy-to-use interface for managing both users and VM images.
+
+By taking advantage of the authentication module bundled with \textit{Django}, user management becomes simple, as its interface is intuitive (as shown in Figure~\ref{fig:admin-user} --~\nameref{fig:admin-user} -- and Figure~\ref{fig:admin-changeuser} --~\nameref{fig:admin-changeuser}).
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\textwidth]{screenshots/admin-user}
+    \caption{The administration interface.}
+    \label{fig:admin-user}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \leavevmode
+    \includegraphics[width=\textwidth]{screenshots/admin-changeuser}
+    \caption{Changing user details in the administration interface.}
+    \label{fig:admin-changeuser}
+  \end{center}
+\end{figure}
+
+Moreover, VM image management is simplified in the developed web system. The administrator is provided with visual aids which show which tasks need to be done. This allows for researchers to become system administrators and not knowing anything related to the database part of the system. 
+
+Since researchers implicitly need some knowledge (otherwise they would not be using the web system), this can be ported to the management area. Since the administration system differentiates between administrative access to the administration panel and VM image management from within the web system, this is an advantage.
 
 \section{Results}\label{sec:results}
 
@@ -226,7 +260,7 @@ With \textit{OpenStack}, the VM images had to be constantly re-contextualized, s
 
 \section{Conclusions}
 
-This chapter presented how the architecture described in the previous chapter (\nameref{chap:chap3}) was implemented, from a technical point of view. 
+This chapter presented how the architecture described in Chapter~\ref{chap:chap3} --~\nameref{chap:chap3}) -- was implemented, from a technical point of view. 
 
 It was shown how the use of some \textit{Django} modules were used in order to complete some of the objectives and how the system works internally.
 

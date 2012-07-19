@@ -5,28 +5,29 @@
 		<title>Web System For Creating And Managing Virtual High Performance Computing Environments</title>
 	</head>
 <body>
-<h1>Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
 
-<h1>Available VM images:</h1>
-<h4>These are images that are public or you have created.</h4>
+<h3 class="available_images">Available VM images</h3>
+<p id="created_images">These are images that are public or you have created:</p>
 
-<ul>
+<ul class="latest_images">
 	{% for item in user_image_list %}
 		<li><a href="/computing/{{ item.id }}/">{{ item.name }}</a> 
-		Tags: {% for tag in item.get_tags %}
-			{{ tag }};
-		      {% endfor %}</li>
+		<div class="tag_field">{% for tag in item.get_tags %}
+				<span class="tags">{{ tag }}</span>
+			{% endfor %}</div>
+	<p class="owner"><b>Creator</b> {{ item.user_owner.first_name }} {{ item.user_owner.last_name }}<b>Email</b> {{ item.user_owner.email }}</p>
+	<p class="owner description"><b>Description</b> <span class="img_description">{{ item.description }}</span></p></li>
 	{% endfor  %}
-	</ul>
+</ul>
 
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
-<p><a href="/computing/">Go back to the start page.</a></p>
+<a id="back_button" href="/computing/">Go back to the start page</a>
 </body>
 </html>

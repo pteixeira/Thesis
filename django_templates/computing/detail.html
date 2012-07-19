@@ -6,73 +6,98 @@
 	<link href="/mymedia/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h2>Available VM images</h2>
-<h4>These are images that are public or you have created.</h4>
+<h1 id="main_title">Web System For Creating And Managing Virtual High Performance Computing Environments</h1>
+
+<h3 class="available_images">Available VM images</h3>
+<p>These are images that are public or you have created.</p>
 
 {% if latest_image_list %}
-	<ul>
+	<ul class ="latest_images">
 	{% for item in latest_image_list %}
 		<li><a href="/computing/{{ item.id }}/">{{ item.name }}</a> 
-		Tags: {% for tag in item.get_tags %}
-			{{ tag }};
-		      {% endfor %}</li>
+		<div class="tag_field">{% for tag in item.get_tags %}
+				<span class="tags">{{ tag }}</span>
+			{% endfor %}</div>
+	<p class="owner"><b>Creator</b> {{ item.user_owner.first_name }} {{ item.user_owner.last_name }}<b>Email</b> {{ item.user_owner.email }}</p>
+	<p class="owner description"><b>Description</b> <span class="img_description">{{ item.description }}</span></p></li>
 	{% endfor  %}
 	</ul>
 	
-<h2>Most used images by you</h2>
-<h4>These are the most used images by you. You may consider reusing them instead of creating a new one.</h4>
+<h3 class="available_images">Most used images by you</h3>
+<p>These are the most used images by you. You may consider reusing them instead of creating a new one.</p>
+<ul class ="latest_images">
 {% for image in user_most_used_images %}
-{{ image.image.name }}
+<li><a href="/computing/{{ image.id }}">{{ image.image.name }}</a>
+		<div class="tag_field">{% for tag in image.image.get_tags %}
+				<span class="tags">{{ tag }}</span>
+			{% endfor %}</div>
+    		<p class="owner"><b>Last used in</b> {{ image.image.date_last_used }}</p>
+    		<p class="owner"><b>Times used</b> {{ image.image.number_of_uses }}</p>
+    		<p class="owner description"><b>Description</b> <span class="img_description">{{ image.image.description }}</span></p></li>
 {% endfor %}
-	
-<h2>Most used VM images in the system</h2>
-<h4>These are the most used VM images currently in the system. If you believe one of these images may help you, but you do not have access to it, contact either the VM image creator or the system administrator so that they can set their image to ``Public''. Their contacts are displayed next to the image they created.</h4>
+</ul>
 
+<h3 class="available_images">Most used VM images in the system</h3>
+<p>These are the most used VM images currently in the system. If you believe one of these images may help you, but you do not have access to it, contact either the VM image creator or the system administrator so that they can set their image to "Public". Their contacts are displayed next to the image they created.</p>
+
+
+<ul class = "latest_images">
 {% for image in ordered_by_usage %}
-	<p><a href="/computing/{{ image.id }}">{{ image.name }}</a>: - Created by: {{ image.user_owner.username }}. Email: {{ image.user_owner.email }} </p>
-{% endfor %}
+		<li><a href="/computing/{{ image.id }}">{{ image.name }}</a> <div class="tag_field">{% for tag in image.get_tags %}
+										     	<span class="tags">{{ tag }}</span>
+			   							     {% endfor %}</div> 
+		<p class="owner"><b>Creator</b> {{ image.user_owner.first_name }} {{ image.user_owner.last_name }}<b>Email</b> {{ image.user_owner.email }}</p>
+		<p class="owner"><b>Times used</b> {{ image.number_of_uses }}</p>
+		<p class="owner description"><b>Description</b> <span class="img_description">{{ image.description }}</span></p></li>
+	{% endfor %}
+</ul>
 
 {% else %}
 	<p>No images available.</p>
 {% endif %}
 
-<h2>Tag Cloud</h2>
-<h4>This shows the current tag usage in the VM images in the system. A bigger font means a higher use of that tag.</h4>
+<h3 class="available_images">Tag Cloud</h3>
+<p>This shows the current tag usage in the VM images in the system. A bigger font means a higher use of that tag.</p>
 {% load tagging_tags %}
 {% tag_cloud_for_model computing.Image_Stack as tags with steps=20 distribution=log %}
-{% for tag in tags %}
-	
-	    <font style="font-size:{{ tag.font_size|add:"10" }}pt">
-	        {{ tag.name }} - {% for image in full_image_list %}
-				 	{% for tagita in image.get_tags %}
-				 		{% if tagita == tag %}
-				 			<a href="/computing/{{ image.id }}">{{ image.name }}</a>
-				 		{% endif %}
-				 	{% endfor %}
-				 {% endfor %}<br />
-	    </font>
-	    {% endfor %}
 
-<h2>Most searched tags in the system</h2>
-<h4>This shows the most searched tags in the system and which images are tagged with them.</h4>
+<ul id="tag_cloud">{% for tag in tags %}
+		
+		    <li>
+		    	<font style="font-size:{{ tag.font_size|add:"10" }}pt !important">
+		    	    <span>{{ tag.name }}</span> </font> {% for image in full_image_list %}
+		    						 	{% for tagita in image.get_tags %}
+		    						 		{% if tagita == tag %}
+		    						 			<a href="/computing/{{ image.id }}">{{ image.name }}</a>
+		    						 		{% endif %}
+		    						 	{% endfor %}
+		    				    {% endfor %}<br />
+		    </li>
+	{% endfor %}
+</ul>
+
+<h3 class="available_images">Most searched tags in the system</h3>
+<p>This shows the most searched tags in the system and which images are tagged with them.</p>
 
 
+<ul class="latest_images most_searched">
 {% for tagasd in most_searched_tags %}
-{{ tagasd.tag }} - {% tagged_objects tagasd.tag in computing.Image_Stack as coisas %}
-		   {% for coisa in coisas %}
-			<a href="/computing/{{ image.id }}">{{ coisa.name }}</a>
-		   {% endfor %} <br />
+	<li><span class="tags">{{ tagasd.tag }}</span> {% tagged_objects tagasd.tag in computing.Image_Stack as coisas %}
+			   {% for coisa in coisas %}
+				<a class="image_name" href="/computing/{{ coisa.id }}">{{ coisa.name }}</a>
+			   {% endfor %}
+	<p class="owner"><b>Times searched</b> {{ tagasd.freq }}</p></li>
 {% endfor %}
+</ul>
 
 
-<p><a href="/computing/">Go back to the start page.</a></p>
+<a id="back_button" href="/computing/">Go back to the start page.</a>
 <div id="user_corner">
-Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>
+Hello <a href="/computing/user/{{ user_in_session.id }}/">{{ user_in_session.first_name }} {{ user_in_session.last_name }}</a>  
 {% if user_in_session.is_staff %}
-<b>Administration:</b>
-<a href="/computing/management">Image management.</a>
+| <a href="/computing/management">Image management</a>
 {% endif %}
-<br /><a href="/computing/logout/">Logout</a>
+| <a href="/computing/logout/">Logout</a>
 </div>
 </body>
 </html>
